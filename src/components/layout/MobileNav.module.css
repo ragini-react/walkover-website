@@ -1,0 +1,142 @@
+.toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  color: inherit;
+  transition: background-color var(--dur-2);
+}
+
+.toggle:hover {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+@media (min-width: 1080px) {
+  .toggle {
+    display: none;
+  }
+}
+
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--paper);
+  color: var(--ink-950);
+  display: none;
+  flex-direction: column;
+}
+
+.dialog[open] {
+  display: flex;
+  animation: sheet-in var(--dur-3) var(--ease-out);
+}
+
+.dialog::backdrop {
+  background: rgb(8 9 12 / 0.4);
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  padding-inline: var(--gutter);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: inline-flex;
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-3) var(--gutter) var(--space-6);
+}
+
+.section {
+  border-bottom: 1px solid var(--line);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  list-style: none;
+  cursor: pointer;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.plus {
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+.section[open] .plus {
+  transform: rotate(45deg);
+}
+
+.list {
+  padding-bottom: var(--space-5);
+  display: grid;
+  gap: 2px;
+}
+
+.link,
+.overview {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 44px;
+  font-size: 1.05rem;
+  color: var(--ink-700);
+}
+
+.link[aria-current="page"] {
+  color: var(--signal-text);
+}
+
+.overview {
+  font-weight: 600;
+  color: var(--ink-950);
+  gap: 0.4rem;
+}
+
+.pip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.footer {
+  padding: var(--space-4) var(--gutter) calc(var(--space-4) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  display: grid;
+}

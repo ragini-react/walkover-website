@@ -1,0 +1,29 @@
+.header {
+  display: grid;
+  gap: var(--space-5);
+  margin-bottom: var(--space-9);
+}
+
+.titleBlock {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  max-width: 18ch;
+}
+
+.side {
+  display: grid;
+  gap: var(--space-5);
+  align-content: end;
+  justify-items: start;
+}
+
+@media (min-width: 960px) {
+  .header[data-align="split"] {
+    grid-template-columns: 1.3fr 1fr;
+    align-items: end;
+    gap: var(--space-9);
+  }
+}

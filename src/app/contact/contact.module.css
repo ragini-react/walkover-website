@@ -1,0 +1,128 @@
+.page {
+  position: relative;
+  padding-top: calc(var(--header-h) + clamp(2.5rem, 2rem + 3vw, 5rem));
+  padding-bottom: var(--section-y);
+  overflow: hidden;
+}
+
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(var(--line-strong) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(50% 60% at 0% 0%, #000, transparent);
+  mask-image: radial-gradient(50% 60% at 0% 0%, #000, transparent);
+}
+
+.layout {
+  display: grid;
+  gap: var(--space-9);
+}
+
+@media (min-width: 1000px) {
+  .layout {
+    grid-template-columns: 1fr 1.15fr;
+    gap: var(--space-10);
+    align-items: start;
+  }
+}
+
+.intro {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+@media (min-width: 1000px) {
+  .intro {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+}
+
+.channels {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.channel {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-4);
+  margin-inline: calc(var(--space-4) * -1);
+  border-radius: var(--radius-md);
+  transition: background-color var(--dur-2);
+}
+
+.channel:hover {
+  background: var(--bg-raised);
+}
+
+.channelIcon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--ink-950);
+  color: #fff;
+}
+
+.channelLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.channelValue {
+  display: block;
+  font-style: normal;
+  font-weight: 560;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  margin-top: 0.15rem;
+}
+
+.support {
+  display: grid;
+  gap: var(--space-2);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line);
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+
+.support a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.formCard {
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border-radius: var(--radius-xl);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+
+.formSkeleton {
+  min-height: 640px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, var(--bg-sunken), var(--bg-raised), var(--bg-sunken));
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

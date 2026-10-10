@@ -1,0 +1,40 @@
+.nav {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.item + .item::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.5;
+  margin-inline: 0.7rem;
+}
+
+.item [aria-current] {
+  color: var(--fg);
+}
+
+.link {
+  transition: color var(--dur-2);
+}
+
+.link:hover {
+  color: var(--fg);
+}

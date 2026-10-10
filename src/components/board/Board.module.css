@@ -1,0 +1,273 @@
+.board {
+  --track: 34px;
+  position: relative;
+  padding-bottom: var(--space-10);
+}
+
+/* Faint board grid printed under everything. */
+.board::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgb(13 15 20 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(13 15 20 / 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+  pointer-events: none;
+}
+
+/* ── Track ──────────────────────────────────────────── */
+.track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+  overflow: visible;
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out);
+}
+
+.board[data-ready] .track {
+  opacity: 1;
+}
+
+.track path {
+  fill: none;
+  stroke-linejoin: round;
+}
+
+/* Outer edge of the track: its colour shows through between cells. */
+.rail {
+  stroke: rgb(13 15 20 / 0.16);
+  stroke-width: calc(var(--track) + 6px);
+  stroke-linecap: round;
+}
+
+/* The cells: dashes the length of a square, with a thin gap between. */
+.cells,
+.filled {
+  stroke-width: var(--track);
+  stroke-dasharray: 30 4;
+}
+
+.cells {
+  stroke: #fbfaf6;
+}
+
+.filled {
+  stroke: var(--signal);
+}
+
+.maskPath {
+  stroke: #fff;
+  stroke-width: calc(var(--track) + 16px);
+  stroke-linecap: butt;
+}
+
+/* ── Token: the Walkover die ────────────────────────── */
+.token {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transition: opacity 400ms;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.board[data-ready] .token {
+  opacity: 1;
+}
+
+.tokenMark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 58px;
+  max-width: none;
+  height: auto;
+  translate: -50% -52%;
+  filter: drop-shadow(0 10px 14px rgb(8 9 12 / 0.28)) drop-shadow(0 2px 3px rgb(8 9 12 / 0.2));
+}
+
+/* ── Steps ──────────────────────────────────────────── */
+.step {
+  position: relative;
+  display: grid;
+  gap: var(--space-6);
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  padding-block: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.lane {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+/* Square marker on the track. */
+.stop {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: #fbfaf6;
+  box-shadow:
+    0 0 0 2px rgb(13 15 20 / 0.16),
+    0 12px 24px -14px rgb(8 9 12 / 0.35);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-600);
+  transition:
+    background-color 500ms var(--ease-out),
+    color 500ms var(--ease-out),
+    transform 500ms var(--ease-spring),
+    box-shadow 500ms;
+}
+
+.stop[data-reached] {
+  background: var(--stop);
+  color: var(--stop-ink);
+  transform: rotate(-6deg) scale(1.06);
+  box-shadow:
+    0 0 0 2px rgb(255 255 255 / 0.9),
+    0 0 0 4px var(--stop),
+    0 16px 30px -12px var(--stop);
+}
+
+/* Finish: the ludo home square, one slice per product brand. */
+.home {
+  width: 132px;
+  height: 132px;
+  border-radius: 28px;
+  background: var(--home);
+  box-shadow:
+    0 0 0 3px #fbfaf6,
+    0 0 0 5px rgb(13 15 20 / 0.16),
+    0 30px 50px -24px rgb(8 9 12 / 0.45);
+}
+
+.home[data-reached] {
+  background: var(--home);
+  transform: rotate(-8deg) scale(1.08);
+  box-shadow:
+    0 0 0 3px #fbfaf6,
+    0 0 0 5px var(--signal),
+    0 30px 60px -20px rgb(220 40 30 / 0.45);
+}
+
+.homeMark {
+  width: 56px;
+  height: auto;
+  padding: 10px;
+  box-sizing: content-box;
+  border-radius: 18px;
+  background: #fbfaf6;
+}
+
+/* Mobile and tablet: content full width, track as a rail on the left. */
+@media (max-width: 899px) {
+  .board {
+    --track: 22px;
+  }
+  .step {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: var(--space-4);
+    padding-inline: calc(var(--gutter) * 0.6) var(--gutter);
+  }
+  .lane {
+    grid-column: 1;
+    grid-row: 1;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .content {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .lane > :not(.stop) {
+    display: none;
+  }
+  /* Keep START clear of the fixed header. */
+  .step:first-of-type .lane {
+    padding-top: calc(var(--header-h) + var(--space-6));
+  }
+  .stop {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    font-size: 0.62rem;
+  }
+  .tokenMark {
+    width: 40px;
+  }
+  .home {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+  }
+  .homeMark {
+    width: 18px;
+    padding: 4px;
+    border-radius: 6px;
+  }
+  .step[data-side="center"] {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .step[data-side="left"] {
+    grid-template-columns: minmax(0, 1.75fr) minmax(240px, 1fr);
+  }
+  .step[data-side="right"] {
+    grid-template-columns: minmax(240px, 1fr) minmax(0, 1.75fr);
+  }
+  .step[data-side="right"] .lane {
+    order: -1;
+  }
+  .step[data-side="center"] {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  /* Hero: centre the die beside the headline, clear of the header. */
+  .step:first-of-type {
+    align-items: center;
+  }
+  .step:first-of-type .lane {
+    padding-top: var(--header-h);
+    gap: var(--space-8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stop {
+    transition: none;
+  }
+  .track,
+  .token {
+    transition: none;
+  }
+}

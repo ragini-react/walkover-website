@@ -1,0 +1,468 @@
+/* Events index: product filters, product sections, year groups and event cards. */
+
+/* ── Legend (hero aside) ─────────────────────────────── */
+.legend {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-1);
+}
+
+.legendTitle {
+  color: var(--fg);
+}
+
+.legendList {
+  display: grid;
+  margin-top: var(--space-4);
+}
+
+.legendList > div {
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 520px) {
+  .legendList > div {
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+    gap: var(--space-4);
+    align-items: baseline;
+  }
+}
+
+.legendList dd {
+  font-size: var(--text-small);
+  color: var(--fg-muted);
+  line-height: 1.5;
+}
+
+/* ── Filters ─────────────────────────────────────────── */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-9);
+}
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 42px;
+  padding: 0 1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-strong);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition:
+    background-color var(--dur-2),
+    color var(--dur-2);
+}
+
+.filter:hover,
+.filter[aria-current="page"] {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.count {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  opacity: 0.6;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--c, var(--signal));
+  flex-shrink: 0;
+}
+
+/* ── Product sections (combined page) ────────────────── */
+.ownerSection {
+  scroll-margin-top: calc(var(--header-h) + var(--space-4));
+}
+
+.ownerSection + .ownerSection {
+  margin-top: var(--space-11);
+}
+
+.ownerHead {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 4px solid var(--c);
+}
+
+.ownerTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+}
+
+.ownerMark {
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: 0.14em;
+  background: var(--c);
+  flex-shrink: 0;
+}
+
+.ownerCount {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--fg-muted);
+}
+
+.ownerIntro {
+  max-width: var(--measure);
+  color: var(--fg-muted);
+}
+
+/* ── Year groups ─────────────────────────────────────── */
+.group + .group {
+  margin-top: var(--space-9);
+}
+
+.groupTitle {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.list {
+  display: grid;
+}
+
+.list > li + li {
+  border-top: 1px solid var(--line);
+}
+
+/* ── Card ────────────────────────────────────────────── */
+.card {
+  display: grid;
+  gap: var(--space-3) var(--space-6);
+  padding-block: var(--space-6);
+  scroll-margin-top: calc(var(--header-h) + var(--space-4));
+}
+
+.card:target {
+  background: linear-gradient(to right, var(--signal-soft), transparent 60%);
+}
+
+@media (min-width: 760px) {
+  .card {
+    grid-template-columns: 10rem minmax(0, 1fr);
+  }
+
+  .card[data-has-photo] {
+    grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 15rem);
+  }
+}
+
+@media (min-width: 1040px) {
+  .card[data-has-photo] {
+    grid-template-columns: 10rem minmax(0, 1fr) 18rem;
+  }
+}
+
+.when {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+}
+
+.dateNote {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--fg-subtle);
+  line-height: 1.4;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.owner,
+.kind,
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 24px;
+  padding: 0 0.55rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.76rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.owner {
+  border: 1px solid var(--line-strong);
+}
+
+.kind {
+  color: var(--fg-muted);
+  padding-inline: 0.2rem;
+}
+
+/* Evidence: solid → outline → dashed → dotted, as certainty drops. */
+.evidence {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1.5px solid var(--fg);
+}
+
+.evidence[data-evidence="confirmed"] {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.evidence[data-evidence="corroborated"] {
+  background: var(--bg-sunken);
+}
+
+.evidence[data-evidence="team-account"] {
+  border-color: var(--line-strong);
+}
+
+.evidence[data-evidence="announced"] {
+  border-style: dashed;
+  border-color: var(--fg-subtle);
+  color: var(--fg-muted);
+}
+
+.evidence[data-evidence="associated"] {
+  border-style: dotted;
+  border-color: var(--fg-subtle);
+  color: var(--fg-muted);
+}
+
+.title {
+  max-width: 48ch;
+}
+
+.titleLink {
+  text-decoration: none;
+}
+
+.titleLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.titleIcon {
+  display: inline;
+  margin-left: 0.25rem;
+  vertical-align: -0.1em;
+  color: var(--fg-subtle);
+}
+
+.edition {
+  color: var(--fg-muted);
+  font-weight: 500;
+}
+
+.where {
+  display: flex;
+  gap: 0.4rem;
+  align-items: baseline;
+  font-size: var(--text-small);
+}
+
+.where svg {
+  flex-shrink: 0;
+  transform: translateY(2px);
+  color: var(--fg-subtle);
+}
+
+.organizer {
+  color: var(--fg-muted);
+}
+
+.summary {
+  max-width: var(--measure);
+  color: var(--fg-muted);
+  line-height: var(--leading-normal);
+}
+
+.roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.roles li {
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--bg-sunken);
+  font-size: 0.8rem;
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-2);
+  max-width: var(--measure);
+  font-size: var(--text-small);
+}
+
+.facts > div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+@media (min-width: 520px) {
+  .facts > div {
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+}
+
+.facts dt {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--fg-subtle);
+  padding-top: 0.15rem;
+}
+
+.muted {
+  color: var(--fg-muted);
+}
+
+/* ── Sources disclosure ──────────────────────────────── */
+.sources {
+  max-width: var(--measure);
+  font-size: var(--text-small);
+}
+
+.sources summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 32px;
+  cursor: pointer;
+  font-weight: 500;
+  list-style: none;
+}
+
+.sources summary::-webkit-details-marker {
+  display: none;
+}
+
+.chevron {
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.sources[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.sourceList {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--line-strong);
+}
+
+.sourceList li {
+  line-height: 1.5;
+}
+
+.sourceKind {
+  display: inline-block;
+  min-width: 6.5rem;
+  margin-right: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--fg-subtle);
+}
+
+.open {
+  margin-top: var(--space-3);
+  color: var(--fg-muted);
+}
+
+.ledgerId {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--fg-subtle);
+}
+
+.inlineLink {
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 0.2em;
+}
+
+.inlineLink:hover {
+  text-decoration-color: currentColor;
+}
+
+/* ── Venue photo ─────────────────────────────────────── */
+.photo {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+}
+
+.photo figcaption {
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--fg-subtle);
+}
+
+.photo figcaption a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+@media (max-width: 759px) {
+  .photo {
+    max-width: 26rem;
+  }
+}
+
+.empty {
+  padding: var(--space-10) 0;
+  color: var(--fg-muted);
+}

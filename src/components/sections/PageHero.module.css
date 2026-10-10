@@ -1,0 +1,126 @@
+.hero {
+  position: relative;
+  padding-top: calc(var(--header-h) + clamp(2.5rem, 2rem + 4vw, 6rem));
+  padding-bottom: clamp(3.5rem, 2.5rem + 4vw, 7rem);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--bg);
+}
+
+/* A quiet board pattern that fades out from the top-right corner. */
+.board {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: top right;
+  -webkit-mask-image: radial-gradient(70% 80% at 100% 0%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(70% 80% at 100% 0%, #000 0%, transparent 70%);
+}
+
+.board::after {
+  content: "";
+  position: absolute;
+  top: 112px;
+  right: 168px;
+  width: 56px;
+  height: 56px;
+  background: var(--accent, var(--signal));
+  animation: cell-hop 9s var(--ease-in-out) infinite;
+}
+
+@keyframes cell-hop {
+  0%,
+  20% {
+    transform: translate(0, 0);
+  }
+  25%,
+  45% {
+    transform: translate(56px, 0);
+  }
+  50%,
+  70% {
+    transform: translate(56px, 56px);
+  }
+  75%,
+  95% {
+    transform: translate(0, 56px);
+  }
+}
+
+@media (max-width: 760px) {
+  .board::after {
+    right: 56px;
+    top: 56px;
+    opacity: 0.5;
+  }
+}
+
+.inner {
+  display: grid;
+  gap: var(--space-9);
+  align-items: center;
+}
+
+@media (min-width: 1000px) {
+  .inner[data-has-aside] {
+    grid-template-columns: 1.05fr 1fr;
+    gap: var(--space-10);
+  }
+}
+
+.copy {
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+  animation: hero-in 900ms var(--ease-out) both;
+}
+
+@keyframes hero-in {
+  from {
+    transform: translate3d(0, 18px, 0);
+  }
+}
+
+.title {
+  max-width: 20ch;
+}
+
+.lead {
+  max-width: 52ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.aside {
+  animation: aside-in 1100ms var(--ease-out) 150ms both;
+  min-width: 0;
+}
+
+@keyframes aside-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board::after,
+  .copy,
+  .aside {
+    animation: none;
+  }
+}
+
+/* With a visual alongside, the hopping cell would compete with it. */
+.hero:has(.inner[data-has-aside]) .board::after {
+  display: none;
+}

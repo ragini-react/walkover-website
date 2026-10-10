@@ -1,0 +1,240 @@
+.form {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.summaryWrap:focus {
+  outline: none;
+}
+
+.summary {
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent);
+  background: color-mix(in srgb, var(--danger) 7%, var(--bg-raised));
+  font-size: 0.95rem;
+}
+
+.summaryTitle {
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.summary ul {
+  margin-top: var(--space-2);
+  padding-left: 1.1rem;
+}
+
+.summary a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.required {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+}
+
+.row {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  font-weight: 560;
+  font-size: 0.95rem;
+}
+
+.req {
+  color: var(--signal-text);
+}
+
+.opt {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--fg-subtle);
+  text-transform: uppercase;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  background: var(--bg-raised);
+  font-size: 1rem;
+  line-height: 1.4;
+  transition:
+    border-color var(--dur-2),
+    box-shadow var(--dur-2);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.field input:hover,
+.field textarea:hover,
+.field select:hover {
+  border-color: var(--ink-400);
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible,
+.field select:focus-visible {
+  outline: none;
+  border-color: var(--ink-950);
+  box-shadow: 0 0 0 4px rgb(47 107 255 / 0.18);
+}
+
+.field[data-invalid] input,
+.field[data-invalid] textarea,
+.field[data-invalid] select {
+  border-color: var(--danger);
+}
+
+.selectWrap {
+  position: relative;
+  display: block;
+}
+
+.field select {
+  appearance: none;
+  padding-right: 2.5rem;
+}
+
+.selectIcon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  translate: 0 -50%;
+  pointer-events: none;
+  color: var(--fg-muted);
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+}
+
+.error {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  color: var(--danger);
+  font-weight: 500;
+}
+
+.trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  margin-top: var(--space-2);
+}
+
+.footer button:disabled {
+  opacity: 0.75;
+  cursor: progress;
+}
+
+.privacy {
+  font-size: 0.88rem;
+  color: var(--fg-muted);
+}
+
+.privacy a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgb(255 255 255 / 0.35);
+  border-top-color: #fff;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.success {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+  padding: var(--space-8) var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  animation: success-in 600ms var(--ease-out);
+}
+
+.success:focus {
+  outline: none;
+}
+
+@keyframes success-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+}
+
+.successMark {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--success);
+  color: #fff;
+  animation: pop 500ms var(--ease-spring) 150ms both;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.4) rotate(-20deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .success,
+  .successMark,
+  .spinner {
+    animation: none;
+  }
+}

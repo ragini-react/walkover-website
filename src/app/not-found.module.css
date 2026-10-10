@@ -1,0 +1,50 @@
+.page {
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding-block: calc(var(--header-h) + var(--space-8)) var(--space-10);
+}
+
+.inner {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+  justify-items: start;
+}
+
+@media (min-width: 900px) {
+  .inner {
+    grid-template-columns: 1.4fr 1fr;
+    justify-items: stretch;
+  }
+}
+
+.copy {
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line);
+}
+
+.links a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--fg-muted);
+}
+
+.links a:hover {
+  color: var(--fg);
+}

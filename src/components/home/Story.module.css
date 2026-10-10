@@ -1,0 +1,111 @@
+.wrap {
+  position: relative;
+}
+
+.rail {
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.railFill {
+  position: absolute;
+  inset: 0;
+  background: var(--signal);
+  transform-origin: top;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .railFill {
+      animation: draw linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 60%;
+    }
+  }
+}
+
+@keyframes draw {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.list {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.item {
+  position: relative;
+  padding-left: var(--space-8);
+  display: grid;
+  gap: var(--space-2);
+}
+
+.node {
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: var(--bg);
+  border: 2px solid var(--signal);
+}
+
+.item:last-child .node {
+  background: var(--signal);
+}
+
+.when {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 1.6rem + 2vw, 3.6rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+
+.title {
+  margin-top: var(--space-2);
+}
+
+.body {
+  color: var(--fg-muted);
+  max-width: 36ch;
+  line-height: 1.6;
+}
+
+@media (min-width: 960px) {
+  .rail {
+    left: 0;
+    right: 0;
+    top: 7px;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+  }
+  .railFill {
+    transform-origin: left;
+  }
+  @keyframes draw {
+    from {
+      transform: scaleX(0);
+    }
+  }
+  .list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+  .item {
+    padding-left: 0;
+    padding-top: var(--space-8);
+  }
+  .node {
+    top: 0;
+  }
+}

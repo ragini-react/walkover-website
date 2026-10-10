@@ -1,0 +1,83 @@
+import Link from "next/link";
+import { brandProps, families, postCategories } from "@/content";
+import type { Industry, Post, Product } from "@/content/types";
+import { Icon } from "@/components/ui/Icon";
+import styles from "./Cards.module.css";
+
+export function formatDate(iso: string) {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+export function ProductCard({ product, note, index = 0 }: { product: Product; note?: string; index?: number }) {
+  const fam = families[product.family];
+  return (
+    <div data-reveal className={styles.cell} style={{ "--reveal-delay": `${(index % 3) * 80}ms` } as React.CSSProperties}>
+    <Link
+      href={`/products/${product.slug}`}
+      className={styles.product}
+      {...brandProps(product.brand)}
+      data-track="product_explore"
+      data-track-label={product.slug}
+    >
+      <span className={styles.productTop}>
+        <span className={styles.badge} aria-hidden="true">
+          <span />
+        </span>
+        <span className={styles.productFamily}>{fam.label}</span>
+      </span>
+      <span className={styles.productName}>{product.name}</span>
+      <span className={styles.productCategory}>{product.category}</span>
+      <span className={styles.productText}>{note ?? product.tagline}</span>
+      <span className={styles.more}>
+        Explore {product.name} <Icon name="arrow" size={16} strokeWidth={2} />
+      </span>
+    </Link>
+    </div>
+  );
+}
+
+export function PostCard({ post, index = 0 }: { post: Post; index?: number }) {
+  return (
+    <div data-reveal className={styles.cell} style={{ "--reveal-delay": `${(index % 3) * 80}ms` } as React.CSSProperties}>
+    <Link
+      href={`/blog/${post.slug}`}
+      className={styles.post}
+      data-track="resource_click"
+      data-track-label={post.slug}
+    >
+      <span className={styles.postMeta}>
+        <span>{postCategories[post.category].label}</span>
+        <span aria-hidden="true">·</span>
+        <time dateTime={post.published}>{formatDate(post.published)}</time>
+      </span>
+      <span className={styles.postTitle}>{post.title}</span>
+      <span className={styles.postText}>{post.description}</span>
+      <span className={styles.more}>
+        Read · {post.readingMinutes} min <Icon name="arrow" size={16} strokeWidth={2} />
+      </span>
+    </Link>
+    </div>
+  );
+}
+
+export function IndustryCard({ industry, index = 0 }: { industry: Industry; index?: number }) {
+  return (
+    <div data-reveal className={styles.cell} style={{ "--reveal-delay": `${(index % 3) * 80}ms` } as React.CSSProperties}>
+    <Link href={`/industries/${industry.slug}`} className={styles.industry}>
+      <span className={styles.industryNum} aria-hidden="true">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <span className={styles.industryName}>{industry.name}</span>
+      <span className={styles.industryText}>{industry.headline}</span>
+      <span className={styles.industryArrow} aria-hidden="true">
+        <Icon name="arrowUpRight" size={20} />
+      </span>
+    </Link>
+    </div>
+  );
+}

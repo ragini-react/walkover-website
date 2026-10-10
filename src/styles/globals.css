@@ -1,0 +1,318 @@
+@import "./tokens.css";
+
+/* ── Reset ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  line-height: var(--leading-snug);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--signal);
+  color: var(--white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Layout utilities ──────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: calc(var(--container-wide) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container-text {
+  width: 100%;
+  max-width: calc(var(--container-text) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+.section-tight {
+  padding-block: calc(var(--section-y) * 0.6);
+  position: relative;
+}
+
+/* ── Type utilities ────────────────────────────────── */
+.t-mega {
+  font-family: var(--font-display);
+  font-size: var(--text-mega);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+}
+
+.t-display {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 600;
+}
+
+.t-h1 {
+  font-size: var(--text-h1);
+  line-height: 1.02;
+  letter-spacing: var(--tracking-tight);
+}
+
+.t-h2 {
+  font-size: var(--text-h2);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-tight);
+}
+
+.t-h3 {
+  font-size: var(--text-h3);
+  line-height: 1.15;
+}
+
+.t-h4 {
+  font-size: var(--text-h4);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.t-lead {
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  color: var(--fg-muted);
+  max-width: var(--measure-narrow);
+}
+
+.t-muted {
+  color: var(--fg-muted);
+}
+
+.t-small {
+  font-size: var(--text-small);
+}
+
+.t-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--fg-muted);
+}
+
+.eyebrow::before {
+  content: "";
+  inline-size: 0.6em;
+  block-size: 0.6em;
+  border-radius: 2px;
+  background: var(--eyebrow-color, var(--signal));
+}
+
+.surface-dark .eyebrow::before {
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.45);
+}
+
+.accent {
+  color: var(--signal);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Reveal-on-scroll system ───────────────────────── */
+/* Content is visible by default; motion is only added once JS confirms
+   it can run, so nothing is ever hidden from crawlers or no-JS users. */
+.js-motion [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity var(--dur-4) var(--ease-out),
+    transform var(--dur-4) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js-motion [data-reveal="fade"] {
+  transform: none;
+}
+
+.js-motion [data-reveal="scale"] {
+  transform: scale(0.96);
+}
+
+.js-motion [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Page entrance (route transition) ─────────────── */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.navigated .page-enter {
+  animation: page-in var(--dur-3) var(--ease-out) both;
+}
+
+/* ── Skip link ─────────────────────────────────────── */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: var(--ink-950);
+  color: var(--white);
+  font-weight: 600;
+  transform: translateY(-160%);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+main:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-motion [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .navigated .page-enter {
+    animation: none;
+  }
+}
+
+/* ── Product brand colours ─────────────────────────── */
+/* Products always appear in their exact brand colour (set inline as --c or
+   --accent). On dark surfaces, small brand-coloured marks get a hairline
+   ring so deep colours such as Giddh's indigo stay visible without tinting. */
+.surface-dark [data-brand-dot],
+.surface-dark[data-brand-dot] {
+  box-shadow: 0 0 0 1.5px rgb(255 255 255 / 0.55);
+}

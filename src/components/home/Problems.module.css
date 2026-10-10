@@ -1,0 +1,143 @@
+.list {
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-2);
+  border-bottom: 1px solid var(--line);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .row {
+    grid-template-columns: 1.5fr 1fr auto;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-4);
+  }
+}
+
+/* Colour wipes in from the left on hover. */
+.row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--c) 9%, var(--bg));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-4) var(--ease-out);
+}
+
+.row::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--c);
+  transform: scaleY(0);
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+.row:hover::before,
+.row:focus-visible::before {
+  transform: none;
+}
+
+.row:hover::after,
+.row:focus-visible::after {
+  transform: none;
+}
+
+.need {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 1rem + 1.4vw, 2.3rem);
+  line-height: 1.12;
+  letter-spacing: var(--tracking-snug);
+  font-weight: 560;
+  transition: transform var(--dur-4) var(--ease-out);
+}
+
+.prefix {
+  color: var(--fg-subtle);
+}
+
+.row:hover .need {
+  transform: translate3d(8px, 0, 0);
+}
+
+.meta {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.products {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.03em;
+  color: var(--fg-muted);
+}
+
+.arrow {
+  display: none;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  transition:
+    background-color var(--dur-3),
+    color var(--dur-3),
+    transform var(--dur-3) var(--ease-out);
+}
+
+@media (min-width: 900px) {
+  .arrow {
+    display: grid;
+  }
+}
+
+.row:hover .arrow {
+  background: var(--c);
+  border-color: var(--c);
+  color: var(--c-ink);
+  transform: rotate(-45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row:hover .need {
+    transform: none;
+  }
+}
+
+/* Compact: for narrower containers such as a homepage board square. */
+.compact {
+  width: 100%;
+}
+
+.compact .need {
+  font-size: clamp(1.2rem, 1rem + 0.7vw, 1.6rem);
+}
+
+@media (min-width: 900px) {
+  .compact .row {
+    grid-template-columns: 1.4fr 1fr auto;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-3);
+  }
+}
+
+.compact .arrow {
+  width: 44px;
+  height: 44px;
+}

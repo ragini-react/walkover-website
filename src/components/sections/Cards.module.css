@@ -1,0 +1,229 @@
+.cell {
+  display: grid;
+}
+
+.cell > * {
+  height: 100%;
+}
+
+/* ── Product card ──────────────────────────────────── */
+.product {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: 340px;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform var(--dur-4) var(--ease-out),
+    box-shadow var(--dur-4) var(--ease-out),
+    border-color var(--dur-3);
+}
+
+.product::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -60% auto;
+  z-index: -1;
+  width: 80%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--c);
+  opacity: 0;
+  filter: blur(60px);
+  transition: opacity var(--dur-4) var(--ease-out);
+}
+
+.product:hover {
+  transform: translate3d(0, -6px, 0);
+  box-shadow: var(--shadow-3);
+  border-color: color-mix(in srgb, var(--c) 40%, var(--line));
+}
+
+.product:hover::after {
+  opacity: 0.18;
+}
+
+.productTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-7);
+}
+
+/* A die-face badge: one pip in the family colour. */
+.badge {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--c) 14%, var(--bg-raised));
+  border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
+  transition: transform var(--dur-4) var(--ease-spring);
+}
+
+.badge span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.product:hover .badge {
+  transform: rotate(90deg);
+}
+
+.productFamily {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.productName {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 1.4rem + 1vw, 2.3rem);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+}
+
+.productCategory {
+  font-weight: 550;
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+}
+
+.productText {
+  color: var(--fg-muted);
+  line-height: 1.55;
+  margin-top: var(--space-3);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: var(--space-5);
+  font-weight: 560;
+  font-size: 0.95rem;
+}
+
+.more svg {
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+.product:hover .more svg,
+.post:hover .more svg {
+  transform: translateX(4px);
+}
+
+/* ── Post card ─────────────────────────────────────── */
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--line-strong);
+  min-height: 280px;
+}
+
+.postMeta {
+  display: flex;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.postTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 1.15rem + 0.7vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: var(--tracking-snug);
+  text-wrap: balance;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 1.5px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--dur-4) var(--ease-out);
+}
+
+.post:hover .postTitle {
+  background-size: 100% 1.5px;
+}
+
+.postText {
+  color: var(--fg-muted);
+  line-height: 1.55;
+}
+
+/* ── Industry card ─────────────────────────────────── */
+.industry {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 260px;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  transition:
+    background-color var(--dur-3),
+    color var(--dur-3),
+    transform var(--dur-4) var(--ease-out);
+}
+
+.industry:hover {
+  background: var(--ink-950);
+  color: #f3f3f1;
+  transform: translate3d(0, -4px, 0);
+}
+
+.industryNum {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--signal-text);
+}
+
+.industryName {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  margin-top: auto;
+}
+
+.industryText {
+  color: var(--fg-muted);
+  line-height: 1.5;
+  max-width: 32ch;
+}
+
+.industry:hover .industryText {
+  color: var(--ink-300);
+}
+
+.industryArrow {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-5);
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+.industry:hover .industryArrow {
+  transform: translate(3px, -3px);
+  color: var(--signal);
+}

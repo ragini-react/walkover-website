@@ -1,0 +1,152 @@
+/*
+ * Walkover design tokens.
+ * Every colour, size, radius, shadow and motion value used in the site lives here.
+ * Components consume these through CSS custom properties only.
+ */
+
+:root {
+  /* ── Colour: neutrals ─────────────────────────────── */
+  --ink-1000: #050608;
+  --ink-950: #08090c;
+  --ink-900: #0d0f14;
+  --ink-850: #12151c;
+  --ink-800: #191d26;
+  --ink-700: #262b37;
+  --ink-600: #3a404e;
+  --ink-500: #5a6070;
+  --ink-400: #868c9b;
+  --ink-300: #b4b8c3;
+  --ink-200: #d9dbe1;
+  --ink-150: #e6e7eb;
+  --ink-100: #efefef;
+  --paper: #f5f4f0;
+  --paper-2: #ecebe5;
+  --white: #ffffff;
+
+  /* ── Colour: brand ────────────────────────────────── */
+  /* Walkover red, from the die in the logo. Products appear in their
+     own brand colours (see Product.brand); nothing else adds colour. */
+  --signal: #dc281e;
+  --signal-strong: #b81f16;
+  --signal-soft: #fde4e1;
+
+  /* ── Semantic (light surfaces by default) ─────────── */
+  --bg: var(--paper);
+  --bg-raised: var(--white);
+  --bg-sunken: var(--paper-2);
+  --fg: var(--ink-950);
+  --fg-muted: var(--ink-500);
+  --fg-subtle: #5d6372;
+  /* Signal red for small text: tuned for 4.5:1 on each surface. */
+  --signal-text: #b8201a;
+  --line: rgb(13 15 20 / 0.1);
+  --line-strong: rgb(13 15 20 / 0.18);
+  --focus: #2f6bff;
+  --danger: #d6322b;
+  --success: #0f8a57;
+
+  /* ── Typography ───────────────────────────────────── */
+  --font-display: var(--font-inter-tight), "Inter Tight", system-ui, sans-serif;
+  --font-body: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+
+  /* Fluid type scale (min @ 360px → max @ 1440px) */
+  --text-mega: clamp(3.25rem, 1.6rem + 7.4vw, 8.5rem);
+  --text-display: clamp(2.6rem, 1.55rem + 4.6vw, 5.75rem);
+  --text-h1: clamp(2.25rem, 1.5rem + 3.2vw, 4.25rem);
+  --text-h2: clamp(1.9rem, 1.35rem + 2.3vw, 3.4rem);
+  --text-h3: clamp(1.35rem, 1.15rem + 0.9vw, 1.9rem);
+  --text-h4: clamp(1.125rem, 1.05rem + 0.35vw, 1.3rem);
+  --text-lead: clamp(1.125rem, 1.03rem + 0.45vw, 1.4rem);
+  --text-body: 1.0625rem;
+  --text-small: 0.9375rem;
+  --text-label: 0.75rem;
+
+  --leading-tight: 0.98;
+  --leading-snug: 1.12;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight: -0.035em;
+  --tracking-snug: -0.02em;
+  --tracking-label: 0.08em;
+
+  --measure: 64ch;
+  --measure-narrow: 46ch;
+
+  /* ── Spacing (4px base) ───────────────────────────── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-9: 4rem;
+  --space-10: 5rem;
+  --space-11: 6.5rem;
+  --space-12: 8rem;
+  --section-y: clamp(5rem, 3rem + 7vw, 10rem);
+  --gutter: clamp(1.25rem, 0.6rem + 2.8vw, 3rem);
+
+  /* ── Layout ───────────────────────────────────────── */
+  --container: 1320px;
+  --container-wide: 1520px;
+  --container-text: 760px;
+  --header-h: 72px;
+
+  /* ── Radius: cells are square-ish, tokens are round ─ */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+
+  /* ── Elevation ────────────────────────────────────── */
+  --shadow-1: 0 1px 2px rgb(8 9 12 / 0.06), 0 1px 1px rgb(8 9 12 / 0.04);
+  --shadow-2: 0 8px 24px -12px rgb(8 9 12 / 0.18), 0 2px 6px -2px rgb(8 9 12 / 0.06);
+  --shadow-3: 0 30px 60px -30px rgb(8 9 12 / 0.35), 0 12px 24px -16px rgb(8 9 12 / 0.18);
+
+  /* ── Motion ───────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-1: 120ms; /* micro: colour, opacity */
+  --dur-2: 220ms; /* hover, press */
+  --dur-3: 420ms; /* panels, menus */
+  --dur-4: 800ms; /* entrances */
+  --dur-5: 1200ms; /* hero choreography */
+
+  --z-header: 50;
+  --z-menu: 60;
+  --z-overlay: 80;
+}
+
+/* Dark surfaces are opted into per section with .surface-dark,
+   so a single page can move between paper and ink. */
+.surface-dark {
+  --bg: var(--ink-950);
+  --bg-raised: var(--ink-900);
+  --bg-sunken: var(--ink-1000);
+  --fg: #f3f3f1;
+  --fg-muted: var(--ink-300);
+  --fg-subtle: var(--ink-400);
+  --signal-text: #ff6f63;
+  --line: rgb(255 255 255 / 0.09);
+  --line-strong: rgb(255 255 255 / 0.18);
+  --focus: #8fb0ff;
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0ms;
+    --dur-2: 0ms;
+    --dur-3: 0ms;
+    --dur-4: 0ms;
+    --dur-5: 0ms;
+  }
+}

@@ -1,0 +1,214 @@
+/* ── Hero ──────────────────────────────────────────── */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-top: calc(var(--header-h) + clamp(2.5rem, 2rem + 4vw, 5.5rem));
+  padding-bottom: clamp(2.5rem, 2rem + 2vw, 4rem);
+  background: var(--bg);
+}
+
+/* The site's quiet board pattern, fading from the top right. */
+.board {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: top right;
+  -webkit-mask-image: radial-gradient(60% 70% at 100% 0%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(60% 70% at 100% 0%, #000 0%, transparent 70%);
+}
+
+.heroGrid {
+  display: grid;
+  gap: var(--space-9);
+}
+
+@media (min-width: 1060px) {
+  .heroGrid {
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    gap: var(--space-10);
+    align-items: end;
+  }
+}
+
+.heroCopy {
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroCopy {
+    animation: rise 900ms var(--ease-out) both;
+  }
+  .legend {
+    animation: rise 1000ms var(--ease-out) 150ms both;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translate3d(0, 18px, 0);
+  }
+}
+
+.title {
+  max-width: 19ch;
+}
+
+.lead {
+  max-width: 58ch;
+}
+
+.meta {
+  color: var(--fg-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+/* How to read: a small key to the page's evidence marks. */
+.legend {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-1);
+}
+
+.legendTitle {
+  color: var(--fg);
+}
+
+.legendList {
+  display: grid;
+  margin-top: var(--space-4);
+}
+
+.legendList > div {
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 520px) {
+  .legendList > div {
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: var(--space-4);
+    align-items: baseline;
+  }
+}
+
+.legendList dd {
+  font-size: var(--text-small);
+  color: var(--fg-muted);
+  line-height: 1.55;
+}
+
+.readingKey {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.citeKey {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--signal-text);
+  vertical-align: super;
+}
+
+.rulerWrap {
+  margin-top: var(--space-9);
+}
+
+/* ── Sections ─────────────────────────────────────── */
+.timeline {
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 1rem;
+}
+
+.cast {
+  padding-top: 0;
+}
+
+.endSection {
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 3.5rem;
+}
+
+/* ── Keep exploring ───────────────────────────────── */
+.nextList {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 900px) {
+  .nextList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 0;
+    gap: var(--space-5);
+  }
+}
+
+.nextLink {
+  display: grid;
+  gap: var(--space-2);
+  height: 100%;
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--fg-muted);
+  transition: color var(--dur-2);
+}
+
+@media (min-width: 900px) {
+  .nextLink {
+    padding: var(--space-6);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    transition:
+      border-color var(--dur-2),
+      background-color var(--dur-2),
+      transform var(--dur-3) var(--ease-out);
+  }
+  .nextLink:hover {
+    border-color: var(--line-strong);
+    background: var(--bg-raised);
+    transform: translateY(-3px);
+  }
+}
+
+.nextTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.nextTitle::after {
+  content: " →";
+  content: " →" / "";
+  color: var(--signal-text);
+  display: inline-block;
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+.nextLink:hover .nextTitle::after {
+  transform: translateX(4px);
+}
