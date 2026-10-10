@@ -14,7 +14,7 @@ export function Logo({ variant = "full", className, title = "Walkover" }: LogoPr
   return (
     <svg viewBox={viewBox} className={className} role="img" aria-label={title}>
       <path d={DIE_BODY.d} fill={LOGO_RED} />
-      <path d={DIE_PIPS.d} fill="#fff" />
+      <path d={DIE_PIPS.d} fill="oklch(100% 0 0)" />
       {variant === "full" && (
         <path d={WORDMARK.d} transform={WORDMARK.transform} fill="currentColor" fillRule="evenodd" />
       )}

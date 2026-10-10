@@ -75,6 +75,12 @@
   background: var(--c);
 }
 
+@media (prefers-color-scheme: dark) {
+  .badge span {
+    box-shadow: var(--ring-brand-dot);
+  }
+}
+
 .product:hover .badge {
   transform: rotate(90deg);
 }
@@ -188,7 +194,7 @@
 
 .industry:hover {
   background: var(--ink-950);
-  color: #f3f3f1;
+  color: var(--ink-50);
   transform: translate3d(0, -4px, 0);
 }
 

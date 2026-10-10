@@ -15,7 +15,7 @@ import styles from "./Events.module.css";
 
 /** Display name and colour for an owner; Walkover uses its own signal red. */
 export function ownerBrand(owner: EventOwner): { name: string; color: string } {
-  if (owner === "walkover") return { name: site.name, color: "#dc281e" };
+  if (owner === "walkover") return { name: site.name, color: "var(--signal)" };
   const p = getProduct(owner)!;
   return { name: p.name, color: p.brand.color };
 }

@@ -161,6 +161,12 @@
   background: var(--c);
 }
 
+@media (prefers-color-scheme: dark) {
+  .mentionDot {
+    box-shadow: var(--ring-brand-dot);
+  }
+}
+
 .mentionName {
   display: block;
   font-weight: 600;

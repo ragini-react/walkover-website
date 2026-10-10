@@ -222,7 +222,7 @@ export function BoardStep({ side, label, color, ink, lane, markerLast, home, id,
       style={
         {
           "--stop": color ?? "var(--signal)",
-          "--stop-ink": ink ?? "#fff",
+          "--stop-ink": ink ?? "var(--white)",
           ...(homeFill && { "--home": homeFill }),
         } as React.CSSProperties
       }

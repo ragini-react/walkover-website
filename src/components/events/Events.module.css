@@ -115,6 +115,13 @@
   flex-shrink: 0;
 }
 
+@media (prefers-color-scheme: dark) {
+  .dot,
+  .ownerMark {
+    box-shadow: var(--ring-brand-dot);
+  }
+}
+
 .ownerCount {
   font-family: var(--font-mono);
   font-size: 0.9rem;

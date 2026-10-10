@@ -7,6 +7,7 @@ import { RouteState } from "@/components/layout/RouteState";
 import { buildNav } from "@/components/layout/nav-data";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { site } from "@/content/site";
+import { toSrgb } from "@/lib/color";
 import { motionBootstrap } from "@/lib/motion-script";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import "@/styles/globals.css";
@@ -37,7 +38,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5f4f0",
+  // Browser chrome follows the system theme: paper in light, ink in dark.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: toSrgb("oklch(96.68% 0.0054 95.1)") },
+    { media: "(prefers-color-scheme: dark)", color: toSrgb("oklch(16.86% 0.011 268.03)") },
+  ],
   width: "device-width",
   initialScale: 1,
 };

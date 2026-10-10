@@ -2,48 +2,71 @@
  * Walkover design tokens.
  * Every colour, size, radius, shadow and motion value used in the site lives here.
  * Components consume these through CSS custom properties only.
+ *
+ * Colours are written in OKLCH: oklch(lightness chroma hue / alpha).
+ * Primitives (ink, paper, signal) never change; the semantic tokens below
+ * them are what components use, and they switch for dark surfaces
+ * (.surface-dark) and for the system dark theme (prefers-color-scheme).
  */
 
 :root {
   /* ── Colour: neutrals ─────────────────────────────── */
-  --ink-1000: #050608;
-  --ink-950: #08090c;
-  --ink-900: #0d0f14;
-  --ink-850: #12151c;
-  --ink-800: #191d26;
-  --ink-700: #262b37;
-  --ink-600: #3a404e;
-  --ink-500: #5a6070;
-  --ink-400: #868c9b;
-  --ink-300: #b4b8c3;
-  --ink-200: #d9dbe1;
-  --ink-150: #e6e7eb;
-  --ink-100: #efefef;
-  --paper: #f5f4f0;
-  --paper-2: #ecebe5;
-  --white: #ffffff;
+  --ink-1000: oklch(12.17% 0.0062 261.58);
+  --ink-950: oklch(14% 0.0069 269.65);
+  --ink-900: oklch(16.86% 0.011 268.03);
+  --ink-850: oklch(19.59% 0.0149 266.81);
+  --ink-800: oklch(23.08% 0.0185 266.17);
+  --ink-700: oklch(28.95% 0.0231 267.23);
+  --ink-600: oklch(37.16% 0.0254 266.89);
+  --ink-500: oklch(48.97% 0.0267 269.13);
+  --ink-400: oklch(64.01% 0.0235 268.31);
+  --ink-300: oklch(78.28% 0.0162 269.94);
+  --ink-200: oklch(89.16% 0.0085 271.32);
+  --ink-150: oklch(92.83% 0.0055 274.96);
+  --ink-100: oklch(95.21% 0 0);
+  --ink-50: oklch(96.36% 0.0027 106.45); /* text on ink */
+  --paper-0: oklch(98.48% 0.0054 95.1); /* board cells */
+  --paper: oklch(96.68% 0.0054 95.1);
+  --paper-2: oklch(93.92% 0.0081 98.88);
+  --white: oklch(100% 0 0);
 
   /* ── Colour: brand ────────────────────────────────── */
   /* Walkover red, from the die in the logo. Products appear in their
      own brand colours (see Product.brand); nothing else adds colour. */
-  --signal: #dc281e;
-  --signal-strong: #b81f16;
-  --signal-soft: #fde4e1;
+  --signal: oklch(57.77% 0.2148 29.08);
+  --signal-strong: oklch(50.49% 0.1885 29.21);
+  --signal-soft: oklch(93.83% 0.0279 25.86);
+  --signal-bright: oklch(71.54% 0.1781 27.23); /* signal for text on ink */
 
   /* ── Semantic (light surfaces by default) ─────────── */
   --bg: var(--paper);
   --bg-raised: var(--white);
   --bg-sunken: var(--paper-2);
   --fg: var(--ink-950);
+  --fg-soft: var(--ink-700);
   --fg-muted: var(--ink-500);
-  --fg-subtle: #5d6372;
+  --fg-subtle: oklch(49.99% 0.025 268.18);
   /* Signal red for small text: tuned for 4.5:1 on each surface. */
-  --signal-text: #b8201a;
-  --line: rgb(13 15 20 / 0.1);
-  --line-strong: rgb(13 15 20 / 0.18);
-  --focus: #2f6bff;
-  --danger: #d6322b;
-  --success: #0f8a57;
+  --signal-text: oklch(50.59% 0.1875 28.56);
+  --line: oklch(16.86% 0.011 268.03 / 0.1);
+  --line-strong: oklch(16.86% 0.011 268.03 / 0.18);
+  --focus: oklch(58.06% 0.2289 263.86);
+  --danger: oklch(57.53% 0.2013 28.02);
+  --success: oklch(55.96% 0.1268 158.16);
+  /* Hairlines, grids and hover washes are --tint mixed with transparent. */
+  --tint: var(--ink-900);
+  /* The strongest fill a surface can take (button hovers), and text on it. */
+  --contrast: var(--ink-950);
+  --on-contrast: var(--white);
+  /* Outline that keeps dark brand-coloured buttons visible on dark surfaces. */
+  --brand-edge: transparent;
+  /* Hairline ring for small brand-coloured marks on dark surfaces, so deep
+     brand colours (Giddh, GTWY, DocStar, Embarko) stay visible. */
+  --ring-brand-dot: 0 0 0 1.5px oklch(100% 0 0 / 0.55);
+  /* Home-page board: cells, their labels, and the halo round a reached stop. */
+  --cell: var(--paper-0);
+  --cell-fg: var(--ink-600);
+  --cell-halo: oklch(100% 0 0 / 0.9);
 
   /* ── Typography ───────────────────────────────────── */
   --font-display: var(--font-inter-tight), "Inter Tight", system-ui, sans-serif;
@@ -105,9 +128,9 @@
   --radius-pill: 999px;
 
   /* ── Elevation ────────────────────────────────────── */
-  --shadow-1: 0 1px 2px rgb(8 9 12 / 0.06), 0 1px 1px rgb(8 9 12 / 0.04);
-  --shadow-2: 0 8px 24px -12px rgb(8 9 12 / 0.18), 0 2px 6px -2px rgb(8 9 12 / 0.06);
-  --shadow-3: 0 30px 60px -30px rgb(8 9 12 / 0.35), 0 12px 24px -16px rgb(8 9 12 / 0.18);
+  --shadow-1: 0 1px 2px oklch(14% 0.0069 269.65 / 0.06), 0 1px 1px oklch(14% 0.0069 269.65 / 0.04);
+  --shadow-2: 0 8px 24px -12px oklch(14% 0.0069 269.65 / 0.18), 0 2px 6px -2px oklch(14% 0.0069 269.65 / 0.06);
+  --shadow-3: 0 30px 60px -30px oklch(14% 0.0069 269.65 / 0.35), 0 12px 24px -16px oklch(14% 0.0069 269.65 / 0.18);
 
   /* ── Motion ───────────────────────────────────────── */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -130,15 +153,47 @@
   --bg: var(--ink-950);
   --bg-raised: var(--ink-900);
   --bg-sunken: var(--ink-1000);
-  --fg: #f3f3f1;
+  --fg: var(--ink-50);
+  --fg-soft: var(--ink-200);
   --fg-muted: var(--ink-300);
   --fg-subtle: var(--ink-400);
-  --signal-text: #ff6f63;
-  --line: rgb(255 255 255 / 0.09);
-  --line-strong: rgb(255 255 255 / 0.18);
-  --focus: #8fb0ff;
+  --signal-text: var(--signal-bright);
+  --line: oklch(100% 0 0 / 0.09);
+  --line-strong: oklch(100% 0 0 / 0.18);
+  --focus: oklch(76.41% 0.1197 266.3);
+  --tint: var(--white);
+  --contrast: var(--white);
+  --on-contrast: var(--ink-950);
+  --brand-edge: oklch(100% 0 0 / 0.32);
   background-color: var(--bg);
   color: var(--fg);
+}
+
+/* System dark theme: the whole page becomes an ink surface, one step
+   lighter than .surface-dark so dark sections still read as bands. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--ink-900);
+    --bg-raised: var(--ink-850);
+    --bg-sunken: var(--ink-950);
+    --fg: var(--ink-50);
+    --fg-soft: var(--ink-200);
+    --fg-muted: var(--ink-300);
+    --fg-subtle: var(--ink-400);
+    --signal-text: var(--signal-bright);
+    --signal-soft: oklch(25% 0.06 26);
+    --line: oklch(100% 0 0 / 0.09);
+    --line-strong: oklch(100% 0 0 / 0.18);
+    --focus: oklch(76.41% 0.1197 266.3);
+    --danger: oklch(68% 0.19 27);
+    --tint: var(--white);
+    --contrast: var(--white);
+    --on-contrast: var(--ink-950);
+    --brand-edge: oklch(100% 0 0 / 0.32);
+    --cell: var(--ink-850);
+    --cell-fg: var(--ink-300);
+    --cell-halo: var(--ink-850);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

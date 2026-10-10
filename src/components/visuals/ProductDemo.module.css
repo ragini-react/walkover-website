@@ -1,15 +1,15 @@
 /* Shared frame ──────────────────────────────────────── */
 .frame {
   --cycle: 7s;
-  --fg: #f3f3f1;
+  --fg: var(--ink-50);
   position: relative;
   margin: 0;
   border-radius: var(--radius-xl);
   background:
     radial-gradient(80% 60% at 80% 0%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%),
     var(--ink-900);
-  border: 1px solid rgb(255 255 255 / 0.09);
-  color: #f3f3f1;
+  border: 1px solid oklch(100% 0 0 / 0.09);
+  color: var(--ink-50);
   overflow: hidden;
   box-shadow: var(--shadow-3);
 }
@@ -19,11 +19,11 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+    linear-gradient(to right, oklch(100% 0 0 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(100% 0 0 / 0.04) 1px, transparent 1px);
   background-size: 32px 32px;
-  -webkit-mask-image: linear-gradient(#000, transparent 85%);
-  mask-image: linear-gradient(#000, transparent 85%);
+  -webkit-mask-image: linear-gradient(oklch(0% 0 0), transparent 85%);
+  mask-image: linear-gradient(oklch(0% 0 0), transparent 85%);
   pointer-events: none;
 }
 
@@ -44,7 +44,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0.85rem clamp(1.25rem, 3vw, 2.25rem);
-  border-top: 1px solid rgb(255 255 255 / 0.08);
+  border-top: 1px solid oklch(100% 0 0 / 0.08);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.06em;
@@ -61,8 +61,8 @@
   display: block;
   padding: 0.85rem 1rem;
   border-radius: var(--radius-sm);
-  background: rgb(0 0 0 / 0.35);
-  border: 1px solid rgb(255 255 255 / 0.08);
+  background: oklch(0% 0 0 / 0.35);
+  border: 1px solid oklch(100% 0 0 / 0.08);
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--ink-200);
@@ -92,7 +92,7 @@
   padding: 0.7rem 1.4rem;
   border-radius: var(--radius-pill);
   background: var(--accent);
-  color: var(--accent-ink, #fff);
+  color: var(--accent-ink, var(--white));
   font-weight: 600;
   box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent);
   animation: hub-pulse var(--cycle) var(--ease-out) infinite;
@@ -122,7 +122,7 @@
   gap: 0.5rem;
   padding: 0.6rem 0.8rem;
   border-radius: var(--radius-sm);
-  border: 1px solid rgb(255 255 255 / 0.1);
+  border: 1px solid oklch(100% 0 0 / 0.1);
   font-size: 0.86rem;
   color: var(--ink-300);
   animation: ch-lit var(--cycle) var(--ease-out) infinite;
@@ -137,16 +137,16 @@
 @keyframes ch-lit {
   0%,
   10% {
-    border-color: rgb(255 255 255 / 0.1);
+    border-color: oklch(100% 0 0 / 0.1);
     color: var(--ink-300);
   }
   16% {
     border-color: var(--accent);
-    color: #fff;
+    color: var(--white);
   }
   30%,
   100% {
-    border-color: rgb(255 255 255 / 0.1);
+    border-color: oklch(100% 0 0 / 0.1);
     color: var(--ink-300);
   }
 }
@@ -154,17 +154,17 @@
 @keyframes ch-win {
   0%,
   10% {
-    border-color: rgb(255 255 255 / 0.1);
+    border-color: oklch(100% 0 0 / 0.1);
     background: transparent;
   }
   20%,
   85% {
     border-color: var(--accent);
     background: color-mix(in srgb, var(--accent) 22%, transparent);
-    color: #fff;
+    color: var(--white);
   }
   100% {
-    border-color: rgb(255 255 255 / 0.1);
+    border-color: oklch(100% 0 0 / 0.1);
     background: transparent;
   }
 }
@@ -184,7 +184,7 @@
   max-width: 260px;
   padding: 0.8rem 1rem 0.6rem;
   border-radius: 14px 14px 4px 14px;
-  background: #f3f3f1;
+  background: var(--ink-50);
   color: var(--ink-900);
   font-size: 0.9rem;
   animation: bubble var(--cycle) var(--ease-out) infinite;
@@ -234,8 +234,8 @@
   gap: var(--space-3);
   padding: 0.85rem 1rem;
   border-radius: var(--radius-md);
-  background: rgb(255 255 255 / 0.03);
-  border: 1px solid rgb(255 255 255 / 0.08);
+  background: oklch(100% 0 0 / 0.03);
+  border: 1px solid oklch(100% 0 0 / 0.08);
   animation: step var(--cycle) var(--ease-out) infinite;
   animation-delay: calc(var(--i) * 0.7s);
 }
@@ -247,13 +247,13 @@
   top: 100%;
   width: 2px;
   height: 10px;
-  background: rgb(255 255 255 / 0.12);
+  background: oklch(100% 0 0 / 0.12);
 }
 
 @keyframes step {
   0% {
-    border-color: rgb(255 255 255 / 0.08);
-    background: rgb(255 255 255 / 0.03);
+    border-color: oklch(100% 0 0 / 0.08);
+    background: oklch(100% 0 0 / 0.03);
   }
   6%,
   70% {
@@ -262,8 +262,8 @@
   }
   85%,
   100% {
-    border-color: rgb(255 255 255 / 0.08);
-    background: rgb(255 255 255 / 0.03);
+    border-color: oklch(100% 0 0 / 0.08);
+    background: oklch(100% 0 0 / 0.03);
   }
 }
 
@@ -283,7 +283,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 1.5px solid rgb(255 255 255 / 0.2);
+  border: 1.5px solid oklch(100% 0 0 / 0.2);
   animation: check var(--cycle) var(--ease-out) infinite;
   animation-delay: calc(var(--i) * 0.7s);
 }
@@ -292,17 +292,17 @@
   0%,
   4% {
     background: transparent;
-    border-color: rgb(255 255 255 / 0.2);
+    border-color: oklch(100% 0 0 / 0.2);
   }
   8%,
   80% {
     background: var(--accent);
-    border-color: #fff;
+    border-color: var(--white);
   }
   90%,
   100% {
     background: transparent;
-    border-color: rgb(255 255 255 / 0.2);
+    border-color: oklch(100% 0 0 / 0.2);
   }
 }
 
@@ -322,7 +322,7 @@
 .inv {
   padding: 1.1rem 1.2rem;
   border-radius: var(--radius-md);
-  background: #f3f3f1;
+  background: var(--ink-50);
   color: var(--ink-900);
   display: grid;
   gap: 0.55rem;
@@ -334,7 +334,7 @@
   justify-content: space-between;
   font-weight: 600;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgb(0 0 0 / 0.08);
+  border-bottom: 1px solid oklch(0% 0 0 / 0.08);
 }
 
 .paid {
@@ -342,7 +342,7 @@
   font-size: 0.7rem;
   padding: 0.2rem 0.5rem;
   border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--success) 18%, white);
+  background: color-mix(in srgb, var(--success) 18%, var(--white));
   color: var(--success);
   animation: appear var(--cycle) var(--ease-out) infinite;
   animation-delay: 2.4s;
@@ -366,7 +366,7 @@
   align-items: center;
   padding: 0.9rem 1.1rem;
   border-radius: var(--radius-md);
-  border: 1px dashed rgb(255 255 255 / 0.2);
+  border: 1px dashed oklch(100% 0 0 / 0.2);
   font-size: 0.9rem;
   animation: slide-in var(--cycle) var(--ease-out) infinite;
   animation-delay: 0.8s;
@@ -450,7 +450,7 @@
 
 .window {
   border-radius: var(--radius-md);
-  background: #f3f3f1;
+  background: var(--ink-50);
   color: var(--ink-900);
   overflow: hidden;
 }
@@ -460,7 +460,7 @@
   align-items: center;
   gap: 6px;
   padding: 0.6rem 0.8rem;
-  border-bottom: 1px solid rgb(0 0 0 / 0.08);
+  border-bottom: 1px solid oklch(0% 0 0 / 0.08);
 }
 
 .chrome span {
@@ -489,7 +489,7 @@
   align-content: start;
   gap: 8px;
   padding: 0.9rem 0.7rem;
-  border-right: 1px solid rgb(0 0 0 / 0.06);
+  border-right: 1px solid oklch(0% 0 0 / 0.06);
 }
 
 .sidebar span {
@@ -522,12 +522,12 @@
 .user {
   justify-self: end;
   background: var(--ink-900);
-  color: #fff;
+  color: var(--white);
   animation-delay: -1.4s;
 }
 
 .bot {
-  background: color-mix(in srgb, var(--accent) 16%, white);
+  background: color-mix(in srgb, var(--accent) 16%, var(--white));
   animation-delay: -0.4s;
 }
 
@@ -540,7 +540,7 @@
 .chips li {
   padding: 0.4rem 0.75rem;
   border-radius: var(--radius-pill);
-  border: 1px solid rgb(255 255 255 / 0.14);
+  border: 1px solid oklch(100% 0 0 / 0.14);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--ink-300);
@@ -557,8 +557,8 @@
   gap: var(--space-3);
   padding: 1rem 1.1rem;
   border-radius: var(--radius-md);
-  background: rgb(255 255 255 / 0.04);
-  border: 1px solid rgb(255 255 255 / 0.08);
+  background: oklch(100% 0 0 / 0.04);
+  border: 1px solid oklch(100% 0 0 / 0.08);
 }
 
 .meetTitle {
@@ -603,7 +603,7 @@
   align-items: center;
   padding: 0.65rem 0.9rem;
   border-radius: var(--radius-sm);
-  background: rgb(255 255 255 / 0.03);
+  background: oklch(100% 0 0 / 0.03);
   font-size: 0.9rem;
   animation: slide-in var(--cycle) var(--ease-out) infinite;
   animation-delay: calc(0.6s + var(--i) * 0.5s);
@@ -625,7 +625,7 @@
   padding: 0.8rem 1rem;
   border-radius: var(--radius-sm);
   background: var(--accent);
-  color: var(--accent-ink, #fff);
+  color: var(--accent-ink, var(--white));
   font-weight: 600;
   animation: appear var(--cycle) var(--ease-spring) infinite;
   animation-delay: 2.4s;
@@ -650,7 +650,7 @@
   gap: 0.7rem;
   padding: 1.2rem;
   border-radius: var(--radius-md);
-  background: #f3f3f1;
+  background: var(--ink-50);
   color: var(--ink-900);
 }
 
@@ -662,7 +662,7 @@
   text-transform: uppercase;
   padding: 0.2rem 0.5rem;
   border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--accent) 30%, white);
+  background: color-mix(in srgb, var(--accent) 30%, var(--white));
 }
 
 .h {
@@ -720,7 +720,7 @@
 .swatches span {
   aspect-ratio: 1.6;
   border-radius: var(--radius-sm);
-  border: 1px solid rgb(255 255 255 / 0.12);
+  border: 1px solid oklch(100% 0 0 / 0.12);
   animation: appear var(--cycle) var(--ease-spring) infinite;
   animation-delay: calc(var(--i) * 0.15s);
 }
@@ -736,8 +736,8 @@
   place-items: center;
   min-height: 72px;
   border-radius: var(--radius-sm);
-  background: rgb(255 255 255 / 0.04);
-  border: 1px dashed rgb(255 255 255 / 0.18);
+  background: oklch(100% 0 0 / 0.04);
+  border: 1px dashed oklch(100% 0 0 / 0.18);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--ink-300);
@@ -762,7 +762,7 @@
   gap: 0.7rem;
   padding: 1.2rem;
   border-radius: var(--radius-md);
-  background: #f3f3f1;
+  background: var(--ink-50);
   color: var(--ink-900);
 }
 
@@ -791,7 +791,7 @@
   gap: 0.6rem;
   padding: 0.7rem 1.1rem;
   border-radius: var(--radius-pill);
-  background: #f3f3f1;
+  background: var(--ink-50);
   color: var(--accent);
   font-family: var(--font-mono);
   font-size: 0.9rem;

@@ -46,7 +46,7 @@
 
 .edge {
   fill: none;
-  stroke: rgb(255 255 255 / 0.1);
+  stroke: oklch(100% 0 0 / 0.1);
   stroke-width: 0.3;
   transition:
     stroke var(--dur-3) var(--ease-out),
@@ -78,7 +78,7 @@
   border-radius: 28%;
   background: var(--ink-900);
   border: 1px solid var(--line-strong);
-  box-shadow: 0 0 0 10px rgb(255 255 255 / 0.02), 0 0 80px rgb(220 40 30 / 0.25);
+  box-shadow: 0 0 0 10px oklch(100% 0 0 / 0.02), 0 0 80px oklch(57.77% 0.2148 29.08 / 0.25);
 }
 
 .hubMark {
@@ -130,7 +130,7 @@
   inset: 34%;
   border-radius: 50%;
   background: var(--c);
-  box-shadow: 0 0 0 1.5px rgb(255 255 255 / 0.55);
+  box-shadow: 0 0 0 1.5px oklch(100% 0 0 / 0.55);
 }
 
 .nodeName {
@@ -160,7 +160,7 @@
 }
 
 .node[aria-selected="true"] .nodeDot::after {
-  background: #fff;
+  background: var(--white);
 }
 
 .node:hover .nodeDot {
@@ -197,7 +197,7 @@
   height: 9px;
   border-radius: 50%;
   background: var(--c);
-  box-shadow: 0 0 0 1.5px rgb(255 255 255 / 0.55);
+  box-shadow: 0 0 0 1.5px oklch(100% 0 0 / 0.55);
 }
 
 .name {
@@ -239,7 +239,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  box-shadow: 0 0 0 1.5px rgb(255 255 255 / 0.55);
+  box-shadow: 0 0 0 1.5px oklch(100% 0 0 / 0.55);
   translate: 0 -1px;
 }
 

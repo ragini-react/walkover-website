@@ -141,6 +141,12 @@
   background: var(--c, var(--signal));
 }
 
+@media (prefers-color-scheme: dark) {
+  .siteDot {
+    box-shadow: var(--ring-brand-dot);
+  }
+}
+
 .siteName {
   font-weight: 600;
 }

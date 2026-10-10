@@ -55,42 +55,30 @@
   font-size: 1.04rem;
 }
 
+/* Hover fills with --contrast: ink on light surfaces, white on dark ones. */
 .primary {
   --btn-bg: var(--signal);
   --btn-fg: var(--white);
-  --btn-hover: var(--ink-950);
+  --btn-hover: var(--contrast);
 }
 
-:global(.surface-dark) .primary {
-  --btn-hover: var(--white);
+.primary:hover,
+.primary:focus-visible {
+  color: var(--on-contrast);
 }
 
-/* In the page's product brand colour (set by brandPageProps). */
+/* In the page's product brand colour (set by brandPageProps). Dark brand
+   colours (GTWY, DocStar, Embarko) get --brand-edge on dark surfaces. */
 .brand {
   --btn-bg: var(--accent, var(--signal));
   --btn-fg: var(--accent-ink, var(--white));
-  --btn-hover: var(--ink-950);
+  --btn-border: var(--brand-edge);
+  --btn-hover: var(--contrast);
 }
 
 .brand:hover,
 .brand:focus-visible {
-  color: var(--white);
-}
-
-/* Dark brand colours (GTWY, DocStar, Embarko) stay visible on dark surfaces. */
-:global(.surface-dark) .brand {
-  --btn-border: rgb(255 255 255 / 0.32);
-  --btn-hover: var(--white);
-}
-
-:global(.surface-dark) .brand:hover,
-:global(.surface-dark) .brand:focus-visible {
-  color: var(--ink-950);
-}
-
-:global(.surface-dark) .primary:hover,
-:global(.surface-dark) .primary:focus-visible {
-  color: var(--ink-950);
+  color: var(--on-contrast);
 }
 
 .secondary {

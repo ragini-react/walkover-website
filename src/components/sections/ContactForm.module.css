@@ -104,8 +104,8 @@
 .field textarea:focus-visible,
 .field select:focus-visible {
   outline: none;
-  border-color: var(--ink-950);
-  box-shadow: 0 0 0 4px rgb(47 107 255 / 0.18);
+  border-color: var(--fg);
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--focus) 18%, transparent);
 }
 
 .field[data-invalid] input,
@@ -181,8 +181,8 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 2px solid rgb(255 255 255 / 0.35);
-  border-top-color: #fff;
+  border: 2px solid oklch(100% 0 0 / 0.35);
+  border-top-color: var(--white);
   animation: spin 700ms linear infinite;
 }
 
@@ -221,7 +221,7 @@
   height: 56px;
   border-radius: 16px;
   background: var(--success);
-  color: #fff;
+  color: var(--white);
   animation: pop 500ms var(--ease-spring) 150ms both;
 }
 

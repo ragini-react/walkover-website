@@ -139,7 +139,7 @@
 .logo {
   height: 40px;
   width: auto;
-  color: #f3f3f1;
+  color: var(--ink-50);
 }
 
 .address {

@@ -28,8 +28,8 @@
   margin: 0;
   padding: 0;
   border: 0;
-  background: var(--paper);
-  color: var(--ink-950);
+  background: var(--bg);
+  color: var(--fg);
   display: none;
   flex-direction: column;
 }
@@ -40,7 +40,7 @@
 }
 
 .dialog::backdrop {
-  background: rgb(8 9 12 / 0.4);
+  background: oklch(14% 0.0069 269.65 / 0.4);
 }
 
 @keyframes sheet-in {
@@ -116,7 +116,7 @@
   gap: 0.7rem;
   min-height: 44px;
   font-size: 1.05rem;
-  color: var(--ink-700);
+  color: var(--fg-soft);
 }
 
 .link[aria-current="page"] {
@@ -125,7 +125,7 @@
 
 .overview {
   font-weight: 600;
-  color: var(--ink-950);
+  color: var(--fg);
   gap: 0.4rem;
 }
 
@@ -133,6 +133,12 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pip {
+    box-shadow: var(--ring-brand-dot);
+  }
 }
 
 .footer {

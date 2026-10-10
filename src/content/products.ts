@@ -5,15 +5,15 @@ import type { Product } from "./types";
  * Facts here are taken from each product's own website (checked October 2026).
  * Figures in `claims` are the products' own published numbers and are always
  * rendered with `claimsSource` beside them.
- * `brand.color` is sampled from each product's own logo or primary UI and is
- * used as-is everywhere: never tinted, lightened or substituted.
+ * `brand.color` is sampled from each product's own logo or primary UI (written
+ * in OKLCH) and is used as-is everywhere: never tinted, lightened or substituted.
  */
 export const products: Product[] = [
   {
     slug: "msg91",
     name: "MSG91",
     family: "communicate",
-    brand: { color: "#1E75BA" },
+    brand: { color: "oklch(54.78% 0.1332 247.92)" },
     category: "Cloud communication platform",
     tagline: "One set of APIs for every message your customers receive.",
     summary:
@@ -178,7 +178,7 @@ export const products: Product[] = [
     slug: "viasocket",
     name: "viaSocket",
     family: "automate",
-    brand: { color: "#A8200D" },
+    brand: { color: "oklch(47.49% 0.1739 31.19)" },
     category: "AI workflow automation",
     tagline:
       "Describe the work. viaSocket plans it, connects the apps and runs it.",
@@ -309,7 +309,7 @@ export const products: Product[] = [
     slug: "giddh",
     name: "Giddh",
     family: "operate",
-    brand: { color: "#1B1F6D" },
+    brand: { color: "oklch(29.62% 0.1321 272.77)" },
     category: "Cloud accounting software",
     tagline: "Accounting, GST, invoicing and inventory in one ledger.",
     summary:
@@ -408,7 +408,7 @@ export const products: Product[] = [
     slug: "gtwy-ai",
     name: "GTWY AI",
     family: "intelligence",
-    brand: { color: "#14181F" },
+    brand: { color: "oklch(20.81% 0.0153 261.6)" },
     category: "Managed AI agent platform",
     tagline:
       "Ship AI agents inside your product. Your brand, your UI. GTWY runs the infrastructure.",
@@ -513,7 +513,7 @@ export const products: Product[] = [
     slug: "50-agents",
     name: "50 Agents",
     family: "intelligence",
-    brand: { color: "#5B21B5" },
+    brand: { color: "oklch(43.1% 0.2095 292.98)" },
     category: "AI agents for everyday work",
     tagline:
       "Type what you need. An agent does it inside the apps you already use.",
@@ -590,7 +590,7 @@ export const products: Product[] = [
     slug: "docstar",
     name: "DocStar",
     family: "operate",
-    brand: { color: "#0F0F0F" },
+    brand: { color: "oklch(16.84% 0 0)" },
     category: "AI documentation platform",
     tagline:
       "Internal knowledge bases and public docs, written with AI and published in seconds.",
@@ -687,7 +687,7 @@ export const products: Product[] = [
     slug: "things-of-brand",
     name: "Things of Brand",
     family: "communicate",
-    brand: { color: "#5928E5" },
+    brand: { color: "oklch(48.32% 0.2546 283.23)" },
     category: "Brand asset management",
     tagline: "One verified home for a brand's logos, colours and guidelines.",
     summary:
@@ -764,7 +764,7 @@ export const products: Product[] = [
     slug: "embarko",
     name: "Embarko",
     family: "build",
-    brand: { color: "#171A1E" },
+    brand: { color: "oklch(21.64% 0.0091 255.61)" },
     category: "Hosting for apps built with AI",
     tagline: "Instant hosting for every app you build with AI.",
     summary:

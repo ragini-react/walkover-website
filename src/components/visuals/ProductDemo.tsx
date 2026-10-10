@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { getProduct } from "@/content";
 import type { ProductDemo as DemoKind } from "@/content/types";
+import { toSrgb } from "@/lib/color";
 import { PlayWhenVisible } from "./PlayWhenVisible";
 import s from "./ProductDemo.module.css";
 
@@ -174,7 +175,7 @@ function Docs() {
 /** Things of Brand — its own brand kit, served over its API. */
 function BrandKit() {
   const primary = getProduct("things-of-brand")!.brand.color;
-  const swatches = [primary, "#0d0f14", "#ffffff"];
+  const swatches = [primary, "var(--ink-900)", "var(--white)"];
   return (
     <div className={s.brand}>
       <div className={s.swatches}>
@@ -187,7 +188,7 @@ function BrandKit() {
         <span>Logo · mono</span>
       </div>
       <code className={s.cli}>
-        GET /brands/things-of-brand → <span className={s.k}>{`{ primary: "${primary}" }`}</span>
+        GET /brands/things-of-brand → <span className={s.k}>{`{ primary: "${toSrgb(primary).toUpperCase()}" }`}</span>
       </code>
     </div>
   );

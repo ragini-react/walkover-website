@@ -290,6 +290,12 @@
   background: var(--accent);
 }
 
+@media (prefers-color-scheme: dark) {
+  .spec li::before {
+    box-shadow: var(--ring-brand-dot);
+  }
+}
+
 .spec > p {
   color: var(--fg-muted);
   line-height: 1.6;
@@ -363,6 +369,13 @@
   flex-shrink: 0;
 }
 
+@media (prefers-color-scheme: dark) {
+  .connA,
+  .connB {
+    box-shadow: var(--ring-brand-dot);
+  }
+}
+
 .connA {
   background: var(--accent);
 }
@@ -375,6 +388,8 @@
   flex: 1;
   height: 2px;
   background-image: linear-gradient(90deg, var(--accent), var(--c));
+  /* OKLCH stops default to Oklab blending; keep the original sRGB blend. */
+  background-image: linear-gradient(90deg in srgb, var(--accent), var(--c));
   background-size: 200% 100%;
   animation: conn 2.4s linear infinite;
 }

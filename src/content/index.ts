@@ -2,6 +2,7 @@ import { products } from "./products";
 import { solutions } from "./solutions";
 import { industries } from "./industries";
 import { posts } from "./posts";
+import { toSrgb } from "@/lib/color";
 import type { Brand, Family, PostCategorySlug, ProductSlug, Solution, SolutionSlug } from "./types";
 
 export { products, solutions, industries, posts };
@@ -33,10 +34,10 @@ function luminance(hex: string) {
 /** Text colour for content sitting on a brand-coloured fill: white or ink,
  *  whichever has the higher contrast against that exact colour. */
 export function brandInk(brand: Brand): string {
-  const l = luminance(brand.color);
+  const l = luminance(toSrgb(brand.color));
   const onWhite = 1.05 / (l + 0.05);
   const onInk = (l + 0.05) / 0.0545;
-  return onWhite >= onInk ? "#ffffff" : "#08090c";
+  return onWhite >= onInk ? "var(--white)" : "var(--ink-950)";
 }
 
 /** Inline style + attribute that paint an element in a product's brand

@@ -15,7 +15,7 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-padding-top: calc(var(--header-h) + 1rem);
-  color-scheme: light;
+  color-scheme: light dark;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -215,7 +215,13 @@ p {
 }
 
 .surface-dark .eyebrow::before {
-  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.45);
+  box-shadow: 0 0 0 1px oklch(100% 0 0 / 0.45);
+}
+
+@media (prefers-color-scheme: dark) {
+  .eyebrow::before {
+    box-shadow: 0 0 0 1px oklch(100% 0 0 / 0.45);
+  }
 }
 
 .accent {
@@ -314,5 +320,12 @@ main:focus {
    ring so deep colours such as Giddh's indigo stay visible without tinting. */
 .surface-dark [data-brand-dot],
 .surface-dark[data-brand-dot] {
-  box-shadow: 0 0 0 1.5px rgb(255 255 255 / 0.55);
+  box-shadow: var(--ring-brand-dot);
+}
+
+/* In the system dark theme every surface is ink, so the ring applies everywhere. */
+@media (prefers-color-scheme: dark) {
+  [data-brand-dot] {
+    box-shadow: var(--ring-brand-dot);
+  }
 }
