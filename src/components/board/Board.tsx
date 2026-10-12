@@ -8,11 +8,6 @@ const SAMPLE = 6; // px between path samples
 const CELL = 30; // track cell length (dash), matched in CSS
 const LINE = 0.55; // the die rests where the track crosses this fraction of the viewport
 const FOLLOW = 25; // ms time constant for the die catching up with the scroll
-const HOLD_SPEED = 650; // px/s the page scrolls while the die is held still
-const HOLD_DEAD = 12; // px the pointer can wander from where it pressed without effect
-const HOLD_GAIN = 6; // extra px/s per px dragged beyond that
-const HOLD_MAX = 2600; // fastest scroll, px/s
-const HOLD_EASE = 160; // ms time constant for easing up to (or between) speeds
 
 type Sample = { x: number; y: number };
 
@@ -24,9 +19,7 @@ type Sample = { x: number; y: number };
  * track of square cells through them: down a step's lane, across the gap,
  * down the next lane. As the visitor scrolls, the Walkover die rolls along
  * the track, cells behind it fill with Walkover red, and each square is
- * marked as reached. The die can also be pressed and held: the page then
- * scrolls down by itself, easing up to a steady speed, and stops the moment
- * it is let go. Dragging further down speeds it up; dragging up reverses it.
+ * marked as reached.
  *
  * Scroll work: one passive listener, batched into rAF, a binary search over
  * precomputed samples, and transform/attribute writes only.
@@ -160,69 +153,6 @@ export function Board({ children }: { children: ReactNode }) {
       if (!raf) raf = requestAnimationFrame(tick);
     };
 
-    // Holding the die: from press to release the page scrolls on its own,
-    // easing up to HOLD_SPEED (down = down the track). Dragging below the
-    // press point adds speed; dragging above it scrolls back up. The die is
-    // never placed by hand: it follows the scroll like any other.
-    const html = document.documentElement;
-    let drag: { id: number; from: number; y: number } | null = null;
-    let dragRaf = 0;
-    let dragLast = 0;
-    let speed = 0;
-    let scrollAt = 0;
-
-    const dragFrame = (now: number) => {
-      if (!drag) return;
-      const dt = Math.min(64, now - dragLast);
-      dragLast = now;
-      const off = drag.y - drag.from;
-      const extra = Math.max(0, Math.abs(off) - HOLD_DEAD) * HOLD_GAIN;
-      const dir = off < -HOLD_DEAD ? -1 : 1;
-      const want = dir * Math.min(HOLD_MAX, HOLD_SPEED + extra);
-      speed = reduced ? want : speed + (want - speed) * (1 - Math.exp(-dt / HOLD_EASE));
-      const max = html.scrollHeight - window.innerHeight;
-      scrollAt = Math.max(0, Math.min(max, scrollAt + (speed * dt) / 1000));
-      window.scrollTo(0, scrollAt);
-      dragRaf = requestAnimationFrame(dragFrame);
-    };
-
-    const endDrag = () => {
-      if (!drag) return;
-      if (token.hasPointerCapture(drag.id)) token.releasePointerCapture(drag.id);
-      drag = null;
-      speed = 0;
-      cancelAnimationFrame(dragRaf);
-      dragRaf = 0;
-      html.style.scrollBehavior = "";
-      html.removeAttribute("data-die-drag");
-      root.removeAttribute("data-dragging");
-    };
-
-    const onPointerDown = (e: PointerEvent) => {
-      if (!samples.length || drag || (e.pointerType === "mouse" && e.button !== 0)) return;
-      e.preventDefault();
-      token.setPointerCapture(e.pointerId);
-      drag = { id: e.pointerId, from: e.clientY, y: e.clientY };
-      scrollAt = window.scrollY;
-      speed = 0;
-      dragLast = performance.now();
-      dragRaf = requestAnimationFrame(dragFrame);
-      // The page's CSS smooth scrolling would lag every frame's scrollTo.
-      html.style.scrollBehavior = "auto";
-      // Pointer cursor everywhere for as long as the button is held.
-      html.setAttribute("data-die-drag", "");
-      root.setAttribute("data-dragging", "");
-    };
-
-    const onPointerMove = (e: PointerEvent) => {
-      if (!drag || e.pointerId !== drag.id) return;
-      drag.y = e.clientY;
-    };
-
-    const onPointerUp = (e: PointerEvent) => {
-      if (drag && e.pointerId === drag.id) endDrag();
-    };
-
     let resizeTimer = 0;
     const onResize = () => {
       window.clearTimeout(resizeTimer);
@@ -235,10 +165,6 @@ export function Board({ children }: { children: ReactNode }) {
     ro.observe(root);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
-    token.addEventListener("pointerdown", onPointerDown);
-    token.addEventListener("pointermove", onPointerMove);
-    token.addEventListener("pointerup", onPointerUp);
-    token.addEventListener("pointercancel", onPointerUp);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -246,11 +172,6 @@ export function Board({ children }: { children: ReactNode }) {
       ro.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
-      endDrag();
-      token.removeEventListener("pointerdown", onPointerDown);
-      token.removeEventListener("pointermove", onPointerMove);
-      token.removeEventListener("pointerup", onPointerUp);
-      token.removeEventListener("pointercancel", onPointerUp);
     };
   }, []);
 
