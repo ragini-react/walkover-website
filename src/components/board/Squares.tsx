@@ -2,7 +2,6 @@ import Link from "next/link";
 import {
   brandInk,
   getProduct,
-  industries,
   postCategories,
   posts,
   ProductCount,
@@ -13,6 +12,7 @@ import { site } from "@/content/site";
 import type { Product } from "@/content/types";
 import { ArrowLink, ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { ProductLogo } from "@/components/ui/ProductLogo";
 import { Problems } from "@/components/home/Problems";
 import { formatDate } from "@/components/sections/Cards";
 import s from "./Squares.module.scss";
@@ -20,18 +20,10 @@ import s from "./Squares.module.scss";
 const v = (vars: Record<string, string | number>) =>
   vars as React.CSSProperties;
 
-/** Small label at the top of every square: "Square 03 · Who we are". */
-function SquareLabel({
-  n,
-  children,
-}: {
-  n: string;
-  children: React.ReactNode;
-}) {
+/** Small label at the top of a square: "Who we are". */
+function SquareLabel({ children }: { children: React.ReactNode }) {
   return (
     <p className={s.label}>
-      <span className={s.labelNum}>Square {n}</span>
-      <span aria-hidden="true">·</span>
       <span>{children}</span>
     </p>
   );
@@ -71,22 +63,16 @@ export function HeroSquare() {
         </span>
       </h1>
       <p className={s.heroTagline}>A journey to innovation!</p>
-      <a href="#who-we-are" className={s.scrollCue}>
-        <span className={s.scrollIcon} aria-hidden="true">
-          <Icon name="chevronDown" size={16} strokeWidth={2} />
-        </span>
-        Scroll to roll the dice
-      </a>
     </div>
   );
 }
 
 /* ── Who we are ────────────────────────────────────── */
 
-export function IntroSquare({ n }: { n: string }) {
+export function IntroSquare() {
   return (
     <div className={s.block} data-reveal>
-      <SquareLabel n={n}>Who we are</SquareLabel>
+      <SquareLabel>Who we are</SquareLabel>
       <h2 className={s.statement}>
         A product company from Indore. Since {site.foundingYear} we have built
         software for the moments every business has to get right.
@@ -124,11 +110,9 @@ const FACE: Record<number, number[]> = {
 
 export function ProductSquare({
   product,
-  n,
   index,
 }: {
   product: Product;
-  n: string;
   index: number;
 }) {
   const ink = brandInk(product.brand);
@@ -150,12 +134,10 @@ export function ProductSquare({
           <span key={i}>{face.includes(i) && <span className={s.pip} />}</span>
         ))}
       </span>
-
-      <p className={s.productLabel}>
-        Square {n} · {product.category}
-      </p>
+      <p className={s.productLabel}>{product.category}</p>
       <h2 id={`sq-${product.slug}`} className={s.productName}>
-        {product.name}
+        <ProductLogo product={product} className={s.productLogo} />
+        <span>{product.name}</span>
       </h2>
       <p className={s.productTagline}>{product.tagline}</p>
 
@@ -210,10 +192,10 @@ export function ProductSquare({
 
 /* ── How we build ──────────────────────────────────── */
 
-export function BuildSquare({ n }: { n: string }) {
+export function BuildSquare() {
   return (
     <div className={`${s.block} ${s.ink}`} data-reveal>
-      <SquareLabel n={n}>How we build</SquareLabel>
+      <SquareLabel>How we build</SquareLabel>
       <h2 className={s.title}>One move at a time, with total focus.</h2>
       <p className={s.sub}>
         “One move. Total focus.” is the first of Walkover’s ten values. These
@@ -253,11 +235,11 @@ export function BuildSquare({ n }: { n: string }) {
 
 /* ── Start with the problem ────────────────────────── */
 
-export function ProblemSquare({ n }: { n: string }) {
+export function ProblemSquare() {
   return (
     <div className={s.block}>
       <div className={s.intro} data-reveal>
-        <SquareLabel n={n}>Solutions</SquareLabel>
+        <SquareLabel>Solutions</SquareLabel>
         <h2 className={s.title}>Start with the problem.</h2>
         <p className={s.sub}>
           You don’t need to know our product names. Tell us what needs to
@@ -265,28 +247,16 @@ export function ProblemSquare({ n }: { n: string }) {
         </p>
       </div>
       <Problems compact />
-      <div className={s.industries} data-reveal>
-        <p className={s.miniLabel}>Industries we serve</p>
-        <ul role="list" className={s.pills}>
-          {industries.map((ind) => (
-            <li key={ind.slug}>
-              <Link href={`/industries/${ind.slug}`} className={s.pill}>
-                {ind.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 }
 
 /* ── Story ─────────────────────────────────────────── */
 
-export function StorySquare({ n }: { n: string }) {
+export function StorySquare() {
   return (
     <div className={s.block} data-reveal>
-      <SquareLabel n={n}>Our story</SquareLabel>
+      <SquareLabel>Our story</SquareLabel>
       <h2 className={s.title}>
         Version by version, since {site.foundingYear}.
       </h2>
@@ -308,10 +278,10 @@ export function StorySquare({ n }: { n: string }) {
 
 /* ── Culture ───────────────────────────────────────── */
 
-export function CultureSquare({ n }: { n: string }) {
+export function CultureSquare() {
   return (
     <div className={s.block} data-reveal>
-      <SquareLabel n={n}>Culture & careers</SquareLabel>
+      <SquareLabel>Culture & careers</SquareLabel>
       <h2 className={s.motto}>
         {careers.motto.split(". ").map((part, i, arr) => (
           <span key={part}>
@@ -346,10 +316,10 @@ export function CultureSquare({ n }: { n: string }) {
 
 /* ── Notes ─────────────────────────────────────────── */
 
-export function NotesSquare({ n }: { n: string }) {
+export function NotesSquare() {
   return (
     <div className={s.block} data-reveal>
-      <SquareLabel n={n}>Resources</SquareLabel>
+      <SquareLabel>Resources</SquareLabel>
       <h2 className={s.title}>Notes from the people building it.</h2>
       <ul role="list" className={s.notes}>
         {posts.slice(0, 4).map((p) => (

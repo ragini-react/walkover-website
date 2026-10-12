@@ -14,6 +14,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
 import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { ProductLogo } from "@/components/ui/ProductLogo";
 import { pageMeta } from "@/lib/seo";
 import { softwareSchema } from "@/lib/schema";
 import styles from "./product.module.scss";
@@ -67,7 +68,10 @@ export default async function ProductPage({ params }: Params) {
         eyebrow={`${fam.label} · ${product.category}`}
         title={
           <>
-            <span className={styles.name}>{product.name}</span>
+            <span className={styles.name}>
+              <ProductLogo product={product} className={styles.nameLogo} />
+              <span>{product.name}</span>
+            </span>
             <span className={styles.tagline}>{product.tagline}</span>
           </>
         }

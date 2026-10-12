@@ -110,7 +110,10 @@
   transition: color var(--dur-2);
 }
 
+/* Frame around the product's logo; fills with the brand colour when selected. */
 .nodeDot {
+  display: grid;
+  place-items: center;
   width: clamp(36px, 7vw, 56px);
   aspect-ratio: 1;
   border-radius: 30%;
@@ -124,13 +127,8 @@
     box-shadow var(--dur-3);
 }
 
-.nodeDot::after {
-  content: "";
-  position: absolute;
-  inset: 34%;
-  border-radius: 50%;
-  background: var(--c);
-  box-shadow: 0 0 0 1.5px oklch(100% 0 0 / 0.55);
+.nodeLogo {
+  --logo-size: clamp(26px, 5vw, 40px);
 }
 
 .nodeName {
@@ -157,10 +155,6 @@
   border-color: var(--c);
   transform: scale(1.15);
   box-shadow: 0 0 40px color-mix(in srgb, var(--c) 55%, transparent);
-}
-
-.node[aria-selected="true"] .nodeDot::after {
-  background: var(--white);
 }
 
 .node:hover .nodeDot {
@@ -201,9 +195,16 @@
 }
 
 .name {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
   font-size: var(--text-h1);
   letter-spacing: var(--tracking-tight);
   line-height: 1;
+}
+
+.nameLogo {
+  --logo-size: 0.85em;
 }
 
 .summary {
@@ -224,7 +225,7 @@
 .relation {
   display: flex;
   gap: 0.75rem;
-  align-items: baseline;
+  align-items: flex-start;
   padding-block: 0.35rem;
   line-height: 1.5;
 }
@@ -234,13 +235,9 @@
   margin-right: 0.35rem;
 }
 
-.relDot {
-  flex-shrink: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1.5px oklch(100% 0 0 / 0.55);
-  translate: 0 -1px;
+.relLogo {
+  --logo-size: 22px;
+  margin-top: 0.05rem;
 }
 
 .cta {

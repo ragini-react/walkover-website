@@ -24,14 +24,6 @@ export type SolutionSlug =
   | "documentation-and-knowledge"
   | "image-creation-and-hosting";
 
-export type IndustrySlug =
-  | "saas"
-  | "ecommerce-retail"
-  | "financial-services"
-  | "healthcare"
-  | "education"
-  | "manufacturing-trading";
-
 /** Product families describe what each product is for; shown as a label on product cards. */
 export type Family = "communicate" | "automate" | "intelligence" | "operate" | "create" | "build";
 
@@ -76,6 +68,8 @@ export type Product = {
   /** One-paragraph summary used in cards, meta and the product universe. */
   summary: string;
   url: string;
+  /** The product's own logo mark, as served from its website (in public/). */
+  logo: string;
   problem: { heading: string; body: string };
   audience: string[];
   capabilities: Capability[];
@@ -92,7 +86,6 @@ export type Product = {
   /** Concrete connections to other Walkover products. */
   connections: { to: ProductSlug; how: string }[];
   solutions: SolutionSlug[];
-  industries: IndustrySlug[];
   faqs: Faq[];
   seo: { title: string; description: string };
 };
@@ -108,22 +101,7 @@ export type Solution = {
   approach: Capability[];
   products: { slug: ProductSlug; role: string }[];
   workflow: string[];
-  industries: IndustrySlug[];
   faqs: Faq[];
-  seo: { title: string; description: string };
-};
-
-export type Industry = {
-  slug: IndustrySlug;
-  name: string;
-  headline: string;
-  summary: string;
-  challenges: Capability[];
-  solutions: SolutionSlug[];
-  products: { slug: ProductSlug; role: string }[];
-  workflows: { title: string; steps: string[] }[];
-  /** Short note on where this industry focus comes from. */
-  basis: string;
   seo: { title: string; description: string };
 };
 

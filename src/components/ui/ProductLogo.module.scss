@@ -1,0 +1,20 @@
+/* Size comes from --logo-size set by the caller (default 1.5em). No default is
+   declared here, so a caller's class never ties with this one on specificity. */
+.tile {
+  --s: var(--logo-size, 1.5em);
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--s);
+  height: var(--s);
+  padding: calc(var(--s) * 0.14);
+  border-radius: calc(var(--s) * 0.26);
+  background: oklch(100% 0 0);
+  box-shadow: 0 0 0 1px oklch(14% 0.0069 269.65 / 0.08);
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

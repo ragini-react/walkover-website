@@ -1,4 +1,4 @@
-import { industries, products, solutions } from "@/content";
+import { products, solutions } from "@/content";
 
 export type InterestGroup = { label: string; options: { value: string; label: string }[] };
 
@@ -6,7 +6,6 @@ export type InterestGroup = { label: string; options: { value: string; label: st
 export const interestGroups: InterestGroup[] = [
   { label: "Products", options: products.map((p) => ({ value: p.slug, label: p.name })) },
   { label: "Solutions", options: solutions.map((s) => ({ value: s.slug, label: s.name })) },
-  { label: "Industries", options: industries.map((i) => ({ value: i.slug, label: i.name })) },
   {
     label: "Other",
     options: [

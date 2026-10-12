@@ -13,7 +13,7 @@ import {
   StorySquare,
 } from "@/components/board/Squares";
 import { BrandMark } from "@/components/visuals/BrandMark";
-import { brandInk, products } from "@/content";
+import { products } from "@/content";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
@@ -27,30 +27,26 @@ export const metadata: Metadata = pageMeta({
 type Square = {
   key: string;
   id?: string;
-  color?: string;
-  ink?: string;
-  render: (n: string) => ReactNode;
+  render: () => ReactNode;
 };
 
 /**
- * The homepage is a game board. Each section is a numbered square on one
+ * The homepage is a game board. Each section is a square on one
  * continuous track, and the Walkover die rolls along it as you scroll.
  * Product squares are printed in each product's exact brand colour.
  */
 export default function HomePage() {
   const squares: Square[] = [
-    { key: "intro", id: "who-we-are", render: (n) => <IntroSquare n={n} /> },
+    { key: "intro", id: "who-we-are", render: () => <IntroSquare /> },
     ...products.map((p, i) => ({
       key: p.slug,
-      color: p.brand.color,
-      ink: brandInk(p.brand),
-      render: (n: string) => <ProductSquare product={p} n={n} index={i} />,
+      render: () => <ProductSquare product={p} index={i} />,
     })),
-    { key: "build", render: (n) => <BuildSquare n={n} /> },
-    { key: "problems", render: (n) => <ProblemSquare n={n} /> },
-    { key: "story", render: (n) => <StorySquare n={n} /> },
-    { key: "culture", render: (n) => <CultureSquare n={n} /> },
-    { key: "notes", render: (n) => <NotesSquare n={n} /> },
+    { key: "build", render: () => <BuildSquare /> },
+    { key: "problems", render: () => <ProblemSquare /> },
+    { key: "story", render: () => <StorySquare /> },
+    { key: "culture", render: () => <CultureSquare /> },
+    { key: "notes", render: () => <NotesSquare /> },
   ];
 
   return (
@@ -59,21 +55,15 @@ export default function HomePage() {
         <HeroSquare />
       </BoardStep>
 
-      {squares.map((sq, i) => {
-        const n = String(i + 1).padStart(2, "0");
-        return (
-          <BoardStep
-            key={sq.key}
-            id={sq.id}
-            side={i % 2 === 0 ? "right" : "left"}
-            label={n}
-            color={sq.color}
-            ink={sq.ink}
-          >
-            {sq.render(n)}
-          </BoardStep>
-        );
-      })}
+      {squares.map((sq, i) => (
+        <BoardStep
+          key={sq.key}
+          id={sq.id}
+          side={i % 2 === 0 ? "right" : "left"}
+        >
+          {sq.render()}
+        </BoardStep>
+      ))}
 
       <BoardStep
         side="center"

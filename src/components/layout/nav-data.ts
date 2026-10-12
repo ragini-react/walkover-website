@@ -1,7 +1,13 @@
 import { families, ProductCount, products } from "@/content";
 import { companyNav, resourceNav } from "@/content/site";
 
-export type MenuItem = { label: string; href: string; description?: string; color?: string };
+export type MenuItem = {
+  label: string;
+  href: string;
+  description?: string;
+  /** Product logo path, shown before the label. Only products have one. */
+  logo?: string;
+};
 export type MenuSection = {
   /** Brand colours shown on the feature card's mini board. */
   featureColors?: string[];
@@ -23,7 +29,7 @@ export function buildNav(): MenuSection[] {
         label: p.name,
         href: `/products/${p.slug}`,
         description: p.category,
-        color: p.brand.color,
+        logo: p.logo,
       })),
   }));
 

@@ -39,7 +39,6 @@ export const solutions: Solution[] = [
       "The message goes out on the customer's preferred channel",
       "Delivery and engagement appear in reports",
     ],
-    industries: ["ecommerce-retail", "financial-services", "healthcare", "education"],
     faqs: [
       {
         q: "Can one platform send SMS, WhatsApp and email?",
@@ -90,7 +89,6 @@ export const solutions: Solution[] = [
       "The user enters the code or taps a MagicLink",
       "Your backend receives a verified result",
     ],
-    industries: ["financial-services", "ecommerce-retail", "healthcare", "education", "saas"],
     faqs: [
       {
         q: "Is WhatsApp OTP better than SMS OTP?",
@@ -144,7 +142,6 @@ export const solutions: Solution[] = [
       "Rule-based steps update apps and records",
       "A person approves anything above a threshold",
     ],
-    industries: ["saas", "ecommerce-retail", "financial-services"],
     faqs: [
       {
         q: "What is workflow automation?",
@@ -200,7 +197,6 @@ export const solutions: Solution[] = [
       "It calls tools: apps, APIs or workflows",
       "Results and usage are logged per customer",
     ],
-    industries: ["saas"],
     faqs: [
       {
         q: "What is the difference between an AI agent and a chatbot?",
@@ -255,7 +251,6 @@ export const solutions: Solution[] = [
       "Complex cases route to the right agent with AI-suggested replies",
       "Resolved answers feed back into the help centre",
     ],
-    industries: ["ecommerce-retail", "healthcare", "education", "saas", "financial-services"],
     faqs: [
       {
         q: "What is an omnichannel contact center?",
@@ -305,7 +300,6 @@ export const solutions: Solution[] = [
       "Payment lands and reconciles automatically",
       "GST reports are ready for filing",
     ],
-    industries: ["manufacturing-trading", "ecommerce-retail"],
     faqs: [
       {
         q: "What is bank reconciliation?",
@@ -352,7 +346,6 @@ export const solutions: Solution[] = [
       "Readers search, try APIs and leave feedback",
       "Page health highlights what to update",
     ],
-    industries: ["saas", "education"],
     faqs: [
       {
         q: "What is the difference between a knowledge base and documentation?",
@@ -397,7 +390,6 @@ export const solutions: Solution[] = [
       "Copy the image's URL",
       "Use the URL in a page, an app, an email or a document",
     ],
-    industries: ["saas", "ecommerce-retail"],
     faqs: [
       {
         q: "What does it mean to use an image by URL?",

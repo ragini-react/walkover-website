@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "@/components/ui/Logo";
+import { ProductLogo } from "@/components/ui/ProductLogo";
 import { buttonClass } from "@/components/ui/Button";
 import type { MenuSection } from "./nav-data";
 import styles from "./MobileNav.module.scss";
@@ -84,9 +85,7 @@ export function MobileNav({ nav }: { nav: MenuSection[] }) {
                       onClick={close}
                       aria-current={pathname === item.href ? "page" : undefined}
                     >
-                      {item.color && (
-                        <span className={styles.pip} style={{ background: item.color }} aria-hidden="true" />
-                      )}
+                      {item.logo && <ProductLogo product={{ logo: item.logo }} className={styles.logoMark} />}
                       {item.label}
                     </Link>
                   </li>

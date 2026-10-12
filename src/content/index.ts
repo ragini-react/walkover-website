@@ -1,11 +1,10 @@
 import { products } from "./products";
 import { solutions } from "./solutions";
-import { industries } from "./industries";
 import { posts } from "./posts";
 import { toSrgb } from "@/lib/color";
 import type { Brand, Family, PostCategorySlug, ProductSlug, Solution, SolutionSlug } from "./types";
 
-export { products, solutions, industries, posts };
+export { products, solutions, posts };
 
 /** Family metadata, used to label what each product is for. */
 export const families: Record<Family, { label: string; description: string }> = {
@@ -89,7 +88,6 @@ function bySlug<T extends { slug: string }>(list: T[], slug: string): T | undefi
 
 export const getProduct = (slug: string) => bySlug(products, slug);
 export const getSolution = (slug: string) => bySlug(solutions, slug);
-export const getIndustry = (slug: string) => bySlug(industries, slug);
 export const getPost = (slug: string) => bySlug(posts, slug);
 
 /** Resolve slug references, silently dropping unknown ones. */
@@ -101,7 +99,7 @@ export function resolve<S extends string, T extends { slug: string }>(
 }
 
 /** Product references sorted into launch order (the order of `products`).
- *  Solutions and industries list their products by role, lead first; this is
+ *  Solutions list their products by role, lead first; this is
  *  for displaying those lists, so products always appear in the same sequence. */
 export function inLaunchOrder<T extends { slug: ProductSlug }>(refs: readonly T[]): T[] {
   const rank = (slug: ProductSlug) => products.findIndex((p) => p.slug === slug);

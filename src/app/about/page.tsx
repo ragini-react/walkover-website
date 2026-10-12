@@ -7,16 +7,17 @@ import { ProductCard } from "@/components/sections/Cards";
 import { Story } from "@/components/home/Story";
 import { Values } from "@/components/home/Values";
 import { ArrowLink } from "@/components/ui/Button";
+import { JsonLd } from "@/components/ui/JsonLd";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { webPageSchema } from "@/lib/schema";
 import { pageMeta } from "@/lib/seo";
 import styles from "./about.module.scss";
 
-export const metadata: Metadata = pageMeta({
-  title: "About Walkover — Our Story, Mission & Values",
-  description:
-    "Walkover Web Solutions began in Indore in 2010 with MSG91. Today 150+ people build communication, automation and AI products. Our story, mission and values.",
-  path: "/about",
-});
+const title = "About Walkover — Our Story, Mission & Values";
+const description =
+  "Walkover Web Solutions began in Indore in 2010 with MSG91. Today 150+ people build communication, automation and AI products. Our story, mission and values.";
+
+export const metadata: Metadata = pageMeta({ title, description, path: "/about" });
 
 const pillars = [
   {
@@ -200,6 +201,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <JsonLd data={webPageSchema({ type: "AboutPage", path: "/about", name: title, description })} />
     </>
   );
 }

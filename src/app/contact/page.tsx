@@ -4,18 +4,18 @@ import { Suspense } from "react";
 import { site } from "@/content/site";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Icon } from "@/components/ui/Icon";
+import { JsonLd } from "@/components/ui/JsonLd";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { interestGroups } from "@/lib/contact-options";
+import { webPageSchema } from "@/lib/schema";
 import { pageMeta } from "@/lib/seo";
 import styles from "./contact.module.scss";
 
-export const metadata: Metadata = pageMeta({
-  title: "Contact Walkover — Talk to Our Team in Indore",
-  absoluteTitle: true,
-  description:
-    "Contact Walkover Web Solutions about MSG91, Giddh, viaSocket, GTWY AI or partnerships. Email info@walkover.in or call +91 731 256 0056.",
-  path: "/contact",
-});
+const title = "Contact Walkover — Talk to Our Team in Indore";
+const description =
+  "Contact Walkover Web Solutions about MSG91, Giddh, viaSocket, GTWY AI or partnerships. Email info@walkover.in or call +91 731 256 0056.";
+
+export const metadata: Metadata = pageMeta({ title, absoluteTitle: true, description, path: "/contact" });
 
 export default function ContactPage() {
   return (
@@ -85,6 +85,7 @@ export default function ContactPage() {
           </Suspense>
         </div>
       </div>
+      <JsonLd data={webPageSchema({ type: "ContactPage", path: "/contact", name: title, description })} />
     </section>
   );
 }

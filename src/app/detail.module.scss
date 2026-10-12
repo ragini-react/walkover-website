@@ -1,6 +1,6 @@
 @use "../styles/mixins";
 
-/* Shared styles for solution and industry detail pages. */
+/* Shared styles for the solutions index and solution detail pages. */
 .head {
   display: grid;
   gap: var(--space-4);
@@ -154,54 +154,7 @@
   transform: translateX(4px);
 }
 
-/* Industry challenges ──────────────────────────────── */
-.cards {
-  display: grid;
-  gap: var(--space-4);
-}
-
-@media (min-width: 900px) {
-  .cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.card {
-  display: grid;
-  align-content: start;
-  gap: var(--space-3);
-  padding: var(--space-6);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--line);
-  background: var(--bg-raised);
-}
-
-.card p {
-  color: var(--fg-muted);
-  line-height: 1.6;
-}
-
-.workflows {
-  display: grid;
-  gap: var(--space-5);
-}
-
-@media (min-width: 900px) {
-  .workflows {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.basis {
-  margin-top: var(--space-6);
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  color: var(--fg-subtle);
-  letter-spacing: 0.03em;
-  max-width: 70ch;
-}
-
-/* Index list rows (solutions & industries) ─────────── */
+/* Index list rows (solutions) ────────────────────── */
 .indexList {
   border-top: 1px solid var(--line);
 }

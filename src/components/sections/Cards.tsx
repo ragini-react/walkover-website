@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { brandProps, families, postCategories } from "@/content";
-import type { Industry, Post, Product } from "@/content/types";
+import type { Post, Product } from "@/content/types";
 import { Icon } from "@/components/ui/Icon";
+import { ProductLogo } from "@/components/ui/ProductLogo";
 import styles from "./Cards.module.scss";
 
 export function formatDate(iso: string) {
@@ -36,9 +37,7 @@ export function ProductCard({
       data-track-label={product.slug}
     >
       <span className={styles.productTop}>
-        <span className={styles.badge} aria-hidden="true">
-          <span />
-        </span>
+        <ProductLogo product={product} className={styles.badge} />
         <span className={styles.productFamily}>
           {launch !== undefined && (
             <>
@@ -78,23 +77,6 @@ export function PostCard({ post, index = 0 }: { post: Post; index?: number }) {
       <span className={styles.postText}>{post.description}</span>
       <span className={styles.more}>
         Read · {post.readingMinutes} min <Icon name="arrow" size={16} strokeWidth={2} />
-      </span>
-    </Link>
-    </div>
-  );
-}
-
-export function IndustryCard({ industry, index = 0 }: { industry: Industry; index?: number }) {
-  return (
-    <div data-reveal className={styles.cell} style={{ "--reveal-delay": `${(index % 3) * 80}ms` } as React.CSSProperties}>
-    <Link href={`/industries/${industry.slug}`} className={styles.industry}>
-      <span className={styles.industryNum} aria-hidden="true">
-        {String(index + 1).padStart(2, "0")}
-      </span>
-      <span className={styles.industryName}>{industry.name}</span>
-      <span className={styles.industryText}>{industry.headline}</span>
-      <span className={styles.industryArrow} aria-hidden="true">
-        <Icon name="arrowUpRight" size={20} />
       </span>
     </Link>
     </div>

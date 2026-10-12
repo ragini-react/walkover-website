@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Logo } from "@/components/ui/Logo";
 import { Icon } from "@/components/ui/Icon";
+import { ProductLogo } from "@/components/ui/ProductLogo";
 import { buttonClass } from "@/components/ui/Button";
 import type { MenuSection } from "./nav-data";
 import { MobileNav } from "./MobileNav";
@@ -174,9 +175,7 @@ export function Header({ nav }: { nav: MenuSection[] }) {
                           data-track="nav_click"
                           data-track-label={item.href}
                         >
-                          {item.color && (
-                            <span className={styles.pip} style={{ background: item.color }} aria-hidden="true" />
-                          )}
+                          {item.logo && <ProductLogo product={{ logo: item.logo }} className={styles.itemLogo} />}
                           <span>
                             <span className={styles.itemLabel}>{item.label}</span>
                             {item.description && (

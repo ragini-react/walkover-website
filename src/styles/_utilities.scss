@@ -29,3 +29,14 @@
 .skip-link:focus {
   transform: none;
 }
+
+/* ── Homepage die drag ─────────────────────────────── */
+/* Set on <html> by the board while its die is held: pointer cursor and no text
+   selection across the whole page (the pointer leaves the die as the page
+   scrolls). !important so no link or button cursor shows through; removed the
+   moment the die is let go. */
+html[data-die-drag],
+html[data-die-drag] * {
+  cursor: pointer !important;
+  user-select: none;
+}

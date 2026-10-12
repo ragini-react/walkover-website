@@ -95,6 +95,35 @@
   height: auto;
   translate: -50% -52%;
   filter: drop-shadow(0 10px 14px oklch(14% 0.0069 269.65 / 0.28)) drop-shadow(0 2px 3px oklch(14% 0.0069 269.65 / 0.2));
+  transition: scale 300ms var(--ease-spring);
+}
+
+/* Drag area: a little larger than the die so it is easy to catch. */
+.token::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  translate: -50% -50%;
+}
+
+.board[data-ready] .token::before,
+.board[data-ready] .tokenMark {
+  pointer-events: auto;
+  touch-action: none;
+}
+
+@media (hover: hover) {
+  .token:hover .tokenMark {
+    scale: 1.08;
+  }
+}
+
+.board[data-dragging] .tokenMark {
+  scale: 1.16;
 }
 
 /* ── Steps ──────────────────────────────────────────── */
@@ -156,6 +185,11 @@
     0 0 0 2px var(--cell-halo),
     0 0 0 4px var(--stop),
     0 16px 30px -12px var(--stop);
+}
+
+/* Unlabelled squares: no visible marker, the track simply runs through. */
+.waypoint {
+  visibility: hidden;
 }
 
 /* Finish: the ludo home square, one slice per product brand. */
@@ -268,7 +302,8 @@
     transition: none;
   }
   .track,
-  .token {
+  .token,
+  .tokenMark {
     transition: none;
   }
 }

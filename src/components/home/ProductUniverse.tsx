@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { Logo } from "@/components/ui/Logo";
 import { Icon } from "@/components/ui/Icon";
+import { ProductLogo } from "@/components/ui/ProductLogo";
 import styles from "./ProductUniverse.module.scss";
 
 export type UniverseProduct = {
@@ -11,6 +12,8 @@ export type UniverseProduct = {
   name: string;
   category: string;
   summary: string;
+  /** Path to the product's own logo mark. */
+  logo: string;
   color: string;
   /** Text colour that reads on `color` (white or ink). */
   ink: string;
@@ -131,7 +134,9 @@ export function ProductUniverse({ items }: { items: UniverseProduct[] }) {
               onClick={() => setActive(i)}
               onKeyDown={onKeyDown}
             >
-              <span className={styles.nodeDot} aria-hidden="true" />
+              <span className={styles.nodeDot} aria-hidden="true">
+                <ProductLogo product={p} className={styles.nodeLogo} />
+              </span>
               <span className={styles.nodeName}>{p.name}</span>
             </button>
           ))}
@@ -150,7 +155,10 @@ export function ProductUniverse({ items }: { items: UniverseProduct[] }) {
             <span className={styles.familyDot} aria-hidden="true" />
             {current.familyLabel} · {current.category}
           </p>
-          <h3 className={styles.name}>{current.name}</h3>
+          <h3 className={styles.name}>
+            <ProductLogo product={current} className={styles.nameLogo} />
+            <span>{current.name}</span>
+          </h3>
           <p className={styles.summary}>{current.summary}</p>
 
           {relations.length > 0 && (
@@ -161,7 +169,7 @@ export function ProductUniverse({ items }: { items: UniverseProduct[] }) {
                   const other = items[indexOf(r.slug)];
                   return (
                     <li key={r.slug + r.how} className={styles.relation}>
-                      <span className={styles.relDot} style={{ background: other?.color }} aria-hidden="true" />
+                      {other && <ProductLogo product={other} className={styles.relLogo} />}
                       <span>
                         <span className={styles.relName}>{other?.name}</span>
                         {r.how}

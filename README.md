@@ -61,7 +61,7 @@ One-time setup:
 ```
 src/
   app/                 routes (all statically exported)
-  content/             typed content: products, solutions, industries, posts, company, site
+  content/             typed content: products, solutions, posts, company, site
   components/
     layout/            header + mega menu, mobile dialog nav, footer, analytics listener
     ui/                logo, buttons, icons, breadcrumbs, FAQ, JSON-LD, section header
@@ -78,7 +78,7 @@ scripts/preview.mjs    zero-dependency static server for out/ (mimics GitHub Pag
 
 ## Content model
 
-Entities reference each other by slug: Product → Solution → Industry → Post. A relationship is declared once and shows up everywhere it applies. The places it feeds are the menus, footer, sitemap, related links, the product-universe map and the "how it connects" lists.
+Entities reference each other by slug: Product → Solution → Post. A relationship is declared once and shows up everywhere it applies. The places it feeds are the menus, footer, sitemap, related links, the product-universe map and the "how it connects" lists.
 
 - **Add a product.** Add an entry to `src/content/products.ts` and add its slug to `ProductSlug` in `types.ts`. Its page, menu entry, sitemap entry, OG image and schema are generated from that entry.
 - **Add an article.** Add `src/content/posts/<slug>.ts` and register it in `posts/index.ts`.

@@ -1,3 +1,24 @@
+const PRODUCTION_URL = "https://walkover.in";
+
+/**
+ * Origin for canonical URLs, Open Graph, the sitemap and JSON-LD, with no
+ * trailing slash. NEXT_PUBLIC_SITE_URL may override it, but only with a public
+ * https origin: an http, localhost or malformed value falls back to production
+ * so it can never leak into canonical tags. Any path in the value is dropped.
+ */
+function resolveSiteUrl(value = process.env.NEXT_PUBLIC_SITE_URL): string {
+  if (!value?.trim()) return PRODUCTION_URL;
+  try {
+    const url = new URL(value.trim());
+    const local = /^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(url.hostname) || url.hostname.endsWith(".local");
+    if (url.protocol === "https:" && !local) return url.origin;
+  } catch {
+    // Fall through to the warning below.
+  }
+  console.warn(`Ignoring NEXT_PUBLIC_SITE_URL="${value}": not a public https origin. Using ${PRODUCTION_URL}.`);
+  return PRODUCTION_URL;
+}
+
 /**
  * Company-wide facts. Sources (checked October 2026): walkover.in, walkover.in/about,
  * walkover.in/careers and the company's social profiles.
@@ -5,7 +26,7 @@
 export const site = {
   name: "Walkover",
   legalName: "Walkover Web Solutions Pvt. Ltd.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://walkover.in",
+  url: resolveSiteUrl(),
   tagline: "Software that makes the hard part a walkover.",
   description:
     "Walkover is a product company from Indore, India, building communication, automation and AI software used by businesses worldwide: MSG91, Giddh, viaSocket, DocStar, GTWY AI and more.",

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
-import { industries, posts, products, solutions } from "@/content";
+import { posts, products, solutions } from "@/content";
 import { eventOwners, eventsFor } from "@/content/events";
-import { absoluteUrl } from "@/lib/seo";
+import { canonicalUrl } from "@/lib/seo";
 
 // Generated once at build time (required by the static export).
 export const dynamic = "force-static";
@@ -10,10 +10,9 @@ export const dynamic = "force-static";
  *  products, solutions or articles are included automatically. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const latestPost = posts[0]?.updated ?? posts[0]?.published;
-  // Pages are exported as folder/index.html (trailingSlash), so list the
-  // slash form that static hosts serve without a redirect.
+  // canonicalUrl gives the same URL as each page's canonical tag.
   const entry = (path: string, priority: number, lastModified?: string): MetadataRoute.Sitemap[number] => ({
-    url: absoluteUrl(path.endsWith("/") ? path : `${path}/`),
+    url: canonicalUrl(path),
     priority,
     ...(lastModified && { lastModified }),
   });
@@ -26,8 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...products.map((p) => entry(`/products/${p.slug}`, 0.9)),
     entry("/solutions", 0.8),
     ...solutions.map((s) => entry(`/solutions/${s.slug}`, 0.8)),
-    entry("/industries", 0.7),
-    ...industries.map((i) => entry(`/industries/${i.slug}`, 0.7)),
     entry("/about", 0.7),
     entry("/our-story", 0.7),
     entry("/events", 0.6),

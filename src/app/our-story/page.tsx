@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { site } from "@/content/site";
 import { chapters, milestones, sources, storyMeta } from "@/content/story";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ArrowLink, ButtonLink } from "@/components/ui/Button";
@@ -25,7 +24,8 @@ import {
 } from "@/components/story/Features";
 import { OpenQuestions, Sources } from "@/components/story/Sources";
 import { BasisMark, Timeline, YearRuler } from "@/components/story/Timeline";
-import { absoluteUrl, pageMeta } from "@/lib/seo";
+import { schemaIds } from "@/lib/schema";
+import { absoluteUrl, canonicalUrl, pageMeta } from "@/lib/seo";
 import styles from "./story.module.scss";
 
 const title = "Our Story: From Indore Hosting to MSG91, Giddh & viaSocket — Walkover";
@@ -68,13 +68,15 @@ function articleSchema() {
     "@type": "Article",
     headline: "Our Story: how Walkover grew from a hosting business in Indore to a family of software products",
     description,
-    url: absoluteUrl("/our-story"),
-    mainEntityOfPage: absoluteUrl("/our-story"),
+    "@id": `${canonicalUrl("/our-story")}#article`,
+    url: canonicalUrl("/our-story"),
+    mainEntityOfPage: canonicalUrl("/our-story"),
     dateModified: storyMeta.checkedISO,
     inLanguage: "en",
-    author: { "@type": "Organization", name: site.name, url: site.url },
-    publisher: { "@id": `${site.url}/#organization` },
-    about: { "@id": `${site.url}/#organization` },
+    author: schemaIds.orgRef(),
+    publisher: schemaIds.orgRef(),
+    about: { "@id": schemaIds.org },
+    isPartOf: { "@id": schemaIds.website },
     image: absoluteUrl("/our-story/opengraph-image"),
     citation: sources.map((s) => s.url),
   };

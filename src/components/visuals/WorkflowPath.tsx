@@ -2,7 +2,7 @@ import { PlayWhenVisible } from "./PlayWhenVisible";
 import styles from "./WorkflowPath.module.scss";
 
 /** A token travels down a path of steps, lighting each one in turn.
- *  Used wherever a page explains a sequence (solutions, industries). */
+ *  Used wherever a page explains a sequence (solutions). */
 export function WorkflowPath({ steps, accent, title }: { steps: string[]; accent?: string; title?: string }) {
   const vars = { "--n": steps.length, ...(accent && { "--accent": accent }) };
   return (

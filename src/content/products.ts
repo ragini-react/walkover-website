@@ -21,6 +21,7 @@ export const products: Product[] = [
     summary:
       "MSG91 gives businesses secure APIs for SMS, WhatsApp, RCS, email, voice and OTP authentication, plus Hello, an AI-assisted contact center for answering customers across channels.",
     url: "https://msg91.com",
+    logo: "/brand/products/msg91.svg",
     problem: {
       heading: "Customers live on five channels. Most stacks are wired to one.",
       body: "An OTP goes out by SMS, an order update by WhatsApp, a receipt by email and a support reply from a separate helpdesk. Each vendor adds an integration, a dashboard and a bill. MSG91 puts sending, verifying and conversing behind one account and one consistent API, so a team can change channels without rebuilding.",
@@ -149,13 +150,6 @@ export const products: Product[] = [
       "user-verification",
       "customer-support",
     ],
-    industries: [
-      "ecommerce-retail",
-      "financial-services",
-      "healthcare",
-      "education",
-      "saas",
-    ],
     faqs: [
       {
         q: "What is MSG91?",
@@ -186,6 +180,7 @@ export const products: Product[] = [
     summary:
       "Giddh is cloud accounting software for growing businesses: invoicing, automated GST filing, inventory, real-time bank reconciliation and multi-currency books in one place.",
     url: "https://giddh.com",
+    logo: "/brand/products/giddh.svg",
     problem: {
       heading: "The books are always a week behind the business.",
       body: "Invoices are raised in one tool, stock is counted in another, the bank statement arrives as a file and GST returns are assembled at the deadline. Giddh keeps those in the same ledger, so the numbers a founder looks at are the numbers the accountant files.",
@@ -254,7 +249,6 @@ export const products: Product[] = [
       { to: "docstar", how: "Giddh's team documents with DocStar." },
     ],
     solutions: ["accounting-and-compliance"],
-    industries: ["manufacturing-trading", "ecommerce-retail"],
     faqs: [
       {
         q: "What is Giddh?",
@@ -286,6 +280,7 @@ export const products: Product[] = [
     summary:
       "viaSocket is an AI automation platform that mixes AI steps with predictable rule-based steps, connects thousands of apps, and logs every step of every run.",
     url: "https://viasocket.com",
+    logo: "/brand/products/viasocket.svg",
     problem: {
       heading: "Automation breaks where judgment begins.",
       body: "Rule-based automation handles the predictable parts of a process and stalls on anything that needs reading, deciding or summarising. Pure AI agents handle judgment but are hard to trust with the predictable parts. viaSocket combines both in one workflow: AI where a decision is needed, plain rules everywhere else, and human approval wherever the stakes call for it.",
@@ -385,7 +380,6 @@ export const products: Product[] = [
       },
     ],
     solutions: ["workflow-automation", "ai-agents"],
-    industries: ["saas", "ecommerce-retail", "financial-services"],
     faqs: [
       {
         q: "What is viaSocket?",
@@ -417,6 +411,7 @@ export const products: Product[] = [
     summary:
       "DocStar is an AI-powered documentation platform for knowledge bases, help centres, blogs and interactive API docs, with analytics, SEO controls and an MCP-ready CLI.",
     url: "https://docstar.io",
+    logo: "/brand/products/docstar.png",
     problem: {
       heading: "Documentation is where knowledge goes to be forgotten.",
       body: "Docs are slow to write, slower to update and hard to find, so teams answer the same question in chat a hundred times. DocStar makes writing fast with AI drafts, makes publishing a click, and shows which pages are failing readers, so documentation becomes part of how a team works instead of a chore after it.",
@@ -482,7 +477,6 @@ export const products: Product[] = [
       { to: "50-agents", how: "DocStar works with 50 Agents." },
     ],
     solutions: ["documentation-and-knowledge", "customer-support"],
-    industries: ["saas", "education"],
     faqs: [
       {
         q: "What is DocStar?",
@@ -513,6 +507,7 @@ export const products: Product[] = [
     summary:
       "Things of Brand is a platform for images. Create new images, upload the ones you already have, and use every image through its own URL in websites, apps, emails and documents.",
     url: "https://thingsofbrand.com",
+    logo: "/brand/products/things-of-brand.png",
     problem: {
       heading: "An image is only useful once you can put it somewhere.",
       body: "Images get made in one tool, saved to a laptop, passed around in chats and uploaded again to every place that needs them. Things of Brand keeps the whole job in one place: create an image or upload one, and use it anywhere through its URL.",
@@ -559,7 +554,6 @@ export const products: Product[] = [
       },
     ],
     solutions: ["image-creation-and-hosting"],
-    industries: ["saas", "ecommerce-retail"],
     faqs: [
       {
         q: "What is Things of Brand?",
@@ -595,6 +589,7 @@ export const products: Product[] = [
     summary:
       "GTWY is a managed platform for AI agents, real-time RAG and chatbots that software companies embed in their own products, with per-customer isolation and model routing handled for them.",
     url: "https://gtwy.ai",
+    logo: "/brand/products/gtwy-ai.png",
     problem: {
       heading: "Every SaaS roadmap now has an AI line item.",
       body: "Letting your customers build their own agents means solving tenancy, memory, knowledge retrieval, model choice, fallbacks and usage billing before shipping a single feature. GTWY handles that layer, so a product team can offer agents under its own brand and spend its time on the parts only it can build.",
@@ -668,7 +663,6 @@ export const products: Product[] = [
       { to: "50-agents", how: "50 Agents works with GTWY." },
     ],
     solutions: ["ai-agents", "customer-support"],
-    industries: ["saas"],
     faqs: [
       {
         q: "What is GTWY AI?",
@@ -700,6 +694,7 @@ export const products: Product[] = [
     summary:
       "50 Agents is an AI assistant and notetaker: it joins meetings, summarises them, surfaces insights and carries out tasks across connected apps from a natural-language request.",
     url: "https://50agents.com",
+    logo: "/brand/products/50-agents.png",
     problem: {
       heading: "The meeting ends. The work it created hasn't started.",
       body: "Decisions made on a call turn into notes nobody re-reads and tasks somebody forgets to file. 50 Agents records and summarises the meeting, then acts on what was agreed, creating the work items and updates in the tools your team already uses.",
@@ -749,7 +744,6 @@ export const products: Product[] = [
       { to: "gtwy-ai", how: "50 Agents works with GTWY." },
     ],
     solutions: ["ai-agents"],
-    industries: ["saas"],
     faqs: [
       {
         q: "What is 50 Agents?",
@@ -776,6 +770,7 @@ export const products: Product[] = [
     summary:
       "Embarko is a cloud hosting platform for apps built and operated by AI agents. Send it an app's source and it builds the app, runs it and serves it at a live HTTPS URL.",
     url: "https://embarko.ai",
+    logo: "/brand/products/embarko.svg",
     problem: {
       heading: "The app works in the chat. Getting it online is the hard part.",
       body: "AI tools can write a working app in one session, but putting it on the internet still means servers, build settings and certificates. Embarko lets the agent that wrote the app deploy it too: copy a prompt into your agent, and it comes back with a live link.",
@@ -851,7 +846,6 @@ export const products: Product[] = [
       },
     ],
     solutions: [],
-    industries: [],
     faqs: [
       {
         q: "What is Embarko?",

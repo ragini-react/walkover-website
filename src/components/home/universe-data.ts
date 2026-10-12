@@ -8,6 +8,7 @@ export function universeItems(): UniverseProduct[] {
     name: p.name,
     category: p.category,
     summary: p.summary,
+    logo: p.logo,
     color: p.brand.color,
     ink: brandInk(p.brand),
     familyLabel: families[p.family].label,

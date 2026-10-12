@@ -46,14 +46,6 @@
   max-width: 50ch;
 }
 
-.miniLabel {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
-}
-
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -211,45 +203,6 @@
   background: var(--signal);
 }
 
-.scrollCue {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin-top: var(--space-8);
-  font-family: var(--font-mono);
-  font-size: var(--text-label);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--fg-subtle);
-  transition: color 200ms;
-  animation: fade-up 1000ms var(--ease-out) 600ms both;
-}
-
-.scrollCue:hover {
-  color: var(--fg);
-}
-
-.scrollIcon {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px color-mix(in oklch, var(--tint) 16%, transparent);
-  background: var(--cell);
-  color: var(--signal);
-}
-
-.scrollIcon svg {
-  animation: nudge 1.8s var(--ease-in-out) 1.6s infinite;
-}
-
-@keyframes nudge {
-  50% {
-    transform: translate3d(0, 3px, 0);
-  }
-}
-
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -359,10 +312,20 @@
 }
 
 .productName {
+  display: flex;
+  align-items: center;
+  gap: 0.22em;
   font-size: clamp(3rem, 1.6rem + 5vw, 6.4rem);
   line-height: 0.9;
   letter-spacing: -0.055em;
   font-weight: 650;
+}
+
+/* The product's own mark, sized to the name's cap height. Compound selector
+   so the shadow beats the tile's own across CSS chunk order. */
+.productName .productLogo {
+  --logo-size: 0.82em;
+  box-shadow: 0 10px 24px -12px oklch(14% 0.0069 269.65 / 0.45);
 }
 
 .productTagline {
@@ -557,37 +520,6 @@
   justify-items: start;
 }
 
-.industries {
-  display: grid;
-  gap: var(--space-3);
-  width: 100%;
-}
-
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 42px;
-  padding: 0 1rem;
-  border-radius: var(--radius-pill);
-  box-shadow: inset 0 0 0 1px var(--line-strong);
-  font-weight: 520;
-  font-size: 0.93rem;
-  transition:
-    background-color var(--dur-2),
-    color var(--dur-2);
-}
-
-.pill:hover {
-  background: var(--contrast);
-  color: var(--on-contrast);
-}
-
 /* ── Story ──────────────────────────────────────────── */
 .timeline {
   display: grid;
@@ -759,9 +691,7 @@
   .heroIntro,
   .heroTagline,
   .heroLine > span,
-  .walk::after,
-  .scrollCue,
-  .scrollIcon svg {
+  .walk::after {
     animation: none;
   }
   /* No cycling: show the whole list instead. */
