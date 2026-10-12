@@ -7,7 +7,7 @@ import { Icon } from "@/components/ui/Icon";
 import { Logo } from "@/components/ui/Logo";
 import { buttonClass } from "@/components/ui/Button";
 import type { MenuSection } from "./nav-data";
-import styles from "./MobileNav.module.css";
+import styles from "./MobileNav.module.scss";
 
 /** Full-screen mobile menu built on <dialog>, which provides the focus trap,
  *  Escape handling and inert background natively. */

@@ -56,7 +56,7 @@ export const industries: Industry[] = [
     seo: {
       title: "Embedded AI, Automation & Messaging for SaaS Companies",
       description:
-        "How SaaS teams use Walkover's GTWY, viaSocket, MSG91 and DocStar to ship AI agents, integrations, notifications and docs without building them in-house.",
+        "How SaaS teams use Walkover's MSG91, viaSocket, DocStar and GTWY to ship notifications, integrations, docs and AI agents without building them in-house.",
     },
   },
   {
@@ -100,7 +100,7 @@ export const industries: Industry[] = [
     seo: {
       title: "E-commerce Messaging, Support & Accounting Software",
       description:
-        "Order updates on WhatsApp and SMS, multichannel support, store automation and Shopify-connected accounting with Walkover's MSG91, viaSocket and Giddh.",
+        "Order updates on WhatsApp and SMS, multichannel support, Shopify-connected accounting and store automation with Walkover's MSG91, Giddh and viaSocket.",
     },
   },
   {

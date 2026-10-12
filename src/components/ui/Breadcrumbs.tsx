@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
-import styles from "./Breadcrumbs.module.css";
+import styles from "./Breadcrumbs.module.scss";
 
 export type Crumb = { name: string; path: string };
 

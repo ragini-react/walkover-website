@@ -20,7 +20,7 @@ export const metadata: Metadata = pageMeta({
   title: "Walkover — Communication, Automation & AI Software Since 2010",
   absoluteTitle: true,
   description:
-    "Walkover builds MSG91, viaSocket, Giddh, GTWY AI, DocStar, 50 Agents and Things of Brand: communication, automation and AI products for businesses worldwide.",
+    "Walkover builds MSG91, Giddh, viaSocket, DocStar, Things of Brand, GTWY AI, 50 Agents and Embarko: communication, automation and AI products for businesses worldwide.",
   path: "/",
 });
 

@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import type { Chapter as ChapterData, Photo, Quote } from "@/content/story";
 import { withBasePath } from "@/lib/base-path";
 import { Cite, Prose } from "./Prose";
-import styles from "./Story.module.css";
+import styles from "./Story.module.scss";
 
 export function PullQuote({ quote }: { quote: Quote }) {
   return (

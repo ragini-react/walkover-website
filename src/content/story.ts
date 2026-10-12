@@ -812,7 +812,7 @@ export const chapters: Chapter[] = [
     title: "Walkover today",
     body: [
       "Walkover is still based in Indore, now on the fifth floor of LIC Tower, and calls itself “A Communication and AI Startup”. Its website describes “a team of 150+” working remotely and a mission “to support start-ups in realizing their vision”.[^walkover-home][^walkover-about]",
-      "MSG91 has grown from SMS into a platform for WhatsApp, email, voice, RCS and OTP verification. Giddh continues as cloud accounting. viaSocket has become an AI automation platform. Newer products, GTWY AI, DocStar, 50 Agents and Things of Brand, extend the work into AI agents, documentation and brand assets.[^walkover-products]",
+      "MSG91 has grown from SMS into a platform for WhatsApp, email, voice, RCS and OTP verification. Giddh continues as cloud accounting. viaSocket has become an AI automation platform. Newer products, DocStar, Things of Brand, GTWY AI and 50 Agents, extend the work into documentation, images and AI agents.[^walkover-products]",
       "The founders’ roles have changed too. MSG91 lists Shubhendra Agrawal as Founder & CEO and Pushpendra Agrawal as Founder & Advisor. viaSocket lists Pushpendra Agrawal as its founder.[^msg91-about][^viasocket-about] For how the company works today, see [About Walkover](/about). To join it, see [Careers](/careers).",
     ],
     quote: {

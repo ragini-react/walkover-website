@@ -1,5 +1,5 @@
 import type { PostBlock } from "@/content/types";
-import styles from "./PostBody.module.css";
+import styles from "./PostBody.module.scss";
 
 /** Renders structured article blocks as semantic HTML. Content is plain
  *  text from our own typed content files; React escapes it, so no raw HTML

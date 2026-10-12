@@ -22,7 +22,7 @@ export type SolutionSlug =
   | "customer-support"
   | "accounting-and-compliance"
   | "documentation-and-knowledge"
-  | "brand-asset-management";
+  | "image-creation-and-hosting";
 
 export type IndustrySlug =
   | "saas"
@@ -32,8 +32,8 @@ export type IndustrySlug =
   | "education"
   | "manufacturing-trading";
 
-/** Product families group the catalogue in navigation and listings. */
-export type Family = "communicate" | "automate" | "intelligence" | "operate" | "build";
+/** Product families describe what each product is for; shown as a label on product cards. */
+export type Family = "communicate" | "automate" | "intelligence" | "operate" | "create" | "build";
 
 export type Capability = {
   title: string;
@@ -59,7 +59,7 @@ export type ProductDemo =
   | "embed" // GTWY: agents inside a host product
   | "agents" // 50 Agents: prompt → tasks across apps
   | "docs" // DocStar: draft → publish → MCP
-  | "brandkit" // Things of Brand: collection → API
+  | "images" // Things of Brand: create / upload → image URL
   | "deploy"; // Embarko: prompt → build → live URL
 
 /** A product's own brand colour, exactly as the product uses it. */

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 import { Logo } from "@/components/ui/Logo";
-import styles from "./Board.module.css";
+import styles from "./Board.module.scss";
 
 const SAMPLE = 6; // px between path samples
 const CELL = 30; // track cell length (dash), matched in CSS

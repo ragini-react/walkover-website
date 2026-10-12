@@ -7,13 +7,13 @@ import { Icon } from "@/components/ui/Icon";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { interestGroups } from "@/lib/contact-options";
 import { pageMeta } from "@/lib/seo";
-import styles from "./contact.module.css";
+import styles from "./contact.module.scss";
 
 export const metadata: Metadata = pageMeta({
   title: "Contact Walkover — Talk to Our Team in Indore",
   absoluteTitle: true,
   description:
-    "Contact Walkover Web Solutions about MSG91, viaSocket, Giddh, GTWY AI or partnerships. Email info@walkover.in or call +91 731 256 0056.",
+    "Contact Walkover Web Solutions about MSG91, Giddh, viaSocket, GTWY AI or partnerships. Email info@walkover.in or call +91 731 256 0056.",
   path: "/contact",
 });
 

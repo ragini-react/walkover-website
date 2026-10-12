@@ -9,7 +9,7 @@ export const post: Post = {
   published: "2026-09-17",
   readingMinutes: 5,
   author: "Walkover Editorial",
-  products: ["giddh", "msg91"],
+  products: ["msg91", "giddh"],
   solutions: ["accounting-and-compliance"],
   body: [
     {

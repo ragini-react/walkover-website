@@ -8,7 +8,7 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://walkover.in",
   tagline: "Software that makes the hard part a walkover.",
   description:
-    "Walkover is a product company from Indore, India, building communication, automation and AI software used by businesses worldwide: MSG91, viaSocket, Giddh, GTWY AI, DocStar and more.",
+    "Walkover is a product company from Indore, India, building communication, automation and AI software used by businesses worldwide: MSG91, Giddh, viaSocket, DocStar, GTWY AI and more.",
   foundingYear: 2010,
   teamSize: "150+",
   email: "info@walkover.in",

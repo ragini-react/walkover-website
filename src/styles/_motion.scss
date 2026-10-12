@@ -1,0 +1,50 @@
+/* ── Reveal-on-scroll system ───────────────────────── */
+/* Content is visible by default; motion is only added once JS confirms
+   it can run, so nothing is ever hidden from crawlers or no-JS users. */
+.js-motion [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity var(--dur-4) var(--ease-out),
+    transform var(--dur-4) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js-motion [data-reveal="fade"] {
+  transform: none;
+}
+
+.js-motion [data-reveal="scale"] {
+  transform: scale(0.96);
+}
+
+.js-motion [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Page entrance (route transition) ─────────────── */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.navigated .page-enter {
+  animation: page-in var(--dur-3) var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-motion [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .navigated .page-enter {
+    animation: none;
+  }
+}

@@ -13,7 +13,7 @@ export const metadata: Metadata = pageMeta({
 
 /** Covers this website only. Each product publishes its own privacy policy. */
 const body: PostBlock[] = [
-  { type: "p", text: `This notice explains how ${site.legalName} handles information collected through this website. Each Walkover product, such as MSG91, viaSocket or Giddh, has its own privacy policy on its own website, which applies when you use that product.` },
+  { type: "p", text: `This notice explains how ${site.legalName} handles information collected through this website. Each Walkover product, such as MSG91, Giddh or viaSocket, has its own privacy policy on its own website, which applies when you use that product.` },
   { type: "h2", id: "what-we-collect", text: "What we collect" },
   { type: "ul", items: [
     "Contact form: your name, work email, and optionally your company, the topic you choose and your message.",

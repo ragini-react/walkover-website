@@ -1,5 +1,5 @@
 import { Logo } from "@/components/ui/Logo";
-import styles from "./BrandMark.module.css";
+import styles from "./BrandMark.module.scss";
 
 /** The official Walkover die, floating gently. Used as the hero visual. */
 export function BrandMark({ size }: { size?: string }) {

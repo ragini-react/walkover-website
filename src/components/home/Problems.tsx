@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { brandInk, getProduct, solutionBrand, solutions } from "@/content";
+import { brandInk, getProduct, inLaunchOrder, solutionBrand, solutions } from "@/content";
 import { Icon } from "@/components/ui/Icon";
-import styles from "./Problems.module.css";
+import styles from "./Problems.module.scss";
 
 /** "I need to…" — discovery for visitors who know the problem, not the product. */
 export function Problems({ compact = false }: { compact?: boolean }) {
@@ -35,7 +35,7 @@ export function Problems({ compact = false }: { compact?: boolean }) {
             <span className={styles.meta}>
               <span className={styles.name}>{s.name}</span>
               <span className={styles.products}>
-                {s.products.map((p) => getProduct(p.slug)?.name).join(" · ")}
+                {inLaunchOrder(s.products).map((p) => getProduct(p.slug)?.name).join(" · ")}
               </span>
             </span>
             <span className={styles.arrow} aria-hidden="true">

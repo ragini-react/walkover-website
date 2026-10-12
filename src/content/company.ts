@@ -24,7 +24,7 @@ export const timeline = [
   {
     when: "Today",
     title: "A connected family of products",
-    body: "Eight products across communication, automation, AI, finance, documentation, brand and hosting. GTWY's agents run inside viaSocket and MSG91, and the teams document their work in DocStar.",
+    body: "Eight products across communication, finance, automation, documentation, images, AI and hosting. GTWY's agents run inside MSG91 and viaSocket, and the teams document their work in DocStar.",
   },
 ] as const;
 
@@ -49,8 +49,8 @@ export const principles = [
     id: "dogfood",
     product: "gtwy-ai",
     title: "We are our own first customer",
-    body: "Our products run on each other. GTWY's agents work inside viaSocket and MSG91. Our teams write their documentation in DocStar. If something is rough, we feel it before you do.",
-    proof: "GTWY in production at viaSocket and MSG91",
+    body: "Our products run on each other. GTWY's agents work inside MSG91 and viaSocket. Our teams write their documentation in DocStar. If something is rough, we feel it before you do.",
+    proof: "GTWY in production at MSG91 and viaSocket",
   },
   {
     id: "versions",

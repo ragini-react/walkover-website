@@ -1,0 +1,19 @@
+/* Route-level error page. Like the other page heroes it sets its own top
+   padding to clear the fixed header; the bottom matches .section. */
+.page {
+  position: relative;
+  padding-top: calc(var(--header-h) + 6rem);
+  padding-bottom: var(--section-y);
+}
+
+.body {
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}

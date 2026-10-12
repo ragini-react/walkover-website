@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { brandProps, getPost, postCategories, posts, resolve, products } from "@/content";
+import { brandProps, getPost, inLaunchOrder, postCategories, posts, resolve, products } from "@/content";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Faq } from "@/components/ui/Faq";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -10,7 +10,7 @@ import { PostBody } from "@/components/sections/PostBody";
 import { formatDate } from "@/components/sections/Cards";
 import { pageMeta } from "@/lib/seo";
 import { articleSchema } from "@/lib/schema";
-import styles from "./article.module.css";
+import styles from "./article.module.scss";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -39,7 +39,7 @@ export default async function ArticlePage({ params }: Params) {
   if (!post) notFound();
   const category = postCategories[post.category];
   const toc = post.body.filter((b): b is Extract<typeof b, { type: "h2" }> => b.type === "h2");
-  const mentioned = resolve(products, post.products);
+  const mentioned = inLaunchOrder(resolve(products, post.products));
 
   return (
     <>

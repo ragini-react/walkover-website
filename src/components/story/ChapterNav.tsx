@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import styles from "./ChapterNav.module.css";
+import styles from "./ChapterNav.module.scss";
 
 type Item = { id: string; n: string; label: string };
 

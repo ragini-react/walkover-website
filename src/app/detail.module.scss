@@ -1,3 +1,5 @@
+@use "../styles/mixins";
+
 /* Shared styles for solution and industry detail pages. */
 .head {
   display: grid;
@@ -116,12 +118,8 @@
   height: 14px;
   border-radius: 4px;
   background: var(--c);
-}
 
-@media (prefers-color-scheme: dark) {
-  .roleDot {
-    box-shadow: var(--ring-brand-dot);
-  }
+  @include mixins.brand-dot-ring;
 }
 
 .roleName {

@@ -19,7 +19,7 @@ import {
 import { Icon } from "@/components/ui/Icon";
 import { withBasePath } from "@/lib/base-path";
 import { Cite, Cites } from "./Prose";
-import styles from "./Story.module.css";
+import styles from "./Story.module.scss";
 
 const delay = (i: number, step = 90) => ({ "--reveal-delay": `${i * step}ms` }) as React.CSSProperties;
 

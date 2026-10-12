@@ -11,7 +11,7 @@ import {
 } from "@/content/events";
 import { PageHero } from "@/components/sections/PageHero";
 import { EventCard, ownerBrand } from "./EventCard";
-import styles from "./Events.module.css";
+import styles from "./Events.module.scss";
 
 const ownerIntro: Record<EventOwner, string> = {
   msg91: "Messaging, telecom, customer-experience and commerce events where MSG91 and Hello by MSG91 exhibited, spoke or hosted.",

@@ -8,7 +8,7 @@ import { ArrowLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { pageMeta } from "@/lib/seo";
-import styles from "./resources.module.css";
+import styles from "./resources.module.scss";
 
 export const metadata: Metadata = pageMeta({
   title: "Resources — Guides, Developer Docs & Glossary",

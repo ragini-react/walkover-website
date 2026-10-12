@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import styles from "./SectionHeader.module.css";
+import styles from "./SectionHeader.module.scss";
 
 type Props = {
   eyebrow?: string;

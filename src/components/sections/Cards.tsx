@@ -2,7 +2,7 @@ import Link from "next/link";
 import { brandProps, families, postCategories } from "@/content";
 import type { Industry, Post, Product } from "@/content/types";
 import { Icon } from "@/components/ui/Icon";
-import styles from "./Cards.module.css";
+import styles from "./Cards.module.scss";
 
 export function formatDate(iso: string) {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
@@ -13,7 +13,18 @@ export function formatDate(iso: string) {
   });
 }
 
-export function ProductCard({ product, note, index = 0 }: { product: Product; note?: string; index?: number }) {
+/** `launch` is the product's place in launch order (1 = built first), shown beside its family. */
+export function ProductCard({
+  product,
+  note,
+  index = 0,
+  launch,
+}: {
+  product: Product;
+  note?: string;
+  index?: number;
+  launch?: number;
+}) {
   const fam = families[product.family];
   return (
     <div data-reveal className={styles.cell} style={{ "--reveal-delay": `${(index % 3) * 80}ms` } as React.CSSProperties}>
@@ -28,7 +39,15 @@ export function ProductCard({ product, note, index = 0 }: { product: Product; no
         <span className={styles.badge} aria-hidden="true">
           <span />
         </span>
-        <span className={styles.productFamily}>{fam.label}</span>
+        <span className={styles.productFamily}>
+          {launch !== undefined && (
+            <>
+              <span className="sr-only">Launch order {launch}, </span>
+              <span aria-hidden="true">{String(launch).padStart(2, "0")} · </span>
+            </>
+          )}
+          {fam.label}
+        </span>
       </span>
       <span className={styles.productName}>{product.name}</span>
       <span className={styles.productCategory}>{product.category}</span>

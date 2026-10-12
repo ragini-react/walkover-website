@@ -74,7 +74,6 @@
   --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
 
   /* Fluid type scale (min @ 360px → max @ 1440px) */
-  --text-mega: clamp(3.25rem, 1.6rem + 7.4vw, 8.5rem);
   --text-display: clamp(2.6rem, 1.55rem + 4.6vw, 5.75rem);
   --text-h1: clamp(2.25rem, 1.5rem + 3.2vw, 4.25rem);
   --text-h2: clamp(1.9rem, 1.35rem + 2.3vw, 3.4rem);
@@ -116,7 +115,6 @@
   /* ── Layout ───────────────────────────────────────── */
   --container: 1320px;
   --container-wide: 1520px;
-  --container-text: 760px;
   --header-h: 72px;
 
   /* ── Radius: cells are square-ish, tokens are round ─ */
@@ -147,12 +145,9 @@
   --z-overlay: 80;
 }
 
-/* Dark surfaces are opted into per section with .surface-dark,
-   so a single page can move between paper and ink. */
-.surface-dark {
-  --bg: var(--ink-950);
-  --bg-raised: var(--ink-900);
-  --bg-sunken: var(--ink-1000);
+/* Text, line and contrast tokens shared by every ink surface: .surface-dark
+   sections and the system dark theme. Only the background steps differ. */
+@mixin ink-surface-tokens {
   --fg: var(--ink-50);
   --fg-soft: var(--ink-200);
   --fg-muted: var(--ink-300);
@@ -165,6 +160,15 @@
   --contrast: var(--white);
   --on-contrast: var(--ink-950);
   --brand-edge: oklch(100% 0 0 / 0.32);
+}
+
+/* Dark surfaces are opted into per section with .surface-dark,
+   so a single page can move between paper and ink. */
+.surface-dark {
+  --bg: var(--ink-950);
+  --bg-raised: var(--ink-900);
+  --bg-sunken: var(--ink-1000);
+  @include ink-surface-tokens;
   background-color: var(--bg);
   color: var(--fg);
 }
@@ -176,20 +180,9 @@
     --bg: var(--ink-900);
     --bg-raised: var(--ink-850);
     --bg-sunken: var(--ink-950);
-    --fg: var(--ink-50);
-    --fg-soft: var(--ink-200);
-    --fg-muted: var(--ink-300);
-    --fg-subtle: var(--ink-400);
-    --signal-text: var(--signal-bright);
+    @include ink-surface-tokens;
     --signal-soft: oklch(25% 0.06 26);
-    --line: oklch(100% 0 0 / 0.09);
-    --line-strong: oklch(100% 0 0 / 0.18);
-    --focus: oklch(76.41% 0.1197 266.3);
     --danger: oklch(68% 0.19 27);
-    --tint: var(--white);
-    --contrast: var(--white);
-    --on-contrast: var(--ink-950);
-    --brand-edge: oklch(100% 0 0 / 0.32);
     --cell: var(--ink-850);
     --cell-fg: var(--ink-300);
     --cell-halo: var(--ink-850);

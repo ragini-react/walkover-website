@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { Icon, type IconName } from "./Icon";
-import styles from "./Button.module.css";
+import styles from "./Button.module.scss";
 
 type Variant = "primary" | "brand" | "secondary" | "ghost" | "inverse";
 

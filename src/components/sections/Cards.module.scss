@@ -1,3 +1,5 @@
+@use "../../styles/mixins";
+
 .cell {
   display: grid;
 }
@@ -73,12 +75,8 @@
   height: 12px;
   border-radius: 50%;
   background: var(--c);
-}
 
-@media (prefers-color-scheme: dark) {
-  .badge span {
-    box-shadow: var(--ring-brand-dot);
-  }
+  @include mixins.brand-dot-ring;
 }
 
 .product:hover .badge {

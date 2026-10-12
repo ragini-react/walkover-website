@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { Logo } from "@/components/ui/Logo";
 import { Icon } from "@/components/ui/Icon";
-import styles from "./ProductUniverse.module.css";
+import styles from "./ProductUniverse.module.scss";
 
 export type UniverseProduct = {
   slug: string;

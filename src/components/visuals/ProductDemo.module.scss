@@ -705,42 +705,61 @@
   animation-delay: 1.9s;
 }
 
-/* Brand kit (Things of Brand) ──────────────────────── */
-.brand {
+/* Images (Things of Brand) ───────────────────────── */
+.images {
   display: grid;
   gap: var(--space-4);
 }
 
-.swatches {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-2);
-}
-
-.swatches span {
-  aspect-ratio: 1.6;
-  border-radius: var(--radius-sm);
-  border: 1px solid oklch(100% 0 0 / 0.12);
-  animation: appear var(--cycle) var(--ease-spring) infinite;
-  animation-delay: calc(var(--i) * 0.15s);
-}
-
-.logos {
+.imageTiles {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-2);
 }
 
-.logos span {
+.imageTiles span {
+  position: relative;
   display: grid;
-  place-items: center;
-  min-height: 72px;
+  align-content: end;
+  aspect-ratio: 1.3;
+  padding: 0.6rem 0.7rem;
   border-radius: var(--radius-sm);
-  background: oklch(100% 0 0 / 0.04);
-  border: 1px dashed oklch(100% 0 0 / 0.18);
+  border: 1px solid oklch(100% 0 0 / 0.12);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--ink-300);
+  animation: appear var(--cycle) var(--ease-spring) infinite;
+  animation-delay: calc(var(--i) * 0.5s);
+}
+
+/* A made image: a sun over a hill, in the product's colour. */
+.imageTiles .created {
+  background:
+    radial-gradient(circle at 72% 30%, oklch(100% 0 0 / 0.85) 0 9%, transparent 10%),
+    linear-gradient(160deg, transparent 58%, oklch(0% 0 0 / 0.3) 58%),
+    var(--accent);
+  color: var(--white);
+}
+
+/* An upload slot: a dashed drop area with an arrow. */
+.imageTiles .uploaded {
+  background: oklch(100% 0 0 / 0.04);
+  border-style: dashed;
+  border-color: oklch(100% 0 0 / 0.22);
+}
+
+.uploaded::before {
+  content: "↑";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+}
+
+.imageUrl {
+  animation: appear var(--cycle) var(--ease-out) infinite;
+  animation-delay: 1.2s;
 }
 
 @media (prefers-reduced-motion: reduce) {

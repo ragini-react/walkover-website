@@ -10,7 +10,7 @@ import { site } from "@/content/site";
 import { toSrgb } from "@/lib/color";
 import { motionBootstrap } from "@/lib/motion-script";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const interTight = Inter_Tight({

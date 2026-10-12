@@ -1,3 +1,5 @@
+@use "../../styles/mixins";
+
 /* Events index: product filters, product sections, year groups and event cards. */
 
 /* ── Legend (hero aside) ─────────────────────────────── */
@@ -115,11 +117,9 @@
   flex-shrink: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  .dot,
-  .ownerMark {
-    box-shadow: var(--ring-brand-dot);
-  }
+.dot,
+.ownerMark {
+  @include mixins.brand-dot-ring;
 }
 
 .ownerCount {

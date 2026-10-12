@@ -68,46 +68,84 @@
 }
 
 /* ── Hero (Start) ───────────────────────────────────── */
+/* Fills the first screen so the headline lands centred, cue at the foot. */
 .hero {
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-5);
   justify-items: start;
-  padding-top: calc(var(--header-h) + clamp(1rem, 0.5rem + 3vw, 3rem));
+  align-content: center;
+  min-height: calc(100svh - 2 * clamp(3rem, 2rem + 4vw, 6rem));
+  padding-top: var(--header-h);
 }
 
-.heroPill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: var(--radius-pill);
-  background: var(--cell);
-  box-shadow: 0 0 0 1px color-mix(in oklch, var(--tint) 12%, transparent);
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.04em;
-  color: var(--cell-fg);
+.heroIntro {
+  font-size: var(--text-lead);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--fg-muted);
+  margin-bottom: calc(-1 * var(--space-2));
   animation: fade-up 800ms var(--ease-out) both;
 }
 
-.heroDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--signal);
-  box-shadow: 0 0 0 4px oklch(57.77% 0.2148 29.08 / 0.18);
+/* One role at a time slides up into a single-line window. */
+.roles {
+  display: block;
+  height: 1lh;
+  overflow: hidden;
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.rolesStatic {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.rolesTrack {
+  display: grid;
+  animation: roles 7.5s var(--ease-out) 1.2s infinite;
+}
+
+.rolesTrack > span::after {
+  content: "...";
+  color: var(--signal);
+}
+
+/* Four rows (three roles + the repeated first): hold, then slide one row. */
+@keyframes roles {
+  0%,
+  26% {
+    transform: translate3d(0, 0, 0);
+  }
+  33%,
+  59% {
+    transform: translate3d(0, -25%, 0);
+  }
+  66%,
+  92% {
+    transform: translate3d(0, -50%, 0);
+  }
+  100% {
+    transform: translate3d(0, -75%, 0);
+  }
 }
 
 .heroTitle {
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 1.2rem + 7vw, 8.25rem);
+  font-size: clamp(3.4rem, 1.2rem + 7vw, 8.25rem);
   line-height: 0.9;
   letter-spacing: -0.055em;
   font-weight: 650;
 }
 
+/* Inline-block lines: one line on wide screens, stacked when narrow. */
 .heroLine {
-  display: block;
+  display: inline-block;
   overflow: hidden;
   padding-bottom: 0.08em;
   margin-bottom: -0.08em;
@@ -135,6 +173,7 @@
   position: relative;
 }
 
+/* Stops short of the full stop. */
 .walk::after {
   content: "";
   position: absolute;
@@ -154,20 +193,61 @@
   }
 }
 
-.heroLead {
+.heroTagline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
   font-size: var(--text-lead);
-  line-height: 1.5;
-  color: var(--fg-muted);
-  max-width: 42ch;
+  line-height: 1.45;
+  color: var(--fg);
   animation: fade-up 1000ms var(--ease-out) 300ms both;
 }
 
-.heroActions {
-  display: flex;
-  flex-wrap: wrap;
+.heroTagline::before {
+  content: "";
+  width: clamp(1.5rem, 1rem + 2vw, 3rem);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--signal);
+}
+
+.scrollCue {
+  display: inline-flex;
+  align-items: center;
   gap: var(--space-3);
-  margin-top: var(--space-2);
-  animation: fade-up 1000ms var(--ease-out) 420ms both;
+  margin-top: var(--space-8);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  transition: color 200ms;
+  animation: fade-up 1000ms var(--ease-out) 600ms both;
+}
+
+.scrollCue:hover {
+  color: var(--fg);
+}
+
+.scrollIcon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--tint) 16%, transparent);
+  background: var(--cell);
+  color: var(--signal);
+}
+
+.scrollIcon svg {
+  animation: nudge 1.8s var(--ease-in-out) 1.6s infinite;
+}
+
+@keyframes nudge {
+  50% {
+    transform: translate3d(0, 3px, 0);
+  }
 }
 
 @keyframes fade-up {
@@ -176,7 +256,6 @@
     transform: translate3d(0, 14px, 0);
   }
 }
-
 
 /* ── Who we are ─────────────────────────────────────── */
 .statement {
@@ -677,12 +756,28 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .heroPill,
+  .heroIntro,
+  .heroTagline,
   .heroLine > span,
   .walk::after,
-  .heroLead,
-  .heroActions {
+  .scrollCue,
+  .scrollIcon svg {
     animation: none;
+  }
+  /* No cycling: show the whole list instead. */
+  .roles {
+    height: auto;
+  }
+  .rolesTrack {
+    display: none;
+  }
+  .rolesStatic {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    clip: auto;
+    white-space: normal;
   }
   .face {
     transition: none;

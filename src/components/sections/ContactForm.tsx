@@ -8,7 +8,7 @@ import type { InterestGroup } from "@/lib/contact-options";
 import { track } from "@/lib/analytics";
 import { Icon } from "@/components/ui/Icon";
 import { buttonClass } from "@/components/ui/Button";
-import styles from "./ContactForm.module.css";
+import styles from "./ContactForm.module.scss";
 
 type Status = "idle" | "submitting" | "success" | "error";
 

@@ -1,7 +1,9 @@
 import type { Product } from "./types";
 
 /**
- * Product catalogue.
+ * Product catalogue, in launch order: MSG91 was built first and Embarko most
+ * recently. Every listing on the site follows this order, so keep new products
+ * at the end.
  * Facts here are taken from each product's own website (checked October 2026).
  * Figures in `claims` are the products' own published numbers and are always
  * rendered with `claimsSource` beside them.
@@ -136,11 +138,11 @@ export const products: Product[] = [
         to: "viasocket",
         how: "viaSocket workflows can send through MSG91 as one step among thousands.",
       },
-      { to: "gtwy-ai", how: "GTWY runs AI agents in production inside MSG91." },
       {
         to: "docstar",
         how: "The DocStar CLI exposes MSG91 APIs as MCP tools for AI clients.",
       },
+      { to: "gtwy-ai", how: "GTWY runs AI agents in production inside MSG91." },
     ],
     solutions: [
       "customer-communication",
@@ -172,6 +174,105 @@ export const products: Product[] = [
       title: "MSG91 — SMS, WhatsApp, Email, Voice & OTP APIs",
       description:
         "MSG91 by Walkover: one cloud communication platform for SMS, WhatsApp, RCS, email, voice and OTP APIs, plus Hello, an AI-assisted contact center.",
+    },
+  },
+  {
+    slug: "giddh",
+    name: "Giddh",
+    family: "operate",
+    brand: { color: "oklch(29.62% 0.1321 272.77)" },
+    category: "Cloud accounting software",
+    tagline: "Accounting, GST, invoicing and inventory in one ledger.",
+    summary:
+      "Giddh is cloud accounting software for growing businesses: invoicing, automated GST filing, inventory, real-time bank reconciliation and multi-currency books in one place.",
+    url: "https://giddh.com",
+    problem: {
+      heading: "The books are always a week behind the business.",
+      body: "Invoices are raised in one tool, stock is counted in another, the bank statement arrives as a file and GST returns are assembled at the deadline. Giddh keeps those in the same ledger, so the numbers a founder looks at are the numbers the accountant files.",
+    },
+    audience: [
+      "Small and mid-sized businesses",
+      "Accountants and finance teams managing several companies",
+      "Traders, manufacturers and e-commerce sellers",
+      "Businesses operating in India, the UAE and the UK",
+    ],
+    capabilities: [
+      {
+        title: "GST, handled",
+        body: "Automated GST filing and GST reports for Indian businesses, with VAT support for the UK and UAE.",
+      },
+      {
+        title: "Invoicing that follows through",
+        body: "Estimates and proforma invoices convert to invoices, payment status is tracked, and customers are notified by WhatsApp or email.",
+      },
+      {
+        title: "Inventory in the same ledger",
+        body: "Stock groups, variants and barcode scanning, so sales and stock never disagree.",
+      },
+      {
+        title: "Real-time bank reconciliation",
+        body: "Bank transactions are matched automatically instead of reconciled at month end.",
+      },
+      {
+        title: "Multi-company, multi-currency",
+        body: "Run many companies under one subscription with automatic conversion to local currency.",
+      },
+      {
+        title: "Access that scales with the team",
+        body: "Unlimited users with role-based permissions, an audit trail and IP-based access restriction.",
+      },
+    ],
+    useCases: [
+      {
+        title: "Month-end without the scramble",
+        body: "Reconciled bank accounts and ready GST reports mean closing the month is a review, not a project.",
+      },
+      {
+        title: "Online store accounting",
+        body: "Bring Shopify orders into the books automatically.",
+      },
+      {
+        title: "Practice management",
+        body: "Accountants manage many client companies from a single login.",
+      },
+      {
+        title: "Moving off desktop accounting",
+        body: "Sync with Tally while moving the team to cloud books with mobile access.",
+      },
+    ],
+    technical: [
+      "Integrations with Shopify and Tally",
+      "Open API",
+      "Encrypted storage on AWS with automatic backups",
+      "iOS and Android apps",
+    ],
+    pricingNote:
+      "Annual subscription per organisation with a free trial; free for students, teachers and institutes.",
+    demo: "ledger",
+    connections: [
+      { to: "msg91", how: "Giddh works with MSG91." },
+      { to: "docstar", how: "Giddh's team documents with DocStar." },
+    ],
+    solutions: ["accounting-and-compliance"],
+    industries: ["manufacturing-trading", "ecommerce-retail"],
+    faqs: [
+      {
+        q: "What is Giddh?",
+        a: "Giddh is cloud accounting software from the Walkover group, covering invoicing, GST, inventory, bank reconciliation and multi-currency accounting.",
+      },
+      {
+        q: "Does Giddh file GST returns?",
+        a: "Giddh offers automated GST filing and GST reports for businesses in India.",
+      },
+      {
+        q: "Can Giddh connect to Shopify or Tally?",
+        a: "Yes. Giddh integrates with Shopify and can sync with Tally, and provides an open API.",
+      },
+    ],
+    seo: {
+      title: "Giddh — Cloud Accounting, GST & Invoicing Software",
+      description:
+        "Giddh from the Walkover group: cloud accounting with automated GST filing, invoicing, inventory, real-time bank reconciliation and multi-company support.",
     },
   },
   {
@@ -263,24 +364,24 @@ export const products: Product[] = [
     demo: "flow",
     connections: [
       {
-        to: "gtwy-ai",
-        how: "GTWY powers AI agents running in production inside viaSocket.",
+        to: "msg91",
+        how: "A viaSocket workflow can notify customers through MSG91.",
       },
       {
         to: "docstar",
         how: "viaSocket's team documents its product with DocStar.",
       },
       {
-        to: "msg91",
-        how: "A viaSocket workflow can notify customers through MSG91.",
+        to: "things-of-brand",
+        how: "Things of Brand works with viaSocket workflows.",
+      },
+      {
+        to: "gtwy-ai",
+        how: "GTWY powers AI agents running in production inside viaSocket.",
       },
       {
         to: "50-agents",
         how: "50 Agents is available to AI clients through viaSocket MCP.",
-      },
-      {
-        to: "things-of-brand",
-        how: "Things of Brand works with viaSocket workflows.",
       },
     ],
     solutions: ["workflow-automation", "ai-agents"],
@@ -306,102 +407,181 @@ export const products: Product[] = [
     },
   },
   {
-    slug: "giddh",
-    name: "Giddh",
+    slug: "docstar",
+    name: "DocStar",
     family: "operate",
-    brand: { color: "oklch(29.62% 0.1321 272.77)" },
-    category: "Cloud accounting software",
-    tagline: "Accounting, GST, invoicing and inventory in one ledger.",
+    brand: { color: "oklch(16.84% 0 0)" },
+    category: "AI documentation platform",
+    tagline:
+      "Internal knowledge bases and public docs, written with AI and published in seconds.",
     summary:
-      "Giddh is cloud accounting software for growing businesses: invoicing, automated GST filing, inventory, real-time bank reconciliation and multi-currency books in one place.",
-    url: "https://giddh.com",
+      "DocStar is an AI-powered documentation platform for knowledge bases, help centres, blogs and interactive API docs, with analytics, SEO controls and an MCP-ready CLI.",
+    url: "https://docstar.io",
     problem: {
-      heading: "The books are always a week behind the business.",
-      body: "Invoices are raised in one tool, stock is counted in another, the bank statement arrives as a file and GST returns are assembled at the deadline. Giddh keeps those in the same ledger, so the numbers a founder looks at are the numbers the accountant files.",
+      heading: "Documentation is where knowledge goes to be forgotten.",
+      body: "Docs are slow to write, slower to update and hard to find, so teams answer the same question in chat a hundred times. DocStar makes writing fast with AI drafts, makes publishing a click, and shows which pages are failing readers, so documentation becomes part of how a team works instead of a chore after it.",
     },
     audience: [
-      "Small and mid-sized businesses",
-      "Accountants and finance teams managing several companies",
-      "Traders, manufacturers and e-commerce sellers",
-      "Businesses operating in India, the UAE and the UK",
+      "Support and customer success teams building help centres",
+      "Developer teams publishing API documentation",
+      "Founders and internal teams keeping a shared knowledge base",
     ],
     capabilities: [
       {
-        title: "GST, handled",
-        body: "Automated GST filing and GST reports for Indian businesses, with VAT support for the UK and UAE.",
+        title: "AI drafting",
+        body: "Start from a generated draft and edit, instead of starting from a blank page.",
       },
       {
-        title: "Invoicing that follows through",
-        body: "Estimates and proforma invoices convert to invoices, payment status is tracked, and customers are notified by WhatsApp or email.",
+        title: "Interactive API docs",
+        body: "An API playground, code snippets and token management for developer documentation.",
       },
       {
-        title: "Inventory in the same ledger",
-        body: "Stock groups, variants and barcode scanning, so sales and stock never disagree.",
+        title: "Page health analytics",
+        body: "Activity, page health and reader feedback show which docs need attention.",
       },
       {
-        title: "Real-time bank reconciliation",
-        body: "Bank transactions are matched automatically instead of reconciled at month end.",
+        title: "Blogs and public docs",
+        body: "Publish on a custom domain or subpath, in multiple languages, with control over slugs, metadata and clean HTML.",
       },
       {
-        title: "Multi-company, multi-currency",
-        body: "Run many companies under one subscription with automatic conversion to local currency.",
+        title: "Import what you have",
+        body: "Bring in Markdown and existing documentation instead of rewriting it.",
       },
       {
-        title: "Access that scales with the team",
-        body: "Unlimited users with role-based permissions, an audit trail and IP-based access restriction.",
+        title: "Docs as tools for AI",
+        body: "The DocStar CLI can expose documented APIs as MCP tools for AI clients.",
       },
     ],
     useCases: [
       {
-        title: "Month-end without the scramble",
-        body: "Reconciled bank accounts and ready GST reports mean closing the month is a review, not a project.",
+        title: "Help centre",
+        body: "Public answers that reduce repeat tickets, with feedback on what readers could not find.",
       },
       {
-        title: "Online store accounting",
-        body: "Bring Shopify orders into the books automatically.",
+        title: "Developer portal",
+        body: "Interactive API references developers can try without leaving the page.",
       },
       {
-        title: "Practice management",
-        body: "Accountants manage many client companies from a single login.",
-      },
-      {
-        title: "Moving off desktop accounting",
-        body: "Sync with Tally while moving the team to cloud books with mobile access.",
+        title: "Team handbook",
+        body: "An internal knowledge base for processes, onboarding and decisions.",
       },
     ],
     technical: [
-      "Integrations with Shopify and Tally",
-      "Open API",
-      "Encrypted storage on AWS with automatic backups",
-      "iOS and Android apps",
+      "Webhooks",
+      "Markdown import",
+      "Custom domains and subpaths",
+      "CLI with MCP output (docstar-editor mcp)",
     ],
-    pricingNote:
-      "Annual subscription per organisation with a free trial; free for students, teachers and institutes.",
-    demo: "ledger",
+    pricingNote: "Free to start; see docstar.io for current plans.",
+    demo: "docs",
     connections: [
-      { to: "docstar", how: "Giddh's team documents with DocStar." },
-      { to: "msg91", how: "Giddh works with MSG91." },
+      { to: "msg91", how: "The DocStar CLI exposes MSG91 APIs as MCP tools." },
+      { to: "giddh", how: "Giddh's team documents with DocStar." },
+      { to: "viasocket", how: "viaSocket's team documents with DocStar." },
+      { to: "gtwy-ai", how: "DocStar and GTWY work together." },
+      { to: "50-agents", how: "DocStar works with 50 Agents." },
     ],
-    solutions: ["accounting-and-compliance"],
-    industries: ["manufacturing-trading", "ecommerce-retail"],
+    solutions: ["documentation-and-knowledge", "customer-support"],
+    industries: ["saas", "education"],
     faqs: [
       {
-        q: "What is Giddh?",
-        a: "Giddh is cloud accounting software from the Walkover group, covering invoicing, GST, inventory, bank reconciliation and multi-currency accounting.",
+        q: "What is DocStar?",
+        a: "DocStar is an AI-powered documentation platform by Walkover for knowledge bases, help centres, blogs and interactive API documentation.",
       },
       {
-        q: "Does Giddh file GST returns?",
-        a: "Giddh offers automated GST filing and GST reports for businesses in India.",
+        q: "Can DocStar host API documentation?",
+        a: "Yes. DocStar includes an interactive API playground, code snippets and token management.",
       },
       {
-        q: "Can Giddh connect to Shopify or Tally?",
-        a: "Yes. Giddh integrates with Shopify and can sync with Tally, and provides an open API.",
+        q: "Can I import existing docs?",
+        a: "Yes. DocStar imports Markdown and existing documentation.",
       },
     ],
     seo: {
-      title: "Giddh — Cloud Accounting, GST & Invoicing Software",
+      title: "DocStar — AI Documentation, Knowledge Base & API Docs",
       description:
-        "Giddh from the Walkover group: cloud accounting with automated GST filing, invoicing, inventory, real-time bank reconciliation and multi-company support.",
+        "DocStar by Walkover: an AI documentation platform for internal knowledge bases, help centres, blogs and interactive API docs, with page analytics.",
+    },
+  },
+  {
+    slug: "things-of-brand",
+    name: "Things of Brand",
+    family: "create",
+    brand: { color: "oklch(48.32% 0.2546 283.23)" },
+    category: "Image creation and hosting",
+    tagline: "Create an image or upload one, then use it anywhere by its URL.",
+    summary:
+      "Things of Brand is a platform for images. Create new images, upload the ones you already have, and use every image through its own URL in websites, apps, emails and documents.",
+    url: "https://thingsofbrand.com",
+    problem: {
+      heading: "An image is only useful once you can put it somewhere.",
+      body: "Images get made in one tool, saved to a laptop, passed around in chats and uploaded again to every place that needs them. Things of Brand keeps the whole job in one place: create an image or upload one, and use it anywhere through its URL.",
+    },
+    audience: [
+      "Marketing and content teams who need images for pages, posts and campaigns",
+      "Designers who want one place to make and share images",
+      "Developers who reference images by URL in websites, apps and emails",
+    ],
+    capabilities: [
+      {
+        title: "Create images",
+        body: "Make new images directly in Things of Brand.",
+      },
+      {
+        title: "Upload images",
+        body: "Upload the images you already have and keep them together in one place.",
+      },
+      {
+        title: "A URL for every image",
+        body: "Every image, created or uploaded, has its own URL, so you can use it anywhere an image can be linked instead of sending the file.",
+      },
+    ],
+    useCases: [
+      {
+        title: "Images for websites and apps",
+        body: "Create or upload an image once and reference it by URL in pages and product screens.",
+      },
+      {
+        title: "Images in emails and messages",
+        body: "Use an image's URL in emails and campaigns instead of attaching the file.",
+      },
+      {
+        title: "Graphics for content",
+        body: "Create an image for a post, article or announcement and share its link.",
+      },
+    ],
+    pricingNote: "A 14-day free trial, then a subscription.",
+    demo: "images",
+    connections: [
+      {
+        to: "viasocket",
+        how: "Things of Brand works with viaSocket workflows.",
+      },
+    ],
+    solutions: ["image-creation-and-hosting"],
+    industries: ["saas", "ecommerce-retail"],
+    faqs: [
+      {
+        q: "What is Things of Brand?",
+        a: "Things of Brand is a Walkover platform for images. You can create images, upload your own, and use any of them through its URL.",
+      },
+      {
+        q: "Can I use images I already have?",
+        a: "Yes. Upload them to Things of Brand and each one gets a URL you can use wherever you need it.",
+      },
+      {
+        q: "Is Things of Brand a communication product?",
+        a: "No. Things of Brand is for creating, uploading and sharing images. Walkover's communication platform is MSG91.",
+      },
+      {
+        q: "Is there a free trial?",
+        a: "Yes, Things of Brand offers a 14-day free trial.",
+      },
+    ],
+    seo: {
+      title: "Things of Brand — Create, Upload & Use Images by URL",
+      description:
+        "Things of Brand by Walkover lets you create images, upload your own and use every image anywhere through its URL.",
     },
   },
   {
@@ -479,12 +659,12 @@ export const products: Product[] = [
       "Usage-based per run with model costs passed through at cost; volume pricing and dedicated infrastructure for enterprise.",
     demo: "embed",
     connections: [
-      { to: "docstar", how: "GTWY and DocStar work together." },
+      { to: "msg91", how: "GTWY runs AI agents in production inside MSG91." },
       {
         to: "viasocket",
         how: "GTWY runs AI agents in production inside viaSocket.",
       },
-      { to: "msg91", how: "GTWY runs AI agents in production inside MSG91." },
+      { to: "docstar", how: "GTWY and DocStar work together." },
       { to: "50-agents", how: "50 Agents works with GTWY." },
     ],
     solutions: ["ai-agents", "customer-support"],
@@ -561,12 +741,12 @@ export const products: Product[] = [
     pricingNote: "See 50agents.com for current plans.",
     demo: "agents",
     connections: [
-      { to: "docstar", how: "50 Agents works with DocStar." },
-      { to: "gtwy-ai", how: "50 Agents works with GTWY." },
       {
         to: "viasocket",
         how: "50 Agents is listed in viaSocket's MCP marketplace.",
       },
+      { to: "docstar", how: "50 Agents works with DocStar." },
+      { to: "gtwy-ai", how: "50 Agents works with GTWY." },
     ],
     solutions: ["ai-agents"],
     industries: ["saas"],
@@ -584,180 +764,6 @@ export const products: Product[] = [
       title: "50 Agents — AI Meeting Notetaker & Task Agents",
       description:
         "50 Agents by Walkover joins meetings, summarises them and turns natural-language requests into tasks done inside the apps your team already uses.",
-    },
-  },
-  {
-    slug: "docstar",
-    name: "DocStar",
-    family: "operate",
-    brand: { color: "oklch(16.84% 0 0)" },
-    category: "AI documentation platform",
-    tagline:
-      "Internal knowledge bases and public docs, written with AI and published in seconds.",
-    summary:
-      "DocStar is an AI-powered documentation platform for knowledge bases, help centres, blogs and interactive API docs, with analytics, SEO controls and an MCP-ready CLI.",
-    url: "https://docstar.io",
-    problem: {
-      heading: "Documentation is where knowledge goes to be forgotten.",
-      body: "Docs are slow to write, slower to update and hard to find, so teams answer the same question in chat a hundred times. DocStar makes writing fast with AI drafts, makes publishing a click, and shows which pages are failing readers, so documentation becomes part of how a team works instead of a chore after it.",
-    },
-    audience: [
-      "Support and customer success teams building help centres",
-      "Developer teams publishing API documentation",
-      "Founders and internal teams keeping a shared knowledge base",
-    ],
-    capabilities: [
-      {
-        title: "AI drafting",
-        body: "Start from a generated draft and edit, instead of starting from a blank page.",
-      },
-      {
-        title: "Interactive API docs",
-        body: "An API playground, code snippets and token management for developer documentation.",
-      },
-      {
-        title: "Page health analytics",
-        body: "Activity, page health and reader feedback show which docs need attention.",
-      },
-      {
-        title: "Blogs and public docs",
-        body: "Publish on a custom domain or subpath, in multiple languages, with control over slugs, metadata and clean HTML.",
-      },
-      {
-        title: "Import what you have",
-        body: "Bring in Markdown and existing documentation instead of rewriting it.",
-      },
-      {
-        title: "Docs as tools for AI",
-        body: "The DocStar CLI can expose documented APIs as MCP tools for AI clients.",
-      },
-    ],
-    useCases: [
-      {
-        title: "Help centre",
-        body: "Public answers that reduce repeat tickets, with feedback on what readers could not find.",
-      },
-      {
-        title: "Developer portal",
-        body: "Interactive API references developers can try without leaving the page.",
-      },
-      {
-        title: "Team handbook",
-        body: "An internal knowledge base for processes, onboarding and decisions.",
-      },
-    ],
-    technical: [
-      "Webhooks",
-      "Markdown import",
-      "Custom domains and subpaths",
-      "CLI with MCP output (docstar-editor mcp)",
-    ],
-    pricingNote: "Free to start; see docstar.io for current plans.",
-    demo: "docs",
-    connections: [
-      { to: "msg91", how: "The DocStar CLI exposes MSG91 APIs as MCP tools." },
-      { to: "viasocket", how: "viaSocket's team documents with DocStar." },
-      { to: "gtwy-ai", how: "DocStar and GTWY work together." },
-      { to: "50-agents", how: "DocStar works with 50 Agents." },
-      { to: "giddh", how: "Giddh's team documents with DocStar." },
-    ],
-    solutions: ["documentation-and-knowledge", "customer-support"],
-    industries: ["saas", "education"],
-    faqs: [
-      {
-        q: "What is DocStar?",
-        a: "DocStar is an AI-powered documentation platform by Walkover for knowledge bases, help centres, blogs and interactive API documentation.",
-      },
-      {
-        q: "Can DocStar host API documentation?",
-        a: "Yes. DocStar includes an interactive API playground, code snippets and token management.",
-      },
-      {
-        q: "Can I import existing docs?",
-        a: "Yes. DocStar imports Markdown and existing documentation.",
-      },
-    ],
-    seo: {
-      title: "DocStar — AI Documentation, Knowledge Base & API Docs",
-      description:
-        "DocStar by Walkover: an AI documentation platform for internal knowledge bases, help centres, blogs and interactive API docs, with page analytics.",
-    },
-  },
-  {
-    slug: "things-of-brand",
-    name: "Things of Brand",
-    family: "communicate",
-    brand: { color: "oklch(48.32% 0.2546 283.23)" },
-    category: "Brand asset management",
-    tagline: "One verified home for a brand's logos, colours and guidelines.",
-    summary:
-      "Things of Brand is a platform for brands to manage and share authentic assets, such as logos, colour palettes and guidelines, with designers and developers, through collections and an API.",
-    url: "https://thingsofbrand.com",
-    problem: {
-      heading: "Somebody is using the wrong logo right now.",
-      body: "Brand files scatter across drives, chats and old decks, and partners grab whatever version search returns. Things of Brand keeps a single, verified source of a brand's assets and makes it easy to share, whether a designer needs a file or a developer needs it over an API.",
-    },
-    audience: [
-      "Brand and marketing teams",
-      "Designers who need the right assets quickly",
-      "Developers who fetch brand assets programmatically",
-    ],
-    capabilities: [
-      {
-        title: "Collections",
-        body: "Group logos, colour palettes and other assets into collections you can share.",
-      },
-      {
-        title: "Assets over an API",
-        body: "Fetch a brand's assets programmatically instead of downloading and re-uploading files.",
-      },
-      {
-        title: "Verified brands",
-        body: "Brands can verify their page, so others know the assets are authentic.",
-      },
-      {
-        title: "Guidelines, shared",
-        body: "Publish brand guidelines alongside the assets they describe.",
-      },
-      {
-        title: "Access control",
-        body: "Encryption and access controls decide who sees what.",
-      },
-    ],
-    useCases: [
-      {
-        title: "Partner and press kits",
-        body: "Give agencies, partners and journalists one link to the current assets.",
-      },
-      {
-        title: "Logos inside products",
-        body: "Display correct, current brand logos in an app by fetching them through the API.",
-      },
-    ],
-    pricingNote: "A 14-day free trial, then a subscription.",
-    demo: "brandkit",
-    connections: [
-      {
-        to: "viasocket",
-        how: "Things of Brand works with viaSocket workflows.",
-      },
-    ],
-    solutions: ["brand-asset-management"],
-    industries: ["saas", "ecommerce-retail"],
-    faqs: [
-      {
-        q: "What is Things of Brand?",
-        a: "Things of Brand is a Walkover platform for managing and sharing authentic brand assets, such as logos and colour palettes, through collections and an API.",
-      },
-      {
-        q: "Is there a free trial?",
-        a: "Yes, Things of Brand offers a 14-day free trial.",
-      },
-    ],
-    seo: {
-      title: "Things of Brand — Brand Asset Management & Logo API",
-      description:
-        "Things of Brand by Walkover keeps a brand's logos, colour palettes and guidelines in one verified place, shared through collections and an API.",
     },
   },
   {

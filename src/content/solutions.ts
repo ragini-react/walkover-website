@@ -214,7 +214,7 @@ export const solutions: Solution[] = [
     seo: {
       title: "AI Agents for SaaS & Teams — Embedded Agents, RAG & MCP",
       description:
-        "Embed white-label AI agents in your product, deploy task agents for your team, and expose tools through MCP with Walkover's GTWY, 50 Agents and viaSocket.",
+        "Expose tools through MCP, embed white-label AI agents in your product and deploy task agents for your team with Walkover's viaSocket, GTWY and 50 Agents.",
     },
   },
   {
@@ -366,49 +366,48 @@ export const solutions: Solution[] = [
     },
   },
   {
-    slug: "brand-asset-management",
-    name: "Brand asset management",
-    need: "share the right logo and colours every time",
-    headline: "The right logo, every time, for everyone.",
+    slug: "image-creation-and-hosting",
+    name: "Image creation and hosting",
+    need: "create images and use them anywhere by URL",
+    headline: "Make an image once. Use it everywhere by its link.",
     summary:
-      "Keep a brand's logos, colour palettes and guidelines in one verified place, shared through collections or fetched through an API.",
+      "Create new images or upload the ones you have, and use each one through its own URL in websites, apps, emails and documents.",
     challenges: [
-      "Old logo files circulating in decks and partner sites",
-      "Designers and agencies asking for the same assets repeatedly",
-      "Developers hard-coding brand assets that later change",
+      "Images made in one tool and saved on someone's laptop",
+      "The same file sent over chat and uploaded again to every place that needs it",
+      "Emails and pages carrying attachments instead of a link to the image",
     ],
     approach: [
       {
-        title: "A single verified source",
-        body: "Things of Brand keeps the authentic, current version of every asset.",
+        title: "Create",
+        body: "Make new images directly in Things of Brand.",
       },
       {
-        title: "Share with a link",
-        body: "Collections give partners, press and agencies exactly what they need.",
+        title: "Upload",
+        body: "Bring in the images you already have and keep them in one place.",
       },
       {
-        title: "Fetch through an API",
-        body: "Developers pull assets programmatically, so products always show the current version.",
+        title: "Use by URL",
+        body: "Every image has its own URL, so you link to it wherever it is needed instead of sending the file.",
       },
     ],
-    products: [{ slug: "things-of-brand", role: "Brand assets, collections and API" }],
+    products: [{ slug: "things-of-brand", role: "Creates, uploads and serves images by URL" }],
     workflow: [
-      "Upload logos, palettes and guidelines",
-      "Verify the brand",
-      "Share collections or connect the API",
-      "Update once and every consumer gets the change",
+      "Create a new image or upload an existing one",
+      "Copy the image's URL",
+      "Use the URL in a page, an app, an email or a document",
     ],
     industries: ["saas", "ecommerce-retail"],
     faqs: [
       {
-        q: "What is brand asset management?",
-        a: "Brand asset management is keeping a brand's approved assets, such as logos, colours, fonts and guidelines, in one controlled place so everyone uses the current versions.",
+        q: "What does it mean to use an image by URL?",
+        a: "Instead of attaching or re-uploading an image file, you put the image's web address wherever it is needed, such as a web page, an app screen or an email, and the image loads from there.",
       },
     ],
     seo: {
-      title: "Brand Asset Management — Logos, Colours & Guidelines via API",
+      title: "Image Creation & Hosting — Create, Upload and Use Images by URL",
       description:
-        "Keep logos, colour palettes and brand guidelines in one verified place and share them through collections or an API with Things of Brand.",
+        "Create images, upload your own and use every image anywhere through its URL with Things of Brand by Walkover.",
     },
   },
 ];

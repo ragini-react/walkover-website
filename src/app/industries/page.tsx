@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getProduct, industries } from "@/content";
+import { getProduct, industries, inLaunchOrder } from "@/content";
 import { PageHero } from "@/components/sections/PageHero";
 import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { pageMeta } from "@/lib/seo";
 import { collectionSchema } from "@/lib/schema";
-import styles from "../detail.module.css";
+import styles from "../detail.module.scss";
 
 export const metadata: Metadata = pageMeta({
   title: "Industries Walkover Serves — SaaS, E-commerce, Fintech & More",
@@ -38,7 +38,7 @@ export default function IndustriesPage() {
                   <span className={styles.indexText}>
                     {ind.headline}
                     <span className={styles.indexMeta}>
-                      {ind.products.map((p) => getProduct(p.slug)?.name).join(" · ")}
+                      {inLaunchOrder(ind.products).map((p) => getProduct(p.slug)?.name).join(" · ")}
                     </span>
                   </span>
                   <span className={styles.indexArrow} aria-hidden="true">

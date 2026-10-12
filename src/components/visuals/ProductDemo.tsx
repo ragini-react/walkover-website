@@ -1,9 +1,7 @@
 import type { CSSProperties } from "react";
-import { getProduct } from "@/content";
 import type { ProductDemo as DemoKind } from "@/content/types";
-import { toSrgb } from "@/lib/color";
 import { PlayWhenVisible } from "./PlayWhenVisible";
-import s from "./ProductDemo.module.css";
+import s from "./ProductDemo.module.scss";
 
 const v = (vars: Record<string, string | number>) => vars as CSSProperties;
 
@@ -172,23 +170,21 @@ function Docs() {
   );
 }
 
-/** Things of Brand — its own brand kit, served over its API. */
-function BrandKit() {
-  const primary = getProduct("things-of-brand")!.brand.color;
-  const swatches = [primary, "var(--ink-900)", "var(--white)"];
+/** Things of Brand — one image created, one uploaded, both used by URL. */
+function Images() {
   return (
-    <div className={s.brand}>
-      <div className={s.swatches}>
-        {swatches.map((c, i) => (
-          <span key={c} style={v({ background: c, "--i": i })} />
-        ))}
+    <div className={s.images}>
+      <div className={s.imageTiles}>
+        <span className={s.created} style={v({ "--i": 0 })}>
+          Created
+        </span>
+        <span className={s.uploaded} style={v({ "--i": 1 })}>
+          Uploaded
+        </span>
       </div>
-      <div className={s.logos}>
-        <span>Logo · primary</span>
-        <span>Logo · mono</span>
-      </div>
-      <code className={s.cli}>
-        GET /brands/things-of-brand → <span className={s.k}>{`{ primary: "${toSrgb(primary).toUpperCase()}" }`}</span>
+      <code className={`${s.cli} ${s.imageUrl}`}>
+        <span className={s.prompt}>↳</span>
+        https://…/<span className={s.k}>launch-banner.png</span>
       </code>
     </div>
   );
@@ -220,7 +216,7 @@ const demos: Record<DemoKind, () => React.JSX.Element> = {
   embed: Embed,
   agents: Agents,
   docs: Docs,
-  brandkit: BrandKit,
+  images: Images,
   deploy: Deploy,
 };
 

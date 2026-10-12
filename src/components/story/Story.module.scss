@@ -1,3 +1,5 @@
+@use "../../styles/mixins";
+
 /* ── Chapter shell ─────────────────────────────────── */
 .chapter {
   padding-block: clamp(4.5rem, 2.5rem + 6vw, 8.5rem);
@@ -256,10 +258,7 @@
 }
 
 .stageWhen {
-  font-family: var(--font-mono);
-  font-size: var(--text-label);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  @include mixins.label-type;
   color: var(--fg-muted);
 }
 
@@ -363,10 +362,7 @@
 }
 
 .expWhen {
-  font-family: var(--font-mono);
-  font-size: var(--text-label);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  @include mixins.label-type;
   color: var(--fg-muted);
 }
 

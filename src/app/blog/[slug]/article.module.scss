@@ -1,3 +1,5 @@
+@use "../../../styles/mixins";
+
 /* Reading progress: a scroll-linked bar with no JavaScript. */
 .progress {
   position: fixed;
@@ -159,12 +161,8 @@
   height: 10px;
   border-radius: 3px;
   background: var(--c);
-}
 
-@media (prefers-color-scheme: dark) {
-  .mentionDot {
-    box-shadow: var(--ring-brand-dot);
-  }
+  @include mixins.brand-dot-ring;
 }
 
 .mentionName {

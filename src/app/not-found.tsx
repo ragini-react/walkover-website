@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ButtonLink } from "@/components/ui/Button";
 import { BrandMark } from "@/components/visuals/BrandMark";
-import styles from "./not-found.module.css";
+import styles from "./not-found.module.scss";
 
 export const metadata: Metadata = {
   title: "Page not found",

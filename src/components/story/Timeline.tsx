@@ -1,6 +1,6 @@
 import { chapters, milestones, type Basis } from "@/content/story";
 import { Cites } from "./Prose";
-import styles from "./Timeline.module.css";
+import styles from "./Timeline.module.scss";
 
 const FIRST = 2006;
 const LAST = 2026;

@@ -1,0 +1,27 @@
+// Shared Sass mixins. They emit no CSS on their own; include them where the
+// same group of declarations would otherwise be repeated across stylesheets.
+// Component stylesheets load this with `@use "<relative path>/styles/mixins";`.
+
+// Mono, uppercase label type: .t-label, .eyebrow and small "when" labels.
+@mixin label-type {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+// A centred column, $max wide plus the page gutters.
+@mixin container($max) {
+  width: 100%;
+  max-width: calc(#{$max} + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+// In the system dark theme every surface is ink, so small brand-coloured
+// marks get a hairline ring to keep deep brand colours visible.
+@mixin brand-dot-ring {
+  @media (prefers-color-scheme: dark) {
+    box-shadow: var(--ring-brand-dot);
+  }
+}

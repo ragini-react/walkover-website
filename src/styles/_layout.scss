@@ -1,0 +1,20 @@
+@use "mixins";
+
+/* ── Layout utilities ──────────────────────────────── */
+.container {
+  @include mixins.container(var(--container));
+}
+
+.container-wide {
+  @include mixins.container(var(--container-wide));
+}
+
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+.section-tight {
+  padding-block: calc(var(--section-y) * 0.6);
+  position: relative;
+}

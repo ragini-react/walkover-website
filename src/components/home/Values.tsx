@@ -1,5 +1,5 @@
 import { values } from "@/content/company";
-import styles from "./Values.module.css";
+import styles from "./Values.module.scss";
 
 /** Walkover's ten published values, laid out as a board of tiles. */
 export function Values({ limit }: { limit?: number }) {

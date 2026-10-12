@@ -7,12 +7,13 @@ import type { Brand, Family, PostCategorySlug, ProductSlug, Solution, SolutionSl
 
 export { products, solutions, industries, posts };
 
-/** Family metadata, used to group products in menus and listings. */
+/** Family metadata, used to label what each product is for. */
 export const families: Record<Family, { label: string; description: string }> = {
   communicate: { label: "Communicate", description: "Reach, verify and support customers" },
   automate: { label: "Automate", description: "Connect apps and run processes" },
   intelligence: { label: "Intelligence", description: "Agents that understand and act" },
   operate: { label: "Operate", description: "Run finance and knowledge" },
+  create: { label: "Create", description: "Make, upload and share images" },
   build: { label: "Build", description: "Host and ship the apps you make" },
 };
 
@@ -97,6 +98,14 @@ export function resolve<S extends string, T extends { slug: string }>(
   slugs: readonly S[],
 ): T[] {
   return slugs.map((s) => bySlug(list, s)).filter((x): x is T => Boolean(x));
+}
+
+/** Product references sorted into launch order (the order of `products`).
+ *  Solutions and industries list their products by role, lead first; this is
+ *  for displaying those lists, so products always appear in the same sequence. */
+export function inLaunchOrder<T extends { slug: ProductSlug }>(refs: readonly T[]): T[] {
+  const rank = (slug: ProductSlug) => products.findIndex((p) => p.slug === slug);
+  return [...refs].sort((a, b) => rank(a.slug) - rank(b.slug));
 }
 
 export const postsForProduct = (slug: ProductSlug) =>

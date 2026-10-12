@@ -12,7 +12,7 @@ import {
 import { site } from "@/content/site";
 import { withBasePath } from "@/lib/base-path";
 import { Icon } from "@/components/ui/Icon";
-import styles from "./Events.module.css";
+import styles from "./Events.module.scss";
 
 /** Display name and colour for an owner; Walkover uses its own signal red. */
 export function ownerBrand(owner: EventOwner): { name: string; color: string } {

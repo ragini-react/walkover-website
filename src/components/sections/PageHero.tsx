@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Breadcrumbs, type Crumb } from "@/components/ui/Breadcrumbs";
-import styles from "./PageHero.module.css";
+import styles from "./PageHero.module.scss";
 
 type Props = {
   crumbs: Crumb[];

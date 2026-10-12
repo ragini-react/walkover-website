@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { brandPageProps, brandProps, getProduct, getSolution, solutionBrand, solutions } from "@/content";
+import { brandPageProps, brandProps, getProduct, getSolution, inLaunchOrder, solutionBrand, solutions } from "@/content";
 import { PageHero } from "@/components/sections/PageHero";
 import { WorkflowPath } from "@/components/visuals/WorkflowPath";
 import { ButtonLink } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
 import { Icon } from "@/components/ui/Icon";
 import { pageMeta } from "@/lib/seo";
-import styles from "../../detail.module.css";
+import styles from "../../detail.module.scss";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -109,7 +109,7 @@ export default async function SolutionPage({ params }: Params) {
             </h2>
           </div>
           <ul role="list" className={styles.roles}>
-            {solution.products.map((ref, i) => {
+            {inLaunchOrder(solution.products).map((ref, i) => {
               const p = getProduct(ref.slug)!;
               return (
                 <li key={p.slug} data-reveal style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}>

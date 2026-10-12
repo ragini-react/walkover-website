@@ -16,13 +16,6 @@
   gap: 0.7rem;
 }
 
-.groupDot {
-  width: 12px;
-  height: 12px;
-  border-radius: 3px;
-  flex-shrink: 0;
-}
-
 .grid {
   display: grid;
   gap: var(--space-4);

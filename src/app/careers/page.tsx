@@ -8,7 +8,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Values } from "@/components/home/Values";
 import { BrandMark } from "@/components/visuals/BrandMark";
 import { pageMeta } from "@/lib/seo";
-import styles from "./careers.module.css";
+import styles from "./careers.module.scss";
 
 export const metadata: Metadata = pageMeta({
   title: "Careers at Walkover — Remote Jobs in Engineering, Design & Sales",

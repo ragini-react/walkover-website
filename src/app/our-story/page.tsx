@@ -26,7 +26,7 @@ import {
 import { OpenQuestions, Sources } from "@/components/story/Sources";
 import { BasisMark, Timeline, YearRuler } from "@/components/story/Timeline";
 import { absoluteUrl, pageMeta } from "@/lib/seo";
-import styles from "./story.module.css";
+import styles from "./story.module.scss";
 
 const title = "Our Story: From Indore Hosting to MSG91, Giddh & viaSocket — Walkover";
 const description =

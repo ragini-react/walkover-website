@@ -1,19 +1,33 @@
 import Link from "next/link";
-import { brandInk, getProduct, industries, postCategories, posts, ProductCount, productCount, products } from "@/content";
+import {
+  brandInk,
+  getProduct,
+  industries,
+  postCategories,
+  posts,
+  ProductCount,
+  products,
+} from "@/content";
 import { careers, principles, timeline, values } from "@/content/company";
 import { site } from "@/content/site";
 import type { Product } from "@/content/types";
 import { ArrowLink, ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import { Magnetic } from "@/components/motion/Magnetic";
 import { Problems } from "@/components/home/Problems";
 import { formatDate } from "@/components/sections/Cards";
-import s from "./Squares.module.css";
+import s from "./Squares.module.scss";
 
-const v = (vars: Record<string, string | number>) => vars as React.CSSProperties;
+const v = (vars: Record<string, string | number>) =>
+  vars as React.CSSProperties;
 
 /** Small label at the top of every square: "Square 03 · Who we are". */
-function SquareLabel({ n, children }: { n: string; children: React.ReactNode }) {
+function SquareLabel({
+  n,
+  children,
+}: {
+  n: string;
+  children: React.ReactNode;
+}) {
   return (
     <p className={s.label}>
       <span className={s.labelNum}>Square {n}</span>
@@ -25,37 +39,44 @@ function SquareLabel({ n, children }: { n: string; children: React.ReactNode }) 
 
 /* ── Start ─────────────────────────────────────────── */
 
+/** Cycled one at a time under "We are a team of". */
+const heroRoles = ["Developers", "Designers", "Innovators"];
+
 export function HeroSquare() {
   return (
     <div className={s.hero}>
-      <p className={s.heroPill}>
-        <span className={s.heroDot} aria-hidden="true" />
-        {site.name} · Since {site.foundingYear} · Indore, India
+      <p className={s.heroIntro}>
+        We are a team of
+        <span className={s.roles}>
+          {/* Read in full by screen readers, and shown when motion is reduced. */}
+          <span className={s.rolesStatic}>
+            Developers, Designers, Innovators...
+          </span>
+          {/* The first role repeats at the end so the loop wraps seamlessly. */}
+          <span className={s.rolesTrack} aria-hidden="true">
+            {[...heroRoles, heroRoles[0]].map((role, i) => (
+              <span key={i}>{role}</span>
+            ))}
+          </span>
+        </span>
       </p>
       <h1 className={s.heroTitle}>
         <span className={s.heroLine}>
-          <span>Every move,</span>
-        </span>
+          <span>We are</span>
+        </span>{" "}
         <span className={s.heroLine}>
           <span>
-            a <em className={s.walk}>walkover.</em>
+            <em className={s.walk}>Walkers.</em>
           </span>
         </span>
       </h1>
-      <p className={s.heroLead}>
-        Walkover builds {productCount} products for the moves every business has to make: reaching customers, automating
-        work, running the books, putting AI to work and shipping what you build. Scroll to play the board.
-      </p>
-      <div className={s.heroActions}>
-        <Magnetic>
-          <ButtonLink href="/products" size="lg" track="hero_products">
-            Explore the products
-          </ButtonLink>
-        </Magnetic>
-        <ButtonLink href="/contact" variant="secondary" size="lg" track="hero_contact">
-          Talk to us
-        </ButtonLink>
-      </div>
+      <p className={s.heroTagline}>A journey to innovation!</p>
+      <a href="#who-we-are" className={s.scrollCue}>
+        <span className={s.scrollIcon} aria-hidden="true">
+          <Icon name="chevronDown" size={16} strokeWidth={2} />
+        </span>
+        Scroll to roll the dice
+      </a>
     </div>
   );
 }
@@ -67,8 +88,8 @@ export function IntroSquare({ n }: { n: string }) {
     <div className={s.block} data-reveal>
       <SquareLabel n={n}>Who we are</SquareLabel>
       <h2 className={s.statement}>
-        A product company from Indore. Since {site.foundingYear} we have built software for the moments every
-        business has to get right.
+        A product company from Indore. Since {site.foundingYear} we have built
+        software for the moments every business has to get right.
       </h2>
       <dl className={s.facts}>
         <div>
@@ -101,10 +122,20 @@ const FACE: Record<number, number[]> = {
   6: [0, 2, 3, 5, 6, 8],
 };
 
-export function ProductSquare({ product, n, index }: { product: Product; n: string; index: number }) {
+export function ProductSquare({
+  product,
+  n,
+  index,
+}: {
+  product: Product;
+  n: string;
+  index: number;
+}) {
   const ink = brandInk(product.brand);
   const claim = product.claims?.[0];
-  const partners = product.connections.map((c) => getProduct(c.to)!).filter(Boolean);
+  const partners = product.connections
+    .map((c) => getProduct(c.to)!)
+    .filter(Boolean);
   const face = FACE[(index % 6) + 1];
 
   return (
@@ -153,7 +184,11 @@ export function ProductSquare({ product, n, index }: { product: Product; n: stri
             <span className={s.partnersLabel}>Works with</span>
             {partners.map((p) => (
               <span key={p.slug} className={s.partner}>
-                <span className={s.partnerDot} style={v({ background: p.brand.color })} aria-hidden="true" />
+                <span
+                  className={s.partnerDot}
+                  style={v({ background: p.brand.color })}
+                  aria-hidden="true"
+                />
                 {p.name}
               </span>
             ))}
@@ -180,7 +215,10 @@ export function BuildSquare({ n }: { n: string }) {
     <div className={`${s.block} ${s.ink}`} data-reveal>
       <SquareLabel n={n}>How we build</SquareLabel>
       <h2 className={s.title}>One move at a time, with total focus.</h2>
-      <p className={s.sub}>“One move. Total focus.” is the first of Walkover’s ten values. These four habits follow from it.</p>
+      <p className={s.sub}>
+        “One move. Total focus.” is the first of Walkover’s ten values. These
+        four habits follow from it.
+      </p>
       <ol role="list" className={s.rules}>
         {principles.map((p, i) => {
           const proof = getProduct(p.product)!;
@@ -193,7 +231,13 @@ export function BuildSquare({ n }: { n: string }) {
                 <h3 className={s.ruleTitle}>{p.title}</h3>
                 <p className={s.ruleBody}>{p.body}</p>
                 <p className={s.proof}>
-                  <span className={s.proofChip} style={v({ background: proof.brand.color, color: brandInk(proof.brand) })}>
+                  <span
+                    className={s.proofChip}
+                    style={v({
+                      background: proof.brand.color,
+                      color: brandInk(proof.brand),
+                    })}
+                  >
                     {proof.name}
                   </span>
                   {p.proof}
@@ -215,7 +259,10 @@ export function ProblemSquare({ n }: { n: string }) {
       <div className={s.intro} data-reveal>
         <SquareLabel n={n}>Solutions</SquareLabel>
         <h2 className={s.title}>Start with the problem.</h2>
-        <p className={s.sub}>You don’t need to know our product names. Tell us what needs to happen.</p>
+        <p className={s.sub}>
+          You don’t need to know our product names. Tell us what needs to
+          happen.
+        </p>
       </div>
       <Problems compact />
       <div className={s.industries} data-reveal>
@@ -240,7 +287,9 @@ export function StorySquare({ n }: { n: string }) {
   return (
     <div className={s.block} data-reveal>
       <SquareLabel n={n}>Our story</SquareLabel>
-      <h2 className={s.title}>Version by version, since {site.foundingYear}.</h2>
+      <h2 className={s.title}>
+        Version by version, since {site.foundingYear}.
+      </h2>
       <ol role="list" className={s.timeline}>
         {timeline.map((t) => (
           <li key={t.when} className={s.moment}>
@@ -271,7 +320,9 @@ export function CultureSquare({ n }: { n: string }) {
           </span>
         ))}
       </h2>
-      <p className={s.sub}>That is how we hire. These are the rules we play by once you are in.</p>
+      <p className={s.sub}>
+        That is how we hire. These are the rules we play by once you are in.
+      </p>
       <ol role="list" className={s.values}>
         {values.slice(0, 6).map((val, i) => (
           <li key={val.title} className={s.value}>
@@ -303,9 +354,15 @@ export function NotesSquare({ n }: { n: string }) {
       <ul role="list" className={s.notes}>
         {posts.slice(0, 4).map((p) => (
           <li key={p.slug}>
-            <Link href={`/blog/${p.slug}`} className={s.note} data-track="resource_click" data-track-label={p.slug}>
+            <Link
+              href={`/blog/${p.slug}`}
+              className={s.note}
+              data-track="resource_click"
+              data-track-label={p.slug}
+            >
               <span className={s.noteMeta}>
-                {postCategories[p.category].label} · <time dateTime={p.published}>{formatDate(p.published)}</time>
+                {postCategories[p.category].label} ·{" "}
+                <time dateTime={p.published}>{formatDate(p.published)}</time>
               </span>
               <span className={s.noteTitle}>{p.title}</span>
               <Icon name="arrow" size={18} className={s.noteArrow} />

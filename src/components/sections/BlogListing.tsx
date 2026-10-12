@@ -2,7 +2,7 @@ import Link from "next/link";
 import { postCategories, posts as allPosts } from "@/content";
 import type { PostCategorySlug } from "@/content/types";
 import { PostCard } from "./Cards";
-import styles from "@/app/listing.module.css";
+import styles from "@/app/listing.module.scss";
 
 /** Blog index body: category filters (real links, crawlable) and cards. */
 export function BlogListing({ category }: { category?: PostCategorySlug }) {

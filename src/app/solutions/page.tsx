@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { brandProps, getProduct, solutionBrand, solutions } from "@/content";
+import { brandProps, getProduct, inLaunchOrder, solutionBrand, solutions } from "@/content";
 import { PageHero } from "@/components/sections/PageHero";
 import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { pageMeta } from "@/lib/seo";
 import { collectionSchema } from "@/lib/schema";
-import styles from "../detail.module.css";
+import styles from "../detail.module.scss";
 
 export const metadata: Metadata = pageMeta({
   title: "Walkover Solutions — Communication, Automation, AI & Finance",
   absoluteTitle: true,
   description:
-    "Find the right Walkover software by problem: customer messaging, OTP verification, workflow automation, AI agents, support, GST accounting, docs and brand assets.",
+    "Find the right Walkover software by problem: customer messaging, OTP verification, workflow automation, AI agents, support, GST accounting, docs and images.",
   path: "/solutions",
 });
 
@@ -44,7 +44,7 @@ export default function SolutionsPage() {
                   <span className={styles.indexText}>
                     {s.summary}
                     <span className={styles.indexMeta}>
-                      {s.products.map((p) => getProduct(p.slug)?.name).join(" · ")}
+                      {inLaunchOrder(s.products).map((p) => getProduct(p.slug)?.name).join(" · ")}
                     </span>
                   </span>
                   <span className={styles.indexArrow} aria-hidden="true">

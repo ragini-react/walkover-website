@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { sourceById, sourceNumber } from "@/content/story";
-import styles from "./Prose.module.css";
+import styles from "./Prose.module.scss";
 
 /**
  * Renders story text kept as plain strings in `src/content/story.ts`.

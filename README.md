@@ -1,6 +1,6 @@
 # walkover.in
 
-The official website of Walkover Web Solutions Pvt. Ltd. It is built with Next.js 15 (App Router), TypeScript and CSS Modules. The site has no UI framework and no animation library.
+The official website of Walkover Web Solutions Pvt. Ltd. It is built with Next.js 15 (App Router), TypeScript and Sass (SCSS Modules). The site has no UI framework and no animation library.
 
 The site is a static export. `npm run build` writes plain HTML, CSS and JS to `out/`, which any static host can serve. It is deployed to GitHub Pages.
 
@@ -70,7 +70,8 @@ src/
     visuals/           hero board (canvas), product demos, workflow path, 3D die
     motion/            magnetic hover
   lib/                 seo, schema.org builders, analytics seam, motion bootstrap, contact validation
-  styles/              tokens.css (design system) and globals.css
+  styles/              globals.scss entry plus partials: _tokens (design system), _base, _layout,
+                       _typography, _utilities, _motion, _brand, and shared _mixins
 docs/RESEARCH.md       sources, verified vs inferred, open questions
 scripts/preview.mjs    zero-dependency static server for out/ (mimics GitHub Pages)
 ```
@@ -86,13 +87,21 @@ Only facts with a source go into content. Product figures are rendered with attr
 
 ## Design system
 
-All tokens live in `src/styles/tokens.css`:
+All tokens live in `src/styles/_tokens.scss`:
 
 - Colour: Walkover red `#dc281e` from the logo, plus ink and paper neutrals. Each product appears only in its own brand colour (`Product.brand` in `src/content/products.ts`). Give an element the colour with `brandProps(product.brand)`. A global `[data-brand]` rule then sets `--c` to the true colour on light surfaces and to a lifted tint on dark ones. Solutions take the colour of their lead product.
 - Type scale: Inter Tight display, Inter body, JetBrains Mono labels.
 - Spacing, radius, shadows, and motion durations and easings.
 
 Dark sections opt in with `.surface-dark`. Text sizes and colours meet WCAG AA contrast on both surfaces. Small accent-coloured text uses `color-mix(… 45%, var(--fg))`, and small red text uses `--signal-text`.
+
+## Styling
+
+- Component and page styles are SCSS Modules (`Name.module.scss`) next to the file that uses them.
+- `src/styles/globals.scss` is imported once, by the root layout. It loads the partials in cascade order: tokens, base, layout, typography, utilities, motion and brand. Put a new global class in the partial that matches it.
+- `src/styles/_mixins.scss` holds the few declaration groups that repeat across files. Load it with a relative `@use "…/styles/mixins";`. Add a mixin only when it removes real repetition.
+- Colours are OKLCH and come from tokens. The dark theme follows `prefers-color-scheme` through the tokens, with no toggle and no theme class.
+- Tailwind is not used.
 
 ## Motion and performance
 

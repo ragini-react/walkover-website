@@ -1,6 +1,6 @@
 import { site } from "@/content/site";
 import { openQuestions, sourceKinds, sources, sourceNumber, type SourceKind } from "@/content/story";
-import styles from "./Story.module.css";
+import styles from "./Story.module.scss";
 
 export function OpenQuestions() {
   return (

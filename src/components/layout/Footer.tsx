@@ -3,7 +3,7 @@ import { industries, products, solutions } from "@/content";
 import { companyNav, resourceNav, site } from "@/content/site";
 import { Logo } from "@/components/ui/Logo";
 import { withBasePath } from "@/lib/base-path";
-import styles from "./Footer.module.css";
+import styles from "./Footer.module.scss";
 
 export function Footer() {
   const year = new Date().getFullYear();

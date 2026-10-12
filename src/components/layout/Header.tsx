@@ -8,7 +8,7 @@ import { Icon } from "@/components/ui/Icon";
 import { buttonClass } from "@/components/ui/Button";
 import type { MenuSection } from "./nav-data";
 import { MobileNav } from "./MobileNav";
-import styles from "./Header.module.css";
+import styles from "./Header.module.scss";
 
 export function Header({ nav }: { nav: MenuSection[] }) {
   const pathname = usePathname();

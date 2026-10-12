@@ -1,3 +1,5 @@
+@use "../../../styles/mixins";
+
 .name {
   display: block;
   font-size: clamp(3.2rem, 1.8rem + 6vw, 7rem);
@@ -288,12 +290,8 @@
   height: 6px;
   border-radius: 2px;
   background: var(--accent);
-}
 
-@media (prefers-color-scheme: dark) {
-  .spec li::before {
-    box-shadow: var(--ring-brand-dot);
-  }
+  @include mixins.brand-dot-ring;
 }
 
 .spec > p {
@@ -367,13 +365,8 @@
   height: 12px;
   border-radius: 50%;
   flex-shrink: 0;
-}
 
-@media (prefers-color-scheme: dark) {
-  .connA,
-  .connB {
-    box-shadow: var(--ring-brand-dot);
-  }
+  @include mixins.brand-dot-ring;
 }
 
 .connA {

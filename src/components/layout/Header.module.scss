@@ -1,3 +1,5 @@
+@use "../../styles/mixins";
+
 .header {
   --h-fg: var(--fg);
   --h-muted: var(--fg-muted);
@@ -254,12 +256,8 @@
   height: 9px;
   border-radius: 50%;
   margin-top: 0.42rem;
-}
 
-@media (prefers-color-scheme: dark) {
-  .pip {
-    box-shadow: var(--ring-brand-dot);
-  }
+  @include mixins.brand-dot-ring;
 }
 
 .itemLabel {
@@ -308,8 +306,8 @@
   border-radius: 4px;
   background: oklch(100% 0 0 / 0.12);
   box-shadow: inset 0 0 0 1px oklch(100% 0 0 / 0.25);
+  transition: transform var(--dur-4) var(--ease-spring);
 }
-
 
 /* On hover the product cells shuffle like tokens taking a turn. */
 .feature:hover .featureBoard span:nth-child(odd) {
@@ -318,10 +316,6 @@
 
 .feature:hover .featureBoard span:nth-child(even) {
   transform: translateY(4px);
-}
-
-.featureBoard span {
-  transition: transform var(--dur-4) var(--ease-spring);
 }
 
 .featureTitle {

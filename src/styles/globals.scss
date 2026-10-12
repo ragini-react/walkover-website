@@ -1,0 +1,10 @@
+// Global stylesheet, imported once by the root layout. Order matters: tokens
+// first, then element defaults, then the shared classes that build on them.
+// Component styles live next to their components as *.module.scss files.
+@use "tokens"; // design tokens, .surface-dark, system dark theme
+@use "base"; // reset, element defaults, focus
+@use "layout"; // .container, .section
+@use "typography"; // .t-*, .eyebrow, .accent
+@use "utilities"; // .sr-only, .skip-link
+@use "motion"; // data-reveal, page entrance
+@use "brand"; // product brand-dot rings

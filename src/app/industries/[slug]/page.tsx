@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { brandProps, getIndustry, getProduct, industries } from "@/content";
+import { brandProps, getIndustry, getProduct, industries, inLaunchOrder } from "@/content";
 import { PageHero } from "@/components/sections/PageHero";
 import { WorkflowPath } from "@/components/visuals/WorkflowPath";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { pageMeta } from "@/lib/seo";
-import styles from "../../detail.module.css";
+import styles from "../../detail.module.scss";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -74,7 +74,7 @@ export default async function IndustryPage({ params }: Params) {
             </h2>
           </div>
           <ul role="list" className={styles.roles}>
-            {industry.products.map((ref, i) => {
+            {inLaunchOrder(industry.products).map((ref, i) => {
               const p = getProduct(ref.slug)!;
               return (
                 <li key={p.slug} data-reveal style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}>

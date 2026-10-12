@@ -1,5 +1,5 @@
 import { timeline } from "@/content/company";
-import styles from "./Story.module.css";
+import styles from "./Story.module.scss";
 
 /** Company timeline; the rail draws itself as it scrolls into view. */
 export function Story() {

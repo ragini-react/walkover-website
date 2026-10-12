@@ -1,0 +1,15 @@
+@use "mixins";
+
+/* ── Product brand colours ─────────────────────────── */
+/* Products always appear in their exact brand colour (set inline as --c or
+   --accent). On dark surfaces, small brand-coloured marks get a hairline
+   ring so deep colours such as Giddh's indigo stay visible without tinting. */
+.surface-dark [data-brand-dot],
+.surface-dark[data-brand-dot] {
+  box-shadow: var(--ring-brand-dot);
+}
+
+/* In the system dark theme every surface is ink, so the ring applies everywhere. */
+[data-brand-dot] {
+  @include mixins.brand-dot-ring;
+}

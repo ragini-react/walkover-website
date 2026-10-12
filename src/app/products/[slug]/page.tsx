@@ -16,7 +16,7 @@ import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { pageMeta } from "@/lib/seo";
 import { softwareSchema } from "@/lib/schema";
-import styles from "./product.module.css";
+import styles from "./product.module.scss";
 
 type Params = { params: Promise<{ slug: string }> };
 

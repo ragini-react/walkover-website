@@ -9,7 +9,7 @@ import { Values } from "@/components/home/Values";
 import { ArrowLink } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { pageMeta } from "@/lib/seo";
-import styles from "./about.module.css";
+import styles from "./about.module.scss";
 
 export const metadata: Metadata = pageMeta({
   title: "About Walkover — Our Story, Mission & Values",
@@ -158,7 +158,7 @@ export default function AboutPage() {
             <h2 id="people-title" className="t-h2">
               {site.teamSize} people, working remotely, rooted in Indore.
             </h2>
-            <p className="t-lead" style={{ marginTop: "var(--space-5)" }}>
+            <p className={`t-lead ${styles.peopleLead}`}>
               Small teams own whole products. Our office sits in the heart of India, and our people work from
               wherever they do their best work.
             </p>
@@ -194,7 +194,7 @@ export default function AboutPage() {
           />
           <div className={styles.products}>
             {products.map((p, i) => (
-              <ProductCard key={p.slug} product={p} index={i} />
+              <ProductCard key={p.slug} product={p} index={i} launch={i + 1} />
             ))}
           </div>
         </div>

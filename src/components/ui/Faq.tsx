@@ -2,7 +2,7 @@ import type { Faq as FaqItem } from "@/content/types";
 import { faqSchema } from "@/lib/schema";
 import { JsonLd } from "./JsonLd";
 import { Icon } from "./Icon";
-import styles from "./Faq.module.css";
+import styles from "./Faq.module.scss";
 
 /** Native disclosure widgets: keyboard and screen-reader friendly with zero JS.
  *  Emits FAQPage schema for exactly the questions shown. */

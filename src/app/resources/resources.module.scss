@@ -1,3 +1,5 @@
+@use "../../styles/mixins";
+
 .grid {
   display: grid;
   gap: var(--space-4);
@@ -139,12 +141,8 @@
   height: 9px;
   border-radius: 50%;
   background: var(--c, var(--signal));
-}
 
-@media (prefers-color-scheme: dark) {
-  .siteDot {
-    box-shadow: var(--ring-brand-dot);
-  }
+  @include mixins.brand-dot-ring;
 }
 
 .siteName {
