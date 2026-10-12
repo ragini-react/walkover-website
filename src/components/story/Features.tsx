@@ -17,6 +17,7 @@ import {
   viasocketPath,
 } from "@/content/story";
 import { Icon } from "@/components/ui/Icon";
+import { withBasePath } from "@/lib/base-path";
 import { Cite, Cites } from "./Prose";
 import styles from "./Story.module.css";
 
@@ -327,7 +328,7 @@ export function People() {
         <li key={p.name} className={styles.person} data-reveal style={delay(i)}>
           {p.photo ? (
             <Image
-              src={p.photo}
+              src={withBasePath(p.photo)}
               width={520}
               height={520}
               alt={`Portrait of ${p.name}`}

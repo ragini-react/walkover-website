@@ -1,0 +1,64 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Read the repo, publish to Pages, and mint the OIDC token deploy-pages needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time. A newer push queues behind a running deployment
+# instead of cancelling it half-way.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # Reports the Pages URL for this repo: base_path is "/<repo>" for a
+      # project site and "" for USERNAME.github.io or a custom domain.
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - run: npm ci
+
+      - name: Build static site
+        run: npm run build
+        env:
+          # Optional repository variables (Settings → Secrets and variables →
+          # Actions → Variables):
+          #   PAGES_BASE_PATH               overrides the detected base path ("/" forces the root)
+          #   NEXT_PUBLIC_SITE_URL          canonical origin for SEO tags (defaults to walkover.in)
+          #   NEXT_PUBLIC_CONTACT_ENDPOINT  where the contact form posts
+          BASE_PATH: ${{ vars.PAGES_BASE_PATH || steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://walkover.in' }}
+          NEXT_PUBLIC_CONTACT_ENDPOINT: ${{ vars.NEXT_PUBLIC_CONTACT_ENDPOINT }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

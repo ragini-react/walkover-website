@@ -1,4 +1,4 @@
-/** Validation shared by the form (client) and the API route (server), so
+/** Validation shared by the contact form and any endpoint that receives it, so
  *  both enforce exactly the same rules. Kept free of content imports so it
  *  stays tiny in the client bundle. */
 

@@ -1,5 +1,8 @@
 import { ogSize, renderOg } from "@/lib/og";
 
+// Generated once at build time (required by the static export).
+export const dynamic = "force-static";
+
 export const size = ogSize;
 export const contentType = "image/png";
 export const alt = "Our Story: from a hosting shop in Indore to MSG91, Giddh and viaSocket";

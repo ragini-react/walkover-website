@@ -2,6 +2,7 @@ import Link from "next/link";
 import { industries, products, solutions } from "@/content";
 import { companyNav, resourceNav, site } from "@/content/site";
 import { Logo } from "@/components/ui/Logo";
+import { withBasePath } from "@/lib/base-path";
 import styles from "./Footer.module.css";
 
 export function Footer() {
@@ -102,7 +103,7 @@ export function Footer() {
             <Link href="/privacy" className={styles.link}>
               Privacy
             </Link>
-            <a href="/sitemap.xml" className={styles.link}>
+            <a href={withBasePath("/sitemap.xml")} className={styles.link}>
               Sitemap
             </a>
           </div>

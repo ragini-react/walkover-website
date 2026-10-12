@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Chapter as ChapterData, Photo, Quote } from "@/content/story";
+import { withBasePath } from "@/lib/base-path";
 import { Cite, Prose } from "./Prose";
 import styles from "./Story.module.css";
 
@@ -31,7 +32,7 @@ export function Reading({ text }: { text: string }) {
 export function StoryFigure({ photo, sizes, className }: { photo: Photo; sizes: string; className?: string }) {
   return (
     <figure className={`${styles.figure} ${className ?? ""}`} data-reveal>
-      <Image src={photo.src} width={photo.width} height={photo.height} alt={photo.alt} sizes={sizes} />
+      <Image src={withBasePath(photo.src)} width={photo.width} height={photo.height} alt={photo.alt} sizes={sizes} />
       <figcaption>{photo.caption}</figcaption>
     </figure>
   );

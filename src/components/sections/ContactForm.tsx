@@ -14,6 +14,12 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 const empty: ContactInput = { name: "", email: "", company: "", interest: "", message: "" };
 
+// The site is a static export with no server of its own, so enquiries are
+// POSTed straight from the browser to this endpoint (for example a viaSocket
+// webhook trigger), set at build time. It ships in the page, so it must be a
+// URL that is safe to make public and that allows cross-origin POSTs.
+const endpoint = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT;
+
 export function ContactForm({ groups, fallbackEmail }: { groups: InterestGroup[]; fallbackEmail: string }) {
   const params = useSearchParams();
   const id = useId();
@@ -60,22 +66,48 @@ export function ContactForm({ groups, fallbackEmail }: { groups: InterestGroup[]
       requestAnimationFrame(() => summaryRef.current?.focus());
       return;
     }
+    // Honeypot: real people never see or fill this field. Bots get a fake success.
+    if (honeypot.trim() !== "") {
+      setStatus("success");
+      return;
+    }
+    if (!endpoint) {
+      if (process.env.NODE_ENV !== "production") {
+        console.info("[contact] NEXT_PUBLIC_CONTACT_ENDPOINT not set; enquiry accepted in development only.", {
+          interest: clean.interest,
+        });
+        setStatus("success");
+        return;
+      }
+      setServerError(`Our form is temporarily unavailable. Please email ${fallbackEmail} instead.`);
+      setStatus("error");
+      track("contact_error", { reason: "unconfigured" });
+      requestAnimationFrame(() => summaryRef.current?.focus());
+      return;
+    }
     setStatus("submitting");
     setServerError("");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ ...clean, website: honeypot }),
+        body: JSON.stringify({ ...clean, source: "walkover.in/contact", receivedAt: new Date().toISOString() }),
       });
+      // A plain webhook answers with any 2xx; an endpoint that validates may
+      // reply { ok: false, error?, errors? } like the old /api/contact route.
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string; errors?: ContactErrors };
-      if (res.ok && data.ok) {
+      if (res.ok && data.ok !== false) {
         setStatus("success");
         track("contact_submit", { interest: clean.interest || "none" });
         return;
       }
       if (data.errors) setErrors(data.errors);
-      setServerError(data.error ?? "Please check the highlighted fields.");
+      setServerError(
+        data.error ??
+          (data.errors
+            ? "Please check the highlighted fields."
+            : `We could not send your message just now. Please try again or email ${fallbackEmail}.`),
+      );
       setStatus("error");
       track("contact_error", { reason: String(res.status) });
       requestAnimationFrame(() => summaryRef.current?.focus());

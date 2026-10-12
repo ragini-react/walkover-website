@@ -10,6 +10,7 @@ import {
   type EventRecord,
 } from "@/content/events";
 import { site } from "@/content/site";
+import { withBasePath } from "@/lib/base-path";
 import { Icon } from "@/components/ui/Icon";
 import styles from "./Events.module.css";
 
@@ -175,7 +176,7 @@ export function EventCard({
       {e.photo && (
         <figure className={styles.photo}>
           <Image
-            src={e.photo.src}
+            src={withBasePath(e.photo.src)}
             width={e.photo.width}
             height={e.photo.height}
             alt={e.photo.alt}

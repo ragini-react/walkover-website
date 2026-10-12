@@ -2,6 +2,9 @@ import { ImageResponse } from "next/og";
 import { DIE_BODY, DIE_PIPS, LOGO_RED } from "@/components/ui/logo-paths";
 import { toSrgb } from "@/lib/color";
 
+// Generated once at build time (required by the static export).
+export const dynamic = "force-static";
+
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 

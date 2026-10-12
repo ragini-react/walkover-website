@@ -3,12 +3,17 @@ import { industries, posts, products, solutions } from "@/content";
 import { eventOwners, eventsFor } from "@/content/events";
 import { absoluteUrl } from "@/lib/seo";
 
+// Generated once at build time (required by the static export).
+export const dynamic = "force-static";
+
 /** Every indexable route. Detail pages are generated from content, so new
  *  products, solutions or articles are included automatically. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const latestPost = posts[0]?.updated ?? posts[0]?.published;
+  // Pages are exported as folder/index.html (trailingSlash), so list the
+  // slash form that static hosts serve without a redirect.
   const entry = (path: string, priority: number, lastModified?: string): MetadataRoute.Sitemap[number] => ({
-    url: absoluteUrl(path),
+    url: absoluteUrl(path.endsWith("/") ? path : `${path}/`),
     priority,
     ...(lastModified && { lastModified }),
   });

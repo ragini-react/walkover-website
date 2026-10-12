@@ -1,5 +1,8 @@
 import { renderOg, ogSize } from "@/lib/og";
 
+// Generated once at build time (required by the static export).
+export const dynamic = "force-static";
+
 export const alt = "Walkover — communication, automation and AI software";
 export const size = ogSize;
 export const contentType = "image/png";

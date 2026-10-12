@@ -1,6 +1,9 @@
 import { getPost, postCategories, posts } from "@/content";
 import { ogSize, renderOg } from "@/lib/og";
 
+// Generated once at build time (required by the static export).
+export const dynamic = "force-static";
+
 export const size = ogSize;
 export const contentType = "image/png";
 export const alt = "Walkover blog article";
